@@ -13,6 +13,7 @@ jobs:
       - name: Deploy to Heroku
         uses: akhileshns/heroku-deploy@v3.12.12
         with:
+          args: deploy --dir=dist
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "reasearch-management-sliit-f" 
           heroku_email: "researchprojectsliit@gmail.com"
