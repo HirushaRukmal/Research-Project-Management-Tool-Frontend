@@ -1,15 +1,15 @@
 please refer following structure
 
-src -- 
-     |-->   component --|
-     |                  |--> student
-     |                  |--> user
-     |                  |--> group
-     |-->   pages     --|
-     |                  |--> student
-     |                  |--> user
-     |                  |--> group
-     |-->   services  --|
-                        |--> student
-                        |--> user
-                        |--> group
+src -- <br>
+     |-->   component --| <br>
+     |                  |--> student <br>
+     |                  |--> user <br>
+     |                  |--> group <br>
+     |-->   pages     --| <br>
+     |                  |--> student <br>
+     |                  |--> user <br>
+     |                  |--> group <br>
+     |-->   services  --| <br>
+                        |--> student <br>
+                        |--> user <br>
+                        |--> group <br>
