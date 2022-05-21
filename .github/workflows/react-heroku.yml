@@ -1,4 +1,4 @@
-name: React CI
+name: frontend CI - deploy on heroku
 on:
   push:
     branches:
