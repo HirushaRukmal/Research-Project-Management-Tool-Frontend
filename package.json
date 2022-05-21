@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Reasearch Project Tool - frontend ",
   "source": "src/index.jsx",
-  "main": "dist/main.js",
+  "main": "build/main.js",
   "scripts": {
     "start": "parcel public/index.html",
     "build": "parcel build"
