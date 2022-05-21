@@ -10,7 +10,7 @@ function App() {
                 <Routes>
 
                     {/* Public Route */}
-                    <Route path="/home" element={<Home />} />
+                    <Route path="/" element={<Home />} />
                 </Routes>
             </Router>
         </>

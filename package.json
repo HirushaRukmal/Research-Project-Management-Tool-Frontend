@@ -2,11 +2,9 @@
   "name": "frontend",
   "version": "1.0.0",
   "description": "Reasearch Project Tool - frontend ",
-  "source": "src/index.jsx",
-  "main": "build/main.js",
   "scripts": {
     "start": "set PORT=3000 && parcel public/index.html",
-    "build": "parcel build"
+    "build": "parcel build public/index.html"
   },
   "author": "Isuru Pathum Herath",
   "license": "ISC",
