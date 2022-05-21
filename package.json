@@ -5,7 +5,7 @@
   "source": "src/index.jsx",
   "main": "build/main.js",
   "scripts": {
-    "start": "parcel public/index.html",
+    "start": "set PORT=3000 && parcel public/index.html",
     "build": "parcel build"
   },
   "author": "Isuru Pathum Herath",
