@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: 
       name: Heroku-LIVE
-      url: https://github.com
+      url: https://reasearch-management-sliit-f.herokuapp.com/
     steps:
       - name: Development Code
         uses: actions/checkout@v2
