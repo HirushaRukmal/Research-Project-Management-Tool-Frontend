@@ -1,7 +1,7 @@
 # pull node-alpine version from dockerhub and name it as build_image
 FROM node:17-alpine3.14 AS build_image
 
-# clear the cache of current docker image already pulled into the local machine 
+# clear the cache ofdocker images current docker image already pulled into the local machine 
 RUN apk add --no-cache nodejs npm
 
 # change the work directory to "azure" 
@@ -29,7 +29,7 @@ WORKDIR /webapp
 COPY --from=build_image /docker /webapp/
 
 # define the exposing port of the application
-EXPOSE 3000
+EXPOSE 1234
 
 # execute "npm start" command to start the application
 CMD ["npm", "start"]
