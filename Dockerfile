@@ -17,7 +17,7 @@ RUN npm install
 COPY . .
 
 # build the project
-RUN npm run build
+# RUN npm run build
 
 # use the node-alpine version here again
 FROM node:17-alpine3.14
@@ -29,7 +29,7 @@ WORKDIR /webapp
 COPY --from=build_image /docker /webapp/
 
 # define the exposing port of the application
-EXPOSE 1234
+EXPOSE 3000
 
 # execute "npm start" command to start the application
 CMD ["npm", "start"]
