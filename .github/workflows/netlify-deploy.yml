@@ -1,0 +1,20 @@
+name: frontend CI - deploy on netlify
+on:
+  push:
+    branches:
+      - main
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: 
+      name: Heroku-LIVE
+      url: https://sliit-reasearch-management.netlify.app/
+    steps:
+      - name: Development Code
+        uses: actions/checkout@v2
+      - name: Deploy to Netlify
+        uses: jsmrcaga/action-netlify-deploy@v1.1.0
+        with:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_TOKEN_SECRET }}
+          NETLIFY_DEPLOY_TO_PROD: true
+          target_url: https://sliit-reasearch-management-frontend.netlify.app
