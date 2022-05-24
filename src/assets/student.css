@@ -1,45 +1,84 @@
-@media (min-width: 1025px) {
-    .h-custom {
-        height: 100vh !important;
-    }
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&amp;display=swap");
+
+.card-header:first-child {
+    border-radius: calc(1rem - 1px) calc(1rem - 1px) 0 0;
 }
 
-.card-registration .select-input.form-control[readonly]:not([disabled]) {
-    font-size: 1rem;
-    line-height: 2.15;
-    padding-left: .75em;
-    padding-right: .75em;
+.card-header {
+    position: relative;
+    padding: 2rem 2rem;
+    border-bottom: none;
+    background-color: white;
+    box-shadow: 0 0.125rem 0.25rem rgb(0 0 0 / 8%);
+    z-index: 2;
 }
 
-.card-registration .select-arrow {
-    top: 13px;
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: none;
+    box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%);
+    border-radius: 1rem;
 }
 
-.gradient-custom-2 {
-    /* fallback for old browsers */
-    background: #a1c4fd;
-
-    /* Chrome 10-25, Safari 5.1-6 */
-    background: -webkit-linear-gradient(to right, rgba(161, 196, 253, 1), rgba(194, 233, 251, 1));
-
-    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    background: linear-gradient(to right, rgba(161, 196, 253, 1), rgba(194, 233, 251, 1))
+.bg-gray-100 {
+    background-color: #f8f9fa !important;
 }
 
-.bg-indigo {
-    background-color: #4835d4;
+body {
+    font-family: 'Poppins' !important;
 }
 
-@media (min-width: 992px) {
-    .card-registration-2 .bg-indigo {
-        border-top-right-radius: 15px;
-        border-bottom-right-radius: 15px;
-    }
+.text-primary {
+    color: #4650dd !important;
 }
 
-@media (max-width: 991px) {
-    .card-registration-2 .bg-indigo {
-        border-bottom-left-radius: 15px;
-        border-bottom-right-radius: 15px;
-    }
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6 {
+
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.text-muted {
+    color: #6c757d !important;
+}
+
+.lead {
+    font-size: 1.125rem;
+    font-weight: 300;
+}
+
+.text-sm {
+    font-size: .7875rem !important;
+}
+
+h3,
+.h3 {
+    font-size: 1.575rem;
+}
+
+.hide {
+    display: none;
+}
+
+a {
+    color: #4650dd !important;
+    text-decoration: underline !important;
+    cursor: pointer;
 }
