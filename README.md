@@ -31,4 +31,5 @@ Research Management Tool - Frontend
   <li>Heroku</li>
   <li>Azure Container Registry</li>
   <li>Azure Web App</li>
+  <li>Netlify</li>
 </ul>
