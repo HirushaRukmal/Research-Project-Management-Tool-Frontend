@@ -11,7 +11,7 @@ WORKDIR /docker
 COPY package.json ./
 
 # run "npm install" to download all necessary dependancies and packages
-RUN npm install
+RUN npm install --force
 
 # copy everything we downloaded to working directory
 COPY . .
