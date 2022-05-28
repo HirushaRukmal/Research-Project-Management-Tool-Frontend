@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "Reasearch Project Tool - frontend ",
   "scripts": {
-    "start": "parcel public/index.html",
-    "build": "parcel build public/index.html"
+    "start": "set PORT=3000 && parcel public/index.html",
+    "build": "parcel build public/index.html --dist-dir build"
   },
   "author": "Isuru Pathum Herath",
   "license": "ISC",
@@ -15,7 +15,6 @@
     "axios": "^0.27.2",
     "bootstrap": "^5.1.3",
     "chart.js": "^3.8.0",
-    "dotenv": "^16.0.1",
     "jspdf": "^2.5.1",
     "jspdf-autotable": "^3.5.24",
     "parcel": "^2.0.0-rc.0",
