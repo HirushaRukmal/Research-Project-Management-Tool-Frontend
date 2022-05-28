@@ -1,13 +1,70 @@
 import React from 'react';
 import '../../assets/student/student.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import axios from 'axios';
+require('dotenv').config();
 
 class App extends React.Component {
     //set the state default value
     constructor(props) {
         super(props);
-        this.state = { login: 'show col-lg-6 px-lg-4', details: 'show', register: 'hide' };
+        this.state = {
+            login: 'show col-lg-6 px-lg-4',
+            details: 'show',
+            register: 'hide',
+
+            fullName: "",
+            sliitId: "",
+            sliitEmail: "",
+            personalEmail: "",
+            contactNo: "",
+            studentType: "",
+            groupStatus: "",
+        };
     }
+
+    onChange = e => {
+        this.setState({ [e.target.id]: e.target.value });
+    };
+
+    onSubmitRegister = e => {
+        e.preventDefault();
+        const newUser = {
+            fullName: this.state.fullName,
+            sliitId: this.state.sliitId,
+            sliitEmail: this.state.sliitEmail,
+            personalEmail: this.state.personalEmail,
+            contactNo: this.state.contactNo,
+            studentType: this.state.studentType,
+            groupStatus: this.state.groupStatus
+        };
+        console.log();
+
+        var fullName = newUser.fullName;
+        var sliitId = newUser.sliitId;
+        var sliitEmail = newUser.sliitEmail;
+        var personalEmail = newUser.personalEmail;
+        var contactNo = newUser.contactNo;
+        var studentType = newUser.studentType;
+        var groupStatus = newUser.groupStatus;
+
+        axios.post(`http://localhost:8000/student/`, {
+            fullName,
+            sliitId,
+            sliitEmail,
+            personalEmail,
+            contactNo,
+            studentType,
+            groupStatus
+        })
+            .then(response => {
+                console.log(response)
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    };
+
     showlogin = () => { //button click functionality
 
         this.setState({ login: 'show col-lg-6 px-lg-4' });
@@ -69,50 +126,46 @@ class App extends React.Component {
                                     <div className="card-body p-lg-5">
                                         <h3 className="mb-4">Get starte with your research project</h3>
                                         <p className="text-muted text-sm mb-5">Please fill your correct detail and create your account to continue you research project.</p>
-                                        <form action="#">
+                                        <form onSubmit={this.onSubmit}>
                                             <div className="row">
                                                 <div className="col-lg-6">
                                                     <div className="form-floating mb-3">
-                                                        <input className="form-control" id="fullName" type="text" placeholder="name@example.com" required />
+                                                        <input className="form-control" onChange={this.onChange} value={this.state.fullName} id="fullName" type="text" placeholder="name@example.com" required />
                                                         <label for="fullName">Full Name</label>
                                                     </div>
                                                     <div className="form-floating mb-3">
-                                                        <input className="form-control" id="sliitEmail" type="email" placeholder="name@example.com" required />
+                                                        <input className="form-control" onChange={this.onChange} value={this.state.sliitEmail} id="sliitEmail" type="email" placeholder="name@example.com" required />
                                                         <label for="sliitEmail"> Student Email address</label>
                                                     </div>
                                                     <div className="form-floating mb-3">
-                                                        <input className="form-control" id="personalEmail" type="email" placeholder="name@example.com" required />
+                                                        <input className="form-control" onChange={this.onChange} value={this.state.personalEmail} id="personalEmail" type="email" placeholder="name@example.com" required />
                                                         <label for="personalEmail"> Personal Email address</label>
                                                     </div>
                                                     <div className="form-floating mb-3">
-                                                        <input className="form-control" id="contactNo" type="text" placeholder="07XXXXXXXX" required />
+                                                        <input className="form-control" onChange={this.onChange} value={this.state.contactNo} id="contactNo" type="text" placeholder="07XXXXXXXX" required />
                                                         <label for="contactNo">Contact Number</label>
                                                     </div>
 
                                                 </div>
                                                 <div className="col-lg-6">
                                                     <div className="form-floating mb-3">
-                                                        <input className="form-control" id="sliitId" type="text" placeholder="IT12345678" required />
+                                                        <input className="form-control" onChange={this.onChange} value={this.state.sliitId} id="sliitId" type="text" placeholder="IT12345678" required />
                                                         <label for="sliitId">SLIIT Student ID</label>
                                                     </div>
                                                     <div className="form-floating mb-3">
-                                                        <input className="form-control" id="studentType" type="text" placeholder="Prorata | Regular" required />
+                                                        <input className="form-control" onChange={this.onChange} value={this.state.studentType} id="studentType" type="text" placeholder="Prorata | Regular" required />
                                                         <label for="studentType">Student Type</label>
                                                     </div>
                                                     <div className="form-floating mb-3">
-                                                        <input className="form-control" id="floatingPassword" type="password" placeholder="Password" required />
-                                                        <label for="floatingPassword">New Password</label>
-                                                    </div>
-                                                    <div className="form-floating mb-3">
-                                                        <input className="form-control" id="repeatPassword" type="password" placeholder="Password" required />
-                                                        <label for="repeatPassword">Repeat Password</label>
+                                                        <input className="form-control" onChange={this.onChange} value={this.state.groupStatus} id="groupStatus" type="text" placeholder="Prorata | Regular" required />
+                                                        <label for="groupStatus">Group Status</label>
                                                     </div>
                                                     <div className="form-check mb-3">
                                                         <input className="form-check-input" type="checkbox" name="agree" id="agree" />
                                                         <label className="form-check-label" for="agree">I agree with the <a href="#">Terms & Conditions</a>.</label>
                                                     </div>
                                                     <div className="form-group">
-                                                        <button className="btn btn-primary" id="regidter" type="button" name="registerSubmit">Register</button>
+                                                        <button onClick={this.onSubmitRegister} className="btn btn-primary" id="regidter" type="button" name="registerSubmit">Register</button>
                                                     </div>
                                                 </div>
                                             </div>
