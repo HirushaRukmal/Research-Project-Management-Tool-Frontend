@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Reasearch Project Tool - frontend ",
   "scripts": {
-    "start": "set PORT=3000 && parcel public/index.html",
+    "start": "parcel public/index.html",
     "build": "parcel build public/index.html"
   },
   "author": "Isuru Pathum Herath",

@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../assets/student.css';
+import '../../assets/student/student.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 class App extends React.Component {
