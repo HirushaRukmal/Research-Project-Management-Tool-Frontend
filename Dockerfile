@@ -29,7 +29,7 @@ WORKDIR /webapp
 COPY --from=build_image /docker /webapp/
 
 # define the exposing port of the application
-EXPOSE 1234
+EXPOSE 3000
 
 # execute "npm start" command to start the application
 CMD ["npm", "start"]
