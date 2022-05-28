@@ -18,10 +18,22 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Build and push Docker to Heroku
-        uses: akhileshns/heroku-deploy@v3.12.12
-        with:
-          heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
-          appdir: "."
-          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
-          heroku_email: ${{ secrets.HEROKU_EMAIL }}
-          usedocker: true
+        env:
+          HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
+          DOCKERFILE_DIRECTORY: "."
+          HEROKU_EMAIL: ${{ secrets.HEROKU_EMAIL }}
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+          DOCKERFILE_NAME: "Dockerfile"
+          DOCKER_OPTIONS: "--no-cache"
+        run: |
+          cd ${DOCKERFILE_DIRECTORY}
+          echo ${HEROKU_API_KEY} | docker login \
+            --username=${HEROKU_EMAIL} \
+            registry.heroku.com \
+            --password-stdin
+          docker build \
+            --file ${DOCKERFILE_NAME} \
+            ${DOCKER_OPTIONS} \
+            --tag registry.heroku.com/${HEROKU_APP_NAME}/web .
+          heroku container:push web --app ${HEROKU_APP_NAME}
+          heroku container:release web --app ${HEROKU_APP_NAME}
