@@ -27,7 +27,7 @@ class Dashboard extends Component {
   }
 
   retrieveProfiles() {
-    axios.get('http://localhost:8000/profiles').then((res) => {
+    axios.get('http://localhost:8000/admin/profiles').then((res) => {
       if (res.data.success) {
         this.setState({
           profiles: res.data.existingProfile,
@@ -39,17 +39,19 @@ class Dashboard extends Component {
   }
 
   onDelete = (id) => {
-    axios.delete(`http://localhost:8000/profile/delete/${id}`).then((res) => {
-      const Swal = require('sweetalert2');
-      Swal.fire({
-        title: 'Success!',
-        text: 'Profile Deleted Successfully',
-        icon: 'success',
-        confirmButtonText: 'Cool',
-      });
+    axios
+      .delete(`http://localhost:8000/admin/profile/delete/${id}`)
+      .then((res) => {
+        const Swal = require('sweetalert2');
+        Swal.fire({
+          title: 'Success!',
+          text: 'Profile Deleted Successfully',
+          icon: 'success',
+          confirmButtonText: 'Cool',
+        });
 
-      this.retrieveProfiles();
-    });
+        this.retrieveProfiles();
+      });
   };
 
   filterData(profiles, searchKey) {
@@ -63,7 +65,7 @@ class Dashboard extends Component {
   handleSearchArea = (e) => {
     const searchKey = e.currentTarget.values;
 
-    axios.get('http://localhost:8000/profiles').then((res) => {
+    axios.get('http://localhost:8000/admin/profiles').then((res) => {
       if (res.data.success) {
         this.filterData(res.data.existingProfile, searchKey);
       }
@@ -74,14 +76,11 @@ class Dashboard extends Component {
     return (
       <div>
         <div className="container">
-          <h2>Hello Admin!</h2>
+          <h2>Exisiting Admin Users</h2>
           <br />
           <p>
             <button className="btn btn-primary">
-              <a
-                href="/register"
-                style={{ textDecoration: 'none', color: 'white' }}
-              >
+              <a href="/admin/register" style={{ textDecoration: 'none' }}>
                 Create New Profile
               </a>
             </button>
@@ -111,9 +110,10 @@ class Dashboard extends Component {
               <tr>
                 <th scope="col">#</th>
                 <th scope="col">First Name</th>
+                <th scope="col">Middle Name</th>
                 <th scope="col">Last Name</th>
-                <th scope="col">Username</th>
                 <th scope="col">Email address</th>
+                <th scope="col">Type</th>
                 <th scope="col">Action</th>
               </tr>
             </thead>
@@ -123,19 +123,20 @@ class Dashboard extends Component {
                   <th scope="row">{index + 1}</th>
                   <td>
                     <a
-                      href={`/profile/${profiles._id}`}
+                      href={`/admin/profile/view/${profiles._id}`}
                       style={{ textDecoration: 'none' }}
                     >
                       {profiles.fName}
                     </a>
                   </td>
+                  <td>{profiles.mName}</td>
                   <td>{profiles.lName}</td>
-                  <td>{profiles.uName}</td>
                   <td>{profiles.email}</td>
+                  <td>{profiles.type}</td>
                   <td>
                     <a
                       className="btn btn-warning"
-                      href={`/updateprofile/${profiles._id}`}
+                      href={`/admin/profile/update/${profiles._id}`}
                     >
                       <i className="fas fa-edit"></i>&nbsp;Edit
                     </a>

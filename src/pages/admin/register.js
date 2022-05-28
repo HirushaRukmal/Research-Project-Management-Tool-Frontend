@@ -40,7 +40,7 @@ function Register() {
       setAddress('');
       setPassword('');
       setTimeout(() => {
-        window.location.href = '/admin/login';
+        window.location.href = '/admin/dashboard';
       }, 2000);
       const Swal = require('sweetalert2');
       Swal.fire({

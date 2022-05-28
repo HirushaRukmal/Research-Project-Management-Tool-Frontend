@@ -40,7 +40,7 @@ function Login(props) {
         } else {
           authenticateCustomer(
             mresponse,
-            () => (window.location.href = `/home`),
+            () => (window.location.href = `/admin/dashboard`),
             500
           );
           const Swal = require('sweetalert2');
