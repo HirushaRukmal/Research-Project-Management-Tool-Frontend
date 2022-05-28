@@ -8,3 +8,9 @@ Research Management Tool - Frontend
 [![frontend CI - deploy on netlify](https://github.com/SLIIT-PROJECT-THIRD/Research-Project-Management-Tool-Frontend/actions/workflows/netlify-deploy.yml/badge.svg)](https://github.com/SLIIT-PROJECT-THIRD/Research-Project-Management-Tool-Frontend/actions/workflows/netlify-deploy.yml)
 
 [![push-to-acr](https://github.com/SLIIT-PROJECT-THIRD/Research-Project-Management-Tool-Frontend/actions/workflows/push-to-acr.yml/badge.svg)](https://github.com/SLIIT-PROJECT-THIRD/Research-Project-Management-Tool-Frontend/actions/workflows/push-to-acr.yml)
+
+### Format - IT number - Mr/Ms. Name (Github Username)
+### Group Leader - IT20261900 - Ms. Vishara Prabuddhi (VisharaPrabuddhi)
+### Member 1 - IT20125516 - Mr. Isuru Pathum Herath (isurupathumherath)
+### Member 2 - IT20217068 - Mr. Hirusha Rukmal Hewageeganage (HirushaRukmal)
+### Member 3 - IT20074968 - Mr. R.D.S.H.Jayawardena (Samuditha97)
