@@ -17,13 +17,11 @@ jobs:
       # Check-out your repository.
       - name: Checkout
         uses: actions/checkout@v2
-        
-      - name: Build, Push and Deploy to Heroku # set whatever name you want to this step
-        id: heroku
-        uses: jctaveras/heroku-deploy@v1.0.0 # use the latest version of the action
+      - name: Build and push Docker to Heroku
+        uses: akhileshns/heroku-deploy@v3.12.12
         with:
-          email: ${{ secrets.HEROKU_EMAIL }} # your heroku email
-          api_key: ${{ secrets.HEROKU_API_KEY }} # your heroku api key
-          app_name: ${{ secrets.HEROKU_APP_NAME }} # you aplication name
-          dockerfile: '.' # set the path to the folder where the Dockerfile is located
-#           process_type: 'web' # Specify the process type you want to build and release
+          heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
+          appdir: "."
+          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+          heroku_email: ${{ secrets.HEROKU_EMAIL }}
+          usedocker: true
