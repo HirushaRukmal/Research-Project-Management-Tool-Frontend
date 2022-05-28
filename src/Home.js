@@ -5,7 +5,7 @@ import axios from 'axios';
 const Home = () => {
 
     useEffect(() => {
-        axios.get("https://research-tool-backend.azurewebsites.net/student/", {
+        axios.get(`${process.env.BACKEND_API}/student/`, {
         })
             .then(response => {
                 console.log(response)
