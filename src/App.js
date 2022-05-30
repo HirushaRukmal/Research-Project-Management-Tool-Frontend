@@ -21,7 +21,7 @@ function App() {
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="/admin/home" element={<SideMenu/>}/>
-          <Route path='/admin/subTypes' element={<AddSubTypes/>}/>
+          <Route path='/subTypes' element={<AddSubTypes/>}/>
         </Routes>
       </Router>
     </>
