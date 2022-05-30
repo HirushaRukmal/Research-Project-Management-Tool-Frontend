@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import '../../components/Admin/add-subTypes';
 import '../../assets/admin/sideMenu.css';
 export default function SideMenu() {
   const [isSideMenu, setSideMenu] = useState(false)
@@ -45,10 +46,10 @@ export default function SideMenu() {
               )}
             </svg>
           </span>
-        </div>
+        </div>s
         <div className="sideMenu" style={{ left: isSideMenu ? '0' : '-265px' }}>
-          <Link to={"/add-subTypes"}>Create Submission</Link>
-          <a href="#">Create Template</a>
+          <Link to={"/subTypes"}>Create Submission</Link>
+          <a href="">Create Template</a>
           <a href="#">Marking Scheme</a>
           <a href="#">Panel Members</a>
           <a href="#">Submission List</a>
