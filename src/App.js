@@ -6,7 +6,7 @@ import Register from './pages/student/register';
 import AdminRegister from './pages/admin/register';
 import AdminDashboard from './pages/admin/dashboard';
 import AdminLogin from './pages/admin/login';
-import EditProfile from './pages/admin/EditProfile';
+import EditProfile from './pages/admin/editProfile';
 // import ProfileDetails from './pages/admin/Userprofile';
 import StaffDashboard from './pages/Staff/dashboard';
 import StaffRegister from './pages/Staff/register';
