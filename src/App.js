@@ -10,6 +10,8 @@ import AdminLogin from './pages/admin/login';
 import SideMenu from './components/Admin/sideMenu';
 import AddSubTypes from './components/Admin/add-subTypes';
 import FileUpload from './components/Admin/fileUpload';
+import SubTypeList from './components/Admin/list_subTypes';
+import EditSubType from './components/Admin/update_subtype';
 
 function App() {
   return (
@@ -22,9 +24,11 @@ function App() {
           <Route path="/admin/register" element={<AdminRegister />} />
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
           <Route path="/admin/login" element={<AdminLogin />} />
-          <Route path="/admin/home" element={<SideMenu/>}/>
+          <Route path="/admin" element={<SideMenu/>}/>
           <Route path='/subTypes' element={<AddSubTypes/>}/>
           <Route path='/fileUpload' element={<FileUpload/>}/>
+          <Route path='/admin/subtypelist' element={<SubTypeList/>}/>
+          <Route path='/edit-submission/' element={<EditSubType/>}/>
         </Routes>
       </Router>
     </>
