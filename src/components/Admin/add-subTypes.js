@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { Link } from "react-router-dom";
+import '../../assets/subTypes/subtypee.css';
 export default class CreateSubmission extends Component {
   constructor(props) {
     super(props)
@@ -12,12 +13,15 @@ export default class CreateSubmission extends Component {
     this.onChangeSubmissionTopic = this.onChangeSubmissionTopic.bind(this);
     this.onChangeDeadline = this.onChangeDeadline.bind(this);
     this.onChangeDescription = this.onChangeDescription.bind(this);
+    this.onFileChange = this.onFileChange.bind(this);
+    this.onUpload = this.onUpload.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     // Setting up state
     this.state = {
         Submission_Topic: '',
         Deadline: '',
         Description: '',
+        fileCollection: ''
 
     }
   }
@@ -30,6 +34,30 @@ export default class CreateSubmission extends Component {
   onChangeDescription(e) {
     this.setState({ Description: e.target.value })
   }
+  //file submission
+  onFileChange(e){
+    this.setState({ fileCollection: e.target.files})
+  }
+  onUpload(e) {
+    e.preventDefault()
+    var formData = new FormData();
+    for (const key of Object.keys(this.state.fileCollection)) {
+      formData.append('fileCollection', this.state.fileCollection[key])
+  }
+  axios.post("http://localhost:8000/admin/upload-files", formData, {
+  }).then(res => {
+      console.log(res.data)
+  })
+  const Swal = require('sweetalert2');
+  Swal.fire({
+    position: 'top-end',
+    icon: 'success',
+    title: 'File Uploaded!',
+    showConfirmButton: false,
+    timer: 1800
+  })
+  }
+  //end file submission
   onSubmit(e) {
     e.preventDefault()
     const studentObject = {
@@ -120,13 +148,20 @@ export default class CreateSubmission extends Component {
                     
                     </div>
                   </div>
-                  <div className="form-group">
-                            <input type="file" multiple/>
+                 
+                </form>
+                <form onSubmit={this.onUpload}>
+                <p className="text-muted text-sm mb-5" id="sent">
+                  If you want attached files with submission type, please upload relevent files!!.
+                </p>
+                        <div className="form-group" id="fl">
+                            <input type="file" name="fileCollection" onChange={this.onFileChange} multiple />
                         </div>
-                        <div className="form-group">
+                        <br/>
+                        <div className="form-group" id="fl2">
                             <button className="btn btn-primary" type="submit">Upload</button>
                         </div>
-                </form>
+                    </form>
                 <div className="container">
                 <div className="row">
                  
