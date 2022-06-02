@@ -113,15 +113,6 @@ const Sidebar = () => {
             <NavLink
               className="text-decoration-none text-white"
               exact
-              to="#"
-              activeClassName="activeClicked"
-            >
-              <CDBSidebarMenuItem icon="th">Panel Members</CDBSidebarMenuItem>
-            </NavLink>
-
-            <NavLink
-              className="text-decoration-none text-white"
-              exact
               to="/admin/subtypelist"
               activeClassName="activeClicked"
             >
