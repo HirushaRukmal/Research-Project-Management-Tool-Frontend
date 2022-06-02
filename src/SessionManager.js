@@ -52,8 +52,7 @@ export const getCustomerUser = () => {
 //remove token from session storage
 export const logout = (next) => {
   if (window !== 'undefined') {
-    sessionStorage.removeItem('token');
-    sessionStorage.removeItem('id');
+    sessionStorage.removeItem('User ID');
   }
   // next();
 };

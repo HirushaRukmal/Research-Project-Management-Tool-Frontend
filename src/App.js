@@ -1,15 +1,16 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 // Import Routes
-import Home from './Home';
-import Register from './pages/student/register';
-import AdminRegister from './pages/admin/register';
-import AdminDashboard from './pages/admin/dashboard';
-import AdminLogin from './pages/admin/login';
-import EditProfile from './pages/admin/EditProfile';
-// import ProfileDetails from './pages/admin/Userprofile';
-import StaffDashboard from './pages/Staff/dashboard';
-import StaffRegister from './pages/Staff/register';
+import Home from "./Home";
+import Register from "./pages/student/register";
+import AdminRegister from "./pages/admin/register";
+import AdminDashboard from "./pages/admin/dashboard";
+import AdminLogin from "./pages/admin/login";
+import EditProfile from "./pages/admin/editProfile";
+import ProfileDetails from "./pages/admin/Userprofile";
+import StaffDashboard from "./pages/Staff/dashboard";
+import StaffRegister from "./pages/Staff/register";
+import StudentDashboard from "./pages/student/dashboard";
 
 function App() {
   return (
@@ -23,9 +24,10 @@ function App() {
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="/admin/profile/update/:id" element={<EditProfile />} />
-          {/* <Route path="/admin/profile/:id" element={<ProfileDetails />} /> */}
+          <Route path="/admin/profile" element={<ProfileDetails />} />
           <Route path="/staff/dashboard" element={<StaffDashboard />} />
           <Route path="/staff/register" element={<StaffRegister />} />
+          <Route path="/student/dashboard" element={<StudentDashboard />} />
         </Routes>
       </Router>
     </>

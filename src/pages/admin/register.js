@@ -1,25 +1,25 @@
-import React, { Component, useState, useEffect } from 'react';
-import axios from 'axios';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { useNavigate } from 'react-router-dom';
-import { Calendar } from '@natscale/react-calendar';
-import Swal from 'sweetalert2';
+import React, { Component, useState, useEffect } from "react";
+import axios from "axios";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { useNavigate } from "react-router-dom";
+import { Calendar } from "@natscale/react-calendar";
+import Swal from "sweetalert2";
 
 function Register() {
-  const [fName, setFirstName] = useState('');
-  const [mName, setMiddleName] = useState('');
-  const [lName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
-  const [dob, setDOB] = useState('');
-  const [nic, setNIC] = useState('');
-  const [tel, setTel] = useState('');
-  const [address, setAddress] = useState('');
-  const [password, setPassword] = useState('');
+  const [fName, setFirstName] = useState("");
+  const [mName, setMiddleName] = useState("");
+  const [lName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [dob, setDOB] = useState("");
+  const [nic, setNIC] = useState("");
+  const [tel, setTel] = useState("");
+  const [address, setAddress] = useState("");
+  const [password, setPassword] = useState("");
 
   async function handleSubmit(event) {
     event.preventDefault();
     try {
-      await axios.post('http://localhost:8000/admin/profile/create', {
+      await axios.post("http://localhost:8000/admin/profile/create", {
         fName: fName,
         mName: mName,
         lName: lName,
@@ -30,31 +30,31 @@ function Register() {
         address: address,
         password: password,
       });
-      setFirstName('');
-      setMiddleName('');
-      setLastName('');
-      setEmail('');
-      setDOB('');
-      setNIC('');
-      setTel('');
-      setAddress('');
-      setPassword('');
+      setFirstName("");
+      setMiddleName("");
+      setLastName("");
+      setEmail("");
+      setDOB("");
+      setNIC("");
+      setTel("");
+      setAddress("");
+      setPassword("");
       setTimeout(() => {
-        window.location.href = '/admin/dashboard';
+        window.location.href = "/admin/dashboard";
       }, 2000);
-      const Swal = require('sweetalert2');
+      const Swal = require("sweetalert2");
       Swal.fire({
-        title: 'Success!',
-        text: 'Profile Created Successfully',
-        icon: 'success',
-        confirmButtonText: 'Cool',
+        title: "Success!",
+        text: "Profile Created Successfully",
+        icon: "success",
+        confirmButtonText: "Cool",
       });
     } catch (err) {
       Swal.fire({
-        title: 'Error!',
-        text: 'Admin Registration Failed',
-        icon: 'error',
-        confirmButtonText: 'Try again',
+        title: "Error!",
+        text: "Admin Registration Failed",
+        icon: "error",
+        confirmButtonText: "Try again",
       });
     }
   }
@@ -93,6 +93,8 @@ function Register() {
                       id="mName"
                       type="text"
                       placeholder="name@example.com"
+                      pattern="[A-Za-z]{1,250}"
+                      title="Characters can only be A-Z and a-z and must be less than 250 characters."
                       onChange={(event) => {
                         setMiddleName(event.target.value);
                       }}
@@ -119,6 +121,7 @@ function Register() {
                       type="email"
                       placeholder="email"
                       required
+                      pattern=""
                       onChange={(event) => {
                         setEmail(event.target.value);
                       }}
