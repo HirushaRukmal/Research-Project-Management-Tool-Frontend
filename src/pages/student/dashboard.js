@@ -4,7 +4,7 @@ import jsPDF from "jspdf";
 import "jspdf-autotable";
 import ReactHTMLTableToExcel from "react-html-table-to-excel";
 import Sidebar from "../admin/Sidebar";
-import Navbar from "./Navbar";
+import Navbar from "../admin/Navbar";
 
 class Dashboard extends Component {
   constructor(props, { history }) {
@@ -29,32 +29,26 @@ class Dashboard extends Component {
   }
 
   retrieveProfiles() {
-    axios.get("http://localhost:8000/admin/profiles").then((res) => {
+    axios.get("http://localhost:8000/student/").then((res) => {
       if (res.data.success) {
-        this.setState({
-          profiles: res.data.existingProfile,
-        });
-
-        console.log(this.state.profiles);
-        console.log(this.state.profiles.length);
+        this.setState({ profiles: res.data.existingProfile });
       }
+      console.log(this.state.profiles);
     });
   }
 
   onDelete = (id) => {
-    axios
-      .delete(`http://localhost:8000/admin/profile/delete/${id}`)
-      .then((res) => {
-        const Swal = require("sweetalert2");
-        Swal.fire({
-          title: "Success!",
-          text: "Profile Deleted Successfully",
-          icon: "success",
-          confirmButtonText: "Cool",
-        });
-
-        this.retrieveProfiles();
+    axios.delete(`http://localhost:8000/student/${id}`).then((res) => {
+      const Swal = require("sweetalert2");
+      Swal.fire({
+        title: "Success!",
+        text: "Profile Deleted Successfully",
+        icon: "success",
+        confirmButtonText: "Cool",
       });
+
+      this.retrieveProfiles();
+    });
   };
 
   filterData(profiles, searchKey) {
@@ -68,7 +62,7 @@ class Dashboard extends Component {
   handleSearchArea = (e) => {
     const searchKey = e.currentTarget.values;
 
-    axios.get("http://localhost:8000/admin/profiles").then((res) => {
+    axios.get("http://localhost:8000/student/").then((res) => {
       if (res.data.success) {
         this.filterData(res.data.existingProfile, searchKey);
       }
@@ -81,13 +75,14 @@ class Dashboard extends Component {
         <Navbar />
         <Sidebar />
         <div className="container">
-          <h2>Exisiting Admin Users</h2>
+          <h2>Exisiting Student Users</h2>
           <br />
           <p>
             <button className="btn btn-primary">
               <a
-                href="/admin/register"
+                href="/staff/register"
                 className="text-decoration-none text-white"
+                style={{ textDecoration: "none" }}
               >
                 Create New Profile
               </a>
@@ -120,7 +115,7 @@ class Dashboard extends Component {
             <thead>
               <tr>
                 <th scope="col">#</th>
-                <th scope="col">First Name</th>
+                <th scope="col">Full Name</th>
                 <th scope="col">Middle Name</th>
                 <th scope="col">Last Name</th>
                 <th scope="col">Email address</th>
@@ -135,20 +130,20 @@ class Dashboard extends Component {
                   <td>
                     <a
                       className="text-decoration-none"
-                      href={`/admin/profile/${profiles._id}`}
+                      href={`/staff/profile/view/${profiles._id}`}
                       style={{ textDecoration: "none" }}
                     >
-                      {profiles.fName}
+                      {profiles.firstName}
                     </a>
                   </td>
-                  <td>{profiles.mName}</td>
-                  <td>{profiles.lName}</td>
-                  <td>{profiles.email}</td>
-                  <td>{profiles.type}</td>
+                  <td>{profiles.middleName}</td>
+                  <td>{profiles.lastName}</td>
+                  <td>{profiles.sliitId}</td>
+                  <td>{profiles.sliitEmail}</td>
                   <td>
                     <a
                       className="btn btn-warning text-decoration-none text-white"
-                      href={`/admin/profile/update/${profiles._id}`}
+                      href={`/staff/profile/update/${profiles._id}`}
                     >
                       <i className="fas fa-edit"></i>&nbsp;Edit
                     </a>
@@ -165,7 +160,7 @@ class Dashboard extends Component {
             </tbody>
           </table>
           <p>
-            <b>Total Registered Admins: {this.state.profiles.length}</b>
+            <b>Total Registered Students: {this.state.profiles.length}</b>
           </p>
         </div>
       </div>

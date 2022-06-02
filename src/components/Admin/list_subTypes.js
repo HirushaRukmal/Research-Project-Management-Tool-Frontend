@@ -1,30 +1,31 @@
 import React, { Component } from "react";
-import axios from 'axios';
-import Table from 'react-bootstrap/Table';
-import SubTypeTableRow from './SubTypeTableRow';
-import Button from 'react-bootstrap/Button';
-import 'bootstrap/dist/css/bootstrap.min.css';
-
+import axios from "axios";
+import Table from "react-bootstrap/Table";
+import SubTypeTableRow from "./SubTypeTableRow";
+import Navbar from "../../pages/admin/Navbar";
+import Sidebar from "../../pages/admin/Sidebar";
+import jsPDF from "jspdf";
+import "jspdf-autotable";
+import ReactHTMLTableToExcel from "react-html-table-to-excel";
 
 export default class subTypeList extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
-        admin_sts: [],
-    }
-    
-    
+      admin_sts: [],
+    };
   }
   componentDidMount() {
-    axios.get('http://localhost:8000/admin/')
-      .then(res => {
+    axios
+      .get("http://localhost:8000/admin/")
+      .then((res) => {
         this.setState({
-            admin_sts: res.data
+          admin_sts: res.data,
         });
       })
       .catch((error) => {
         console.log(error);
-      })
+      });
   }
   DataTable() {
     return this.state.admin_sts.map((res, i) => {
@@ -35,51 +36,56 @@ export default class subTypeList extends Component {
   render() {
     return (
       <div>
-        <div className="card">
-          <div className="card-header px-lg-20">
-            <div className="card-heading text-primary">Create Submission Types</div>
-            
-          </div>
-          <div className="card-body p-lg-30">
-            <h3 className="mb-100" >SLIIT Research Management Tool</h3>
-</div>
-     <div>
-               <div>
- <button className="btn btn-warning">
-              <a
-                href="/admin/subTypes"
-                style={{ textDecoration: 'none', color: '#' }}
-              >
-                Create New One
+        <Navbar />
+        <Sidebar />
+        <div className="container">
+          <h2>Submission Types</h2>
+          <br />
+          <p>
+            <button className="btn btn-primary">
+              <a href="/subTypes" className="text-decoration-none text-white">
+                Create Submission Type
               </a>
             </button>
-            </div> 
-           <div className = "row">
-                  <table className = "table table-striped table-bordered" >
 
-                      <thead>
-                          <tr>
-                              <th> Submission Topic</th>
-                              <th> Deadline</th>
-                              <th> Description</th>
-                              <th> Actions</th>
-                          </tr>
-                      </thead>
-                      <tbody>
-                      {this.DataTable()}
-                             
-                      </tbody>
-                  </table>
-
-           </div>
-
-      </div>
-      <div className="card-footer px-lg-5 py-lg-4">
-                <div className="text-sm text-muted"></div>
-              </div>
+            <div style={{ marginTop: "-38px", marginLeft: "230px" }}>
+              <ReactHTMLTableToExcel
+                className="btn btn-outline-success"
+                table="table"
+                filename="Submission Type Details"
+                sheet="Sheet"
+                buttonText="Generate Sheet"
+              />
             </div>
-            
-          </div>
-  )
-}
+
+            <div
+              className="float-end"
+              style={{ marginTop: "-30px", marginLeft: "190px" }}
+            >
+              <input
+                className="form-control"
+                type="search"
+                placeholder="Search here"
+                name="searchQuery"
+              ></input>
+            </div>
+          </p>
+          <Table id="table" class="table">
+            <thead>
+              <tr>
+                <th scope="col">Topic</th>
+                <th scope="col">Deadline</th>
+                <th scope="col">Description</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>{this.DataTable()}</tbody>
+          </Table>
+          <p>
+            <b>Total Submission Types: {this.state.admin_sts.length}</b>
+          </p>
+        </div>
+      </div>
+    );
   }
+}

@@ -40,16 +40,9 @@ function Login(props) {
         } else {
           authenticateCustomer(
             mresponse,
-            () => (window.location.href = `/home`),
+            () => (window.location.href = `/admin/dashboard`),
             500
           );
-          const Swal = require('sweetalert2');
-          Swal.fire({
-            title: 'Success!',
-            text: 'Profile Created Successfully',
-            icon: 'success',
-            confirmButtonText: 'Cool',
-          });
         }
       })
       .catch((error) => {
