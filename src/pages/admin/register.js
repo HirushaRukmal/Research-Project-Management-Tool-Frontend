@@ -4,6 +4,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useNavigate } from "react-router-dom";
 import { Calendar } from "@natscale/react-calendar";
 import Swal from "sweetalert2";
+import Sidebar from "./Sidebar";
+import Navbar from "./Navbar";
 
 function Register() {
   const [fName, setFirstName] = useState("");
@@ -61,13 +63,12 @@ function Register() {
 
   return (
     <div className="App">
+      <Navbar />
+      <Sidebar />
       <div>
-        <div className="card">
-          <div className="card-header px-lg-5">
-            <div className="card-heading text-primary">Admin Registeration</div>
-          </div>
+        <div className="card" style={{ marginLeft: "80px" }}>
           <div className="card-body p-lg-5">
-            <h3 className="mb-4">SLIIT Research Management Tool</h3>
+            <h3 className="mb-4">Admin Registeration</h3>
             <p className="text-muted text-sm mb-5">
               Please fill your personal detail to create an admin account.
             </p>
@@ -228,10 +229,8 @@ function Register() {
                   </div>
                 </div>
               </div>
+              <div className="card-header px-lg-5"></div>
             </form>
-          </div>
-          <div className="card-footer px-lg-5 py-lg-4">
-            <div className="text-sm text-muted"></div>
           </div>
         </div>
       </div>
