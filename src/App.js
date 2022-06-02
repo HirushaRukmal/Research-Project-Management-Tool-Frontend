@@ -11,6 +11,8 @@ import ProfileDetails from "./pages/admin/Userprofile";
 import StaffDashboard from "./pages/Staff/dashboard";
 import StaffRegister from "./pages/Staff/register";
 import StudentDashboard from "./pages/student/dashboard";
+import Register from "./pages/student/register";
+// import ProfileDetails from './pages/admin/Userprofile';
 
 function App() {
   return (
