@@ -98,7 +98,10 @@ class Dashboard extends Component {
               />
             </div>
 
-            <div className="col-lg-3 mt-2 mb-2 float-right top-nav-search">
+            <div
+              className="float-end"
+              style={{ marginTop: "-30px", marginLeft: "190px" }}
+            >
               <input
                 className="form-control"
                 type="search"

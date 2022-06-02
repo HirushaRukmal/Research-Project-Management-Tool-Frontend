@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import jsPDF from 'jspdf';
-import 'jspdf-autotable';
-import ReactHTMLTableToExcel from 'react-html-table-to-excel';
-import Sidebar from '../admin/Sidebar';
-import Navbar from './Navbar';
+import React, { Component } from "react";
+import axios from "axios";
+import jsPDF from "jspdf";
+import "jspdf-autotable";
+import ReactHTMLTableToExcel from "react-html-table-to-excel";
+import Sidebar from "../admin/Sidebar";
+import Navbar from "./Navbar";
 
 class Dashboard extends Component {
   constructor(props, { history }) {
@@ -18,7 +18,7 @@ class Dashboard extends Component {
   //Auto refresh
   onload = () => {
     if (!window.location.hash) {
-      window.location = window.location + '#loaded';
+      window.location = window.location + "#loaded";
       window.location.reload();
     }
   };
@@ -29,7 +29,7 @@ class Dashboard extends Component {
   }
 
   retrieveProfiles() {
-    axios.get('http://localhost:8000/admin/profiles').then((res) => {
+    axios.get("http://localhost:8000/admin/profiles").then((res) => {
       if (res.data.success) {
         this.setState({
           profiles: res.data.existingProfile,
@@ -45,12 +45,12 @@ class Dashboard extends Component {
     axios
       .delete(`http://localhost:8000/admin/profile/delete/${id}`)
       .then((res) => {
-        const Swal = require('sweetalert2');
+        const Swal = require("sweetalert2");
         Swal.fire({
-          title: 'Success!',
-          text: 'Profile Deleted Successfully',
-          icon: 'success',
-          confirmButtonText: 'Cool',
+          title: "Success!",
+          text: "Profile Deleted Successfully",
+          icon: "success",
+          confirmButtonText: "Cool",
         });
 
         this.retrieveProfiles();
@@ -68,7 +68,7 @@ class Dashboard extends Component {
   handleSearchArea = (e) => {
     const searchKey = e.currentTarget.values;
 
-    axios.get('http://localhost:8000/admin/profiles').then((res) => {
+    axios.get("http://localhost:8000/admin/profiles").then((res) => {
       if (res.data.success) {
         this.filterData(res.data.existingProfile, searchKey);
       }
@@ -93,7 +93,7 @@ class Dashboard extends Component {
               </a>
             </button>
 
-            <div style={{ marginTop: '-38px', marginLeft: '190px' }}>
+            <div style={{ marginTop: "-38px", marginLeft: "190px" }}>
               <ReactHTMLTableToExcel
                 className="btn btn-outline-success"
                 table="table"
@@ -103,7 +103,10 @@ class Dashboard extends Component {
               />
             </div>
 
-            <div className="col-lg-3 mt-2 mb-2 padding-left">
+            <div
+              className="float-end"
+              style={{ marginTop: "-30px", marginLeft: "190px" }}
+            >
               <input
                 className="form-control"
                 type="search"
@@ -133,7 +136,7 @@ class Dashboard extends Component {
                     <a
                       className="text-decoration-none"
                       href={`/admin/profile/${profiles._id}`}
-                      style={{ textDecoration: 'none' }}
+                      style={{ textDecoration: "none" }}
                     >
                       {profiles.fName}
                     </a>
