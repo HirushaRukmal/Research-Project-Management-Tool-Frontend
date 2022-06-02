@@ -15,7 +15,7 @@ jobs:
       - name: Deploy to Netlify
         uses: jsmrcaga/action-netlify-deploy@v1.1.0
         with:
-          build_directory: dist
+          build_directory: build
           NETLIFY_SITE_ID: 63397a47-b479-44b3-bd9a-7b46178c260b
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_TOKEN_SECRET }}
           NETLIFY_DEPLOY_TO_PROD: true

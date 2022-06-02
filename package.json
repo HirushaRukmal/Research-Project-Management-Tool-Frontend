@@ -4,11 +4,12 @@
   "description": "Reasearch Project Tool - frontend ",
   "scripts": {
     "start": "set PORT=3000 && parcel public/index.html",
-    "build": "parcel build public/index.html"
+    "build": "parcel build public/index.html --dist-dir build"
   },
   "author": "Isuru Pathum Herath",
   "license": "ISC",
   "dependencies": {
+    "@hookform/resolvers": "^2.8.10",
     "@natscale/react-calendar": "0.0.0-beta.24",
     "@popperjs/core": "^2.11.5",
     "apexcharts": "^3.35.3",
