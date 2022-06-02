@@ -49,7 +49,7 @@ function App() {
           <Route path="/student/dashboard" element={<StudentDashboard />} />
           <Route path="/subTypes" element={<AddSubTypes />} />
           <Route path="/admin/subtypelist" element={<SubTypeList />} />
-          <Route path="/edit-submission/" element={<EditSubType />} />
+          <Route path="/edit-submission/:id" element={<EditSubType />} />
         </Routes>
       </Router>
     </>
