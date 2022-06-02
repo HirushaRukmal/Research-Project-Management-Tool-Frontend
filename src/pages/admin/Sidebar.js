@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import swal from 'sweetalert';
-import { logout } from '../../SessionManager';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import swal from "sweetalert";
+import { logout } from "../../SessionManager";
 import {
   CDBSidebar,
   CDBSidebarContent,
@@ -9,24 +9,24 @@ import {
   CDBSidebarHeader,
   CDBSidebarMenu,
   CDBSidebarMenuItem,
-} from 'cdbreact';
-import { NavLink } from 'react-router-dom';
-import { getUser, getToken } from '../../SessionManager';
+} from "cdbreact";
+import { NavLink } from "react-router-dom";
+import { getUser, getToken } from "../../SessionManager";
 
 const Sidebar = () => {
   const [manager, setManager] = useState([]);
   const [state, setState] = useState({
-    firstName: '',
-    middleName: '',
-    lastName: '',
-    mobileNumber: '',
-    email: '',
-    DOB: '',
-    nic: '',
-    address: '',
-    type: '',
-    id: '',
-    accountStatus: '',
+    firstName: "",
+    middleName: "",
+    lastName: "",
+    mobileNumber: "",
+    email: "",
+    DOB: "",
+    nic: "",
+    address: "",
+    type: "",
+    id: "",
+    accountStatus: "",
   });
 
   //destructure values from state
@@ -45,20 +45,20 @@ const Sidebar = () => {
 
   const logoutFromSession = () => {
     swal({
-      title: 'Are you sure?',
-      text: 'Do you want to logout!',
-      icon: 'warning',
+      title: "Are you sure?",
+      text: "Do you want to logout!",
+      icon: "warning",
       buttons: true,
       dangerMode: true,
     }).then((willDelete) => {
       if (willDelete) {
-        swal('Logging out', {
-          icon: 'success',
+        swal("Logging out", {
+          icon: "success",
         });
         logout();
         window.location.href = `/admin/login`;
       } else {
-        swal('Stay in Session!');
+        swal("Stay in Session!");
       }
     });
   };
@@ -66,9 +66,9 @@ const Sidebar = () => {
   return (
     <div
       style={{
-        position: 'absolute',
-        display: 'flex',
-        height: '100vh',
+        position: "absolute",
+        display: "flex",
+        height: "100vh",
       }}
     >
       <CDBSidebar textColor="#fff" backgroundColor="#000">
@@ -76,7 +76,7 @@ const Sidebar = () => {
           <a
             href=""
             className="text-decoration-none text-white"
-            style={{ color: '#fff' }}
+            style={{ color: "#fff" }}
           >
             Admin Dashboard
           </a>
@@ -113,10 +113,43 @@ const Sidebar = () => {
             <NavLink
               className="text-decoration-none text-white"
               exact
-              to="/admin/profile"
+              to="#"
               activeClassName="activeClicked"
             >
-              <CDBSidebarMenuItem icon="user">My Profile</CDBSidebarMenuItem>
+              <CDBSidebarMenuItem icon="th">Panel Members</CDBSidebarMenuItem>
+            </NavLink>
+
+            <NavLink
+              className="text-decoration-none text-white"
+              exact
+              to="/admin/subtypelist"
+              activeClassName="activeClicked"
+            >
+              <CDBSidebarMenuItem icon="book">
+                Submission List
+              </CDBSidebarMenuItem>
+            </NavLink>
+
+            <NavLink
+              className="text-decoration-none text-white"
+              exact
+              to="#"
+              activeClassName="activeClicked"
+            >
+              <CDBSidebarMenuItem icon="envelope">
+                Marking Scheme
+              </CDBSidebarMenuItem>
+            </NavLink>
+
+            <NavLink
+              className="text-decoration-none text-white"
+              exact
+              to="#"
+              activeClassName="activeClicked"
+            >
+              <CDBSidebarMenuItem icon="th-large">
+                Create Template
+              </CDBSidebarMenuItem>
             </NavLink>
 
             <NavLink
@@ -133,10 +166,10 @@ const Sidebar = () => {
           </CDBSidebarMenu>
         </CDBSidebarContent>
 
-        <CDBSidebarFooter style={{ textAlign: 'center' }}>
+        <CDBSidebarFooter style={{ textAlign: "center" }}>
           <div
             style={{
-              padding: '20px 5px',
+              padding: "20px 5px",
             }}
           ></div>
         </CDBSidebarFooter>
