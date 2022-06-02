@@ -52,7 +52,7 @@ export default function SideMenu() {
           </span>
         </div>s
         <div className="sideMenu" style={{ left: isSideMenu ? '0' : '-265px' }}>
-          <Link to={"/subTypes"}>Create Submission</Link>
+          <Link to={"/admin/subTypes"}>Create Submission</Link>
           <a href="">Create Template</a>
           <a href="#">Marking Scheme</a>
           <a href="#">Panel Members</a>

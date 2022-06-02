@@ -38,14 +38,16 @@ function App() {
           <Route path="/admin/register" element={<AdminRegister />} />
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
           <Route path="/admin/login" element={<AdminLogin />} />
+          <Route path='/admin/subTypes' element={<AddSubTypes/>}/>
+          <Route path='/fileUpload' element={<FileUpload/>}/>
+          <Route path='/admin/subtypelist' element={<SubTypeList/>}/>
+          <Route path='/edit-submission/:id' element={<EditSubType/>}/>
           <Route path="/admin/profile/update/:id" element={<EditProfile />} />
           <Route path="/admin/profile" element={<ProfileDetails />} />
           <Route path="/staff/dashboard" element={<StaffDashboard />} />
           <Route path="/staff/register" element={<StaffRegister />} />
           <Route path="/student/dashboard" element={<StudentDashboard />} />
-          <Route path="/admin" element={<SideMenu />} />
           <Route path="/subTypes" element={<AddSubTypes />} />
-          <Route path="/fileUpload" element={<FileUpload />} />
           <Route path="/admin/subtypelist" element={<SubTypeList />} />
           <Route path="/edit-submission/" element={<EditSubType />} />
         </Routes>
