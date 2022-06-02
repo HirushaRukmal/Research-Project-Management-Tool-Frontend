@@ -8,16 +8,24 @@ export default class SubTypeTableRow extends Component {
         super(props);
         this.deleteSubType = this.deleteSubType.bind(this);
     }
+
+     //Auto refresh
+//   deleteSubType = () => {
+//     if (!window.location.hash) {
+//       window.location.href = window.location.href;
+//       window.location.reload();
+//     }
+//   };
     deleteSubType() {
         axios.delete('http://localhost:8000/admin/delete-submission/' + this.props.obj._id)
             .then((res) => {
                 const Swal = require('sweetalert2');
-      Swal.fire({
-        title: 'Success!',
-        text: 'Submission Type Deleted Successfully',
-        icon: 'Danger',
-        confirmButtonText: 'Close',
-      });
+    //   Swal.fire({
+    //     title: 'Success!',
+    //     text: 'Submission Type Deleted Successfully',
+    //     icon: 'Danger',
+    //     confirmButtonText: 'Close',
+    //   });
             }).catch((error) => {
                 console.log(error)
             })
@@ -33,7 +41,7 @@ export default class SubTypeTableRow extends Component {
                     <Link className="edit-link" to={"/edit-submission/" + this.props.obj._id}>
                         Edit
                     </Link>
-                    <Button onClick={this.deleteSubType} size="sm" variant="danger">Delete</Button>
+                    <Button onClick={this.deleteSubType} size="sm" variant="danger" class="btn btn-outline-primary mr-5">Delete</Button>
                 </td>
             </tr>
         );

@@ -16,7 +16,7 @@ class Dashboard extends Component {
   //Auto refresh
   onload = () => {
     if (!window.location.hash) {
-      window.location = window.location + '#loaded';
+      window.location.href = window.location.reload.href;
       window.location.reload();
     }
   };

@@ -25,10 +25,10 @@ function App() {
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="/admin" element={<SideMenu/>}/>
-          <Route path='/subTypes' element={<AddSubTypes/>}/>
+          <Route path='/admin/subTypes' element={<AddSubTypes/>}/>
           <Route path='/fileUpload' element={<FileUpload/>}/>
           <Route path='/admin/subtypelist' element={<SubTypeList/>}/>
-          <Route path='/edit-submission/' element={<EditSubType/>}/>
+          <Route path='/edit-submission/:id' element={<EditSubType/>}/>
         </Routes>
       </Router>
     </>
