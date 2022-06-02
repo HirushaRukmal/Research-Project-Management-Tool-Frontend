@@ -4,6 +4,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useNavigate } from "react-router-dom";
 import { Calendar } from "@natscale/react-calendar";
 import Swal from "sweetalert2";
+import Sidebar from "../admin/Sidebar";
+import Navbar from "../admin/Navbar";
 
 function Register() {
   const [fName, setFirstName] = useState("");
@@ -66,13 +68,12 @@ function Register() {
   }
   return (
     <div className="App">
+      <Navbar />
+      <Sidebar />
       <div>
-        <div className="card">
+        <div className="card" style={{ marginLeft: "80px" }}>
           <div className="card-header px-lg-5">
-            <div className="card-heading text-primary">Staff Registeration</div>
-          </div>
-          <div className="card-body p-lg-5">
-            <h3 className="mb-4">SLIIT Research Management Tool</h3>
+            <h3 className="mb-4">Staff Registeration</h3>
             <p className="text-muted text-sm mb-5">
               Please fill your personal detail to create a staff account.
             </p>
@@ -118,12 +119,13 @@ function Register() {
                     <label for="lastname"> Last Name</label>
                   </div>
                   <div className="form-floating mb-3">
-                    Type:
+                    Type{" "}
                     <select
                       onChange={(event) => {
                         setType(event.target.value);
                       }}
                       required
+                      style={{ width: "200px", paddingLeft: "10px" }}
                     >
                       <option value="Supervisor">Supervisor</option>
                       <option value="Co Supervisor">Co Supervisor</option>
@@ -243,11 +245,9 @@ function Register() {
                     </button>
                   </div>
                 </div>
+                <div className="card-header px-lg-5"></div>
               </div>
             </form>
-          </div>
-          <div className="card-footer px-lg-5 py-lg-4">
-            <div className="text-sm text-muted"></div>
           </div>
         </div>
       </div>
