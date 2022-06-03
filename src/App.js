@@ -27,6 +27,13 @@ import AdminRegister from "./pages/admin/register";
 import AdminDashboard from "./pages/admin/dashboard";
 import AdminLogin from "./pages/admin/login";
 
+// Stuednt Route
+import Register from './pages/student/register';
+import StudentDashboard from './pages/student/dashboard';
+import Header from './components/student/Navbar';
+import Group from './pages/student/project-group/index';
+import GroupRegister from './pages/student/project-group/groupRegister';
+
 function App() {
   return (
     <>
@@ -34,19 +41,22 @@ function App() {
         <Routes>
           {/* Public Route */}
           <Route path="/" element={<Register />} />
+          <Route path="/student" element={<StudentDashboard />} />
+          <Route path="/header" element={<Header />} />
+          <Route path="/group" element={<Group />} />
+          <Route path="/group-register" element={<GroupRegister />} />
           <Route path="/register" element={<Home />} />
           <Route path="/admin/register" element={<AdminRegister />} />
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
           <Route path="/admin/login" element={<AdminLogin />} />
-          <Route path='/admin/subTypes' element={<AddSubTypes/>}/>
-          <Route path='/fileUpload' element={<FileUpload/>}/>
-          <Route path='/admin/subtypelist' element={<SubTypeList/>}/>
-          <Route path='/edit-submission/:id' element={<EditSubType/>}/>
+          <Route path='/admin/subTypes' element={<AddSubTypes />} />
+          <Route path='/fileUpload' element={<FileUpload />} />
+          <Route path='/admin/subtypelist' element={<SubTypeList />} />
+          <Route path='/edit-submission/:id' element={<EditSubType />} />
           <Route path="/admin/profile/update/:id" element={<EditProfile />} />
           <Route path="/admin/profile" element={<ProfileDetails />} />
           <Route path="/staff/dashboard" element={<StaffDashboard />} />
           <Route path="/staff/register" element={<StaffRegister />} />
-          <Route path="/student/dashboard" element={<StudentDashboard />} />
           <Route path="/subTypes" element={<AddSubTypes />} />
           <Route path="/admin/subtypelist" element={<SubTypeList />} />
           <Route path="/edit-submission/" element={<EditSubType />} />
