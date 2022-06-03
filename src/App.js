@@ -15,6 +15,7 @@ import AddSubTypes from "./components/Admin/add-subTypes";
 import FileUpload from "./components/Admin/fileUpload";
 import SubTypeList from "./components/Admin/list_subTypes";
 import EditSubType from "./components/Admin/update_subtype";
+import UpdateAdmin from "./pages/admin/updateAdmin";
 
 // Stuednt Route
 import Register from './pages/student/register';
@@ -53,6 +54,7 @@ function App() {
           <Route path="/subTypes" element={<AddSubTypes />} />
           <Route path="/admin/subtypelist" element={<SubTypeList />} />
           <Route path="/edit-submission/:id" element={<EditSubType />} />
+          <Route path="/admin-update" element={<UpdateAdmin />} />
         </Routes>
       </Router>
     </>
