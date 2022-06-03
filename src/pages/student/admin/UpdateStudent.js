@@ -2,6 +2,10 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import Swal from "sweetalert2";
+import Navbar from '../../admin/Navbar';
+import Sidebar from '../../admin/Sidebar';
+import '../../../assets/student/scrollable-div.css';
+
 
 const App = props => {
 
@@ -10,24 +14,26 @@ const App = props => {
 
 
     const [state, setState] = useState({
-        groupName: "",
-        groupLeader: "",
-        firstMember: "",
-        secondMember: "",
-        thirdMember: "",
-        groupTopic: "",
-        groupEmail: "",
+        fullName: "",
+        sliitId: "",
+        sliitEmail: "",
+        personalEmail: "",
+        contactNo: "",
+        studentType: "",
+        groupStatus: "",
+        password: "",
     });
 
     //destructure values from state
     const {
-        groupName,
-        groupLeader,
-        firstMember,
-        secondMember,
-        thirdMember,
-        groupTopic,
-        groupEmail,
+        fullName,
+        sliitId,
+        sliitEmail,
+        personalEmail,
+        contactNo,
+        studentType,
+        groupStatus,
+        password,
     } = state;
 
     function handleChange(name) {
@@ -41,24 +47,11 @@ const App = props => {
         console.log("WORKING");
         axios.get(`${process.env.BACKEND_API_LOCAL}/student/`)
             .then(response => {
-                console.log(response)
-                setStudent(response.data)
-                if (response.data != null) {
-                    studentMap(response.data);
-                }
-                else {
-                    console.log("Student null");
-                    if (student.length != 0) {
-                        studentMap(response.data);
-                    }
-                    else {
-                        console.log("Student null");
-                    }
-                }
+                console.log(response);
+                setStudent(response.data);
             })
             .catch(error => {
                 console.log(error);
-                // alert("Error Fetching Student Details")
             });
     }
 
@@ -69,20 +62,24 @@ const App = props => {
             .then(response => {
                 console.log(response)
                 const { groupName,
-                    groupLeader,
-                    firstMember,
-                    secondMember,
-                    thirdMember,
-                    groupTopic,
-                    groupEmail, } = response.data
+                    fullName,
+                    sliitId,
+                    sliitEmail,
+                    personalEmail,
+                    contactNo,
+                    studentType,
+                    groupStatus,
+                    password, } = response.data
                 setState({
                     ...state, groupName,
-                    groupLeader,
-                    firstMember,
-                    secondMember,
-                    thirdMember,
-                    groupTopic,
-                    groupEmail,
+                    fullName,
+                    sliitId,
+                    sliitEmail,
+                    personalEmail,
+                    contactNo,
+                    studentType,
+                    groupStatus,
+                    password,
                 });
             })
             .catch(error => console.log('Error Loading Update Student: ' + error));
@@ -90,127 +87,67 @@ const App = props => {
 
     const showUpdateForm = () => (
         <form onSubmit={handleSubmit}>
-            <div>
-                <div className="form-group">
-                    <label className="text-muted">Group Name</label>
-                    <input onChange={handleChange('groupName')} value={groupName} type="text" className="form-control" placeholder="Enter Group Name" required />
-                </div>
-
-                <br />
-
-                <div className="form-group">
-                    <label className="text-muted">Group Topic</label>
-                    <input onChange={handleChange('groupTopic')} value={groupTopic} type="text" className="form-control" placeholder="Enter Group Topic" required />
-                </div>
-
-                <br />
-
-                <div className="form-group">
-                    <label className="text-muted">Group Email Address</label>
-                    <input onChange={handleChange('groupEmail')} value={groupEmail} type="email" className="form-control" placeholder="Enter Group Email Address" required />
-                </div>
-
-                <br />
-
-                <div className="form-group">
-                    <label className="text-muted"> Select Group Leader</label>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <select
-
-                        onChange={handleChange("groupLeader")}
-                        name="groupLeader"
-                        id="groupLeader"
-                        style={{
-                            width: "400px",
-                            color: "blue",
-                            position: "relative",
-                            border: "1px solid transparent"
-                        }}
-                        required>
-                        <option value="" disabled selected>Select the Group Leader</option>
-                        {student.map((student, i) => (
-                            <option key={i} value={student._id} >
-                                {student.fullName}
-                            </option>
-                        ))}
-                    </select>
-                </div>
-
-                <div className="form-group">
-                    <label className="text-muted"> Select Group Member 1</label>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <select
-                        onChange={handleChange("firstMember")}
-                        name="firstMember"
-                        id="firstMember"
-                        style={{
-                            width: "400px",
-                            color: "blue",
-                            position: "relative",
-                            border: "1px solid transparent"
-                        }}
-                        required>
-                        <option value="" disabled selected>Select Group Member 1</option>
-                        {student.map((student, i) => (
-                            <option key={i} value={student._id} >
-                                {student.fullName}
-                            </option>
-                        ))}
-                    </select>
-                </div>
-
-
-                <div className="form-group">
-                    <label className="text-muted"> Select Group Member 2</label>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <select
-                        onChange={handleChange("secondMember")}
-                        name="secondMember"
-                        id="secondMember"
-                        style={{
-                            width: "400px",
-                            color: "blue",
-                            position: "relative",
-                            border: "1px solid transparent"
-                        }}
-                        required>
-                        <option value="" disabled selected>Select Group Member 2</option>
-                        {student.map((student, i) => (
-                            <option key={i} value={student._id} >
-                                {student.fullName}
-                            </option>
-                        ))}
-                    </select>
-                </div>
-
-                <div className="row">
+            <div class="row">
+                <div class="col">
                     <div className="form-group">
-                        <label className="text-muted"> Select Group Member 3</label>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <select
-                            onChange={handleChange("thirdMember")}
-                            name="thirdMember"
-                            id="thirdMember"
-                            style={{
-                                width: "400px",
-                                color: "blue",
-                                position: "relative",
-                                border: "1px solid transparent"
-                            }}
-                            required>
-                            <option value="" disabled selected>Select Group Member 3</option>
-                            {student.map((student, i) => (
-                                < option key={i} value={student._id} >
-                                    {student.fullName}
-                                </option>
-                            ))}
+                        <label className="text-muted">Full Name</label>
+                        <input onChange={handleChange('fullName')} value={fullName} type="text" className="form-control" placeholder="Enter the First Name" pattern="^[a-zA-Z]{2,40}( [a-zA-Z]{2,40})+$" title="Invalid Input for Full Name" required />
+                    </div>
+                </div>
+                <div class="col">
+                    <div className="form-group">
+                        <label className="text-muted">SLIIT ID</label>
+                        <input onChange={handleChange('sliitId')} value={sliitId} type="text" className="form-control" placeholder="Enter the Middle Name" pattern="[A-Za-z0-9]{10}" title="Invalid Studnt Number." required />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div className="form-group">
+                        <label className="text-muted">SLIIT Email Address</label>
+                        <input onChange={handleChange('sliitEmail')} value={sliitEmail} type="email" className="form-control" placeholder="Enter the SLIIT Email Address" required />
+                    </div>
+                </div>
+                <div class="col">
+                    <div className="form-group">
+                        <label className="text-muted">Personal Email Address</label>
+                        <input onChange={handleChange('personalEmail')} value={personalEmail} type="email" className="form-control" placeholder="Enter the Personal Email Address" required />
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col">
+                    <div className="form-group">
+                        <label className="text-muted">Contact Number</label>
+                        <input onChange={handleChange('contactNo')} value={contactNo} type="text" className="form-control" placeholder="Enter the Contact Number" pattern="[0-9]{10}" title="Invalid Mobile Number." required />
+                    </div>
+                </div>
+                <div class="col">
+                    <div className="form-group">
+                        <label className="text-muted">Student Type</label>
+                        <select id="studentType" value={studentType} onChange={handleChange("studentType")} className="form-control" required>
+                            <option value="Regular">Regular</option>
+                            <option value="Prorata">Prorata</option>
+                            <option value="Repeat">Repeat</option>
                         </select>
                     </div>
                 </div>
-                <br />
-                <div>
-                    <button className="btn btn-primary btn-lg btn-block">Register</button>
+                <div class="col">
+                    <div className="form-group">
+                        <label className="text-muted">Group Status</label>
+                        <select id="groupStatus" value={groupStatus} onChange={handleChange("groupStatus")} className="form-control" required>
+                            <option value="true">I have a group</option>
+                            <option value="false">I don't have a group</option>
+                        </select>
+                    </div>
                 </div>
+            </div>
+            <br />
+            <div>
+
+                <button className="btn btn-primary btn-lg btn-block">Update</button>
             </div>
         </form>
     )
@@ -224,44 +161,49 @@ const App = props => {
     const handleSubmit = event => {
         event.preventDefault()
         console.table({
-            groupName,
-            groupLeader,
-            firstMember,
-            secondMember,
-            thirdMember,
-            groupTopic,
-            groupEmail,
+            fullName,
+            sliitId,
+            sliitEmail,
+            personalEmail,
+            contactNo,
+            studentType,
+            groupStatus,
+            password,
         })
         axios
-            .patch(`${process.env.BACKEND_API_LOCAL}/student/${id}`, {
-                groupName,
-                groupLeader,
-                firstMember,
-                secondMember,
-                thirdMember,
-                groupTopic,
-                groupEmail,
+            .put(`${process.env.BACKEND_API_LOCAL}/student/${id}`, {
+                fullName,
+                sliitId,
+                sliitEmail,
+                personalEmail,
+                contactNo,
+                studentType,
+                groupStatus,
+                password,
             })
             .then(response => {
 
                 console.log(response)
                 const { groupName,
-                    groupLeader,
-                    firstMember,
-                    secondMember,
-                    thirdMember,
-                    groupTopic,
-                    groupEmail, } = response.data
+                    fullName,
+                    sliitId,
+                    sliitEmail,
+                    personalEmail,
+                    contactNo,
+                    studentType,
+                    groupStatus,
+                    password, } = response.data
 
                 //empty state
                 setState({
-                    ...state, groupName,
-                    groupLeader,
-                    firstMember,
-                    secondMember,
-                    thirdMember,
-                    groupTopic,
-                    groupEmail,
+                    ...state, fullName,
+                    sliitId,
+                    sliitEmail,
+                    personalEmail,
+                    contactNo,
+                    studentType,
+                    groupStatus,
+                    password,
                 });
 
                 Swal.fire(
@@ -284,19 +226,26 @@ const App = props => {
 
     return (
 
-        <div className="container card">
-            <div className="card-body">
-                <div className="card bg-light mb-3">
-                    <div className="card-body">
-                        <h1 align="center">Update Stuednt Details</h1>
-                        <br />
-                        {showUpdateForm()}
+        <div>
+            <Navbar />
+            <Sidebar />
+            <div>
+                <div className="container" style={{ marginTop: "100px", margineLeft: "200px" }}>
+                    <div className="card">
+                        <div className="card-body">
+                            <div className="card bg-light mb-3">
+                                <div className="card-body">
+                                    <h1 align="center">Update Stuednt Details</h1>
+                                    <br />
+                                    {showUpdateForm()}
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-
-
         </div>
+
     )
 }
 
