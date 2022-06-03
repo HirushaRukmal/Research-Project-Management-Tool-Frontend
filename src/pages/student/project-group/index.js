@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../../assets/student/group-details.css';
 import Header from '../../../components/student/Navbar';
 import Swal from 'sweetalert2';
+import { getStudentId } from '../../../services/SessionManager';
 
 const App = () => {
 
@@ -34,7 +35,7 @@ const App = () => {
 
     const verifyUser = (password) => {
         console.log(password);
-        axios.get(`${process.env.BACKEND_API_LOCAL}/student/6297ec609099ee02c30e6805`)
+        axios.get(`${process.env.BACKEND_API_LOCAL}/student/${getStudentId()}`)
             .then(response => {
                 console.log(response.data)
                 if (response.data.password == password) {
@@ -56,7 +57,7 @@ const App = () => {
 
     const fetchCurrentStudent = () => {
         console.log("WORKING");
-        axios.get(`${process.env.BACKEND_API_LOCAL}/group/groupData/6297ec609099ee02c30e6805`)
+        axios.get(`${process.env.BACKEND_API_LOCAL}/group/groupData/${getStudentId()}`)
             .then(response => {
                 console.log(response.data);
                 setCurrentGroup(response.data);
@@ -109,6 +110,14 @@ const App = () => {
                 console.log(error);
                 // alert("Error Fetching Current Group Details")
             });
+    }
+
+    const updateGroup = () => {
+        Swal.fire(
+            'Do you want to update your group Members, group Name or group Topic?',
+            'You must contact your supervisor!',
+            'info'
+        )
     }
 
     const deleteGroup = () => {
@@ -176,8 +185,8 @@ const App = () => {
                             </a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link" href="/dashboard">
-                                <button onClick={deleteGroup} className="btn btn-info" style={{ color: "white" }} >Update Project Group</button>
+                            <a class="nav-link">
+                                <button onClick={updateGroup} className="btn btn-info" style={{ color: "white" }} >Update Project Group</button>
                             </a>
                         </li>
                     </ul>
