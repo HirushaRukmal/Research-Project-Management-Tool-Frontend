@@ -25,6 +25,7 @@ import Group from './pages/student/project-group/index';
 import GroupRegister from './pages/student/project-group/groupRegister';
 import RequestSupervisor from './pages/student/supervisor/requestSupervisor';
 import Supervisor from './pages/student/supervisor/index';
+import AllStudents from './pages/student/admin/AllStudents';
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
           <Route path="/group-register" element={<GroupRegister />} />
           <Route path="/supervisor" element={<Supervisor />} />
           <Route path="/register" element={<Home />} />
+          <Route path="/all-students" element={<AllStudents />} />
           <Route path="/admin/register" element={<AdminRegister />} />
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
           <Route path="/admin/login" element={<AdminLogin />} />
