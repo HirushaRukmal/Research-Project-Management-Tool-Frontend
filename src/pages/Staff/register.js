@@ -128,7 +128,7 @@ function Register() {
                       style={{ width: "200px", paddingLeft: "10px" }}
                     >
                       <option value="Supervisor">Supervisor</option>
-                      <option value="Co Supervisor">Co Supervisor</option>
+                      <option value="Co-Supervisor">Co Supervisor</option>
                       <option value="Panel Member">Panel Member</option>
                     </select>
                   </div>
