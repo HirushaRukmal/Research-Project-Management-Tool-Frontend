@@ -8,11 +8,7 @@ require('dotenv').config();
 const App = () => {
 
     const [student, setStudent] = useState([]);
-    const [count, setCount] = useState([]);
     const [groupLeaderEmail, setGroupLeaderEmail] = useState("");
-    const [firstMemberEmail, setFirstMemberEmail] = useState("");
-    const [secondMemberEmail, setSecondMemberEmail] = useState("");
-    const [thridMemberEmail, setThirdMemberEmail] = useState("");
     var stdList = new Map([]);
 
     const [state, setState] = useState({
