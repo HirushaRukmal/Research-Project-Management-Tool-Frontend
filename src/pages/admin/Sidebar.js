@@ -146,11 +146,11 @@ const Sidebar = () => {
             <NavLink
               className="text-decoration-none text-white"
               exact
-              to="#"
+              to="/supervisor/topicApproval"
               activeClassName="activeClicked"
             >
               <CDBSidebarMenuItem icon="th-large">
-                Create Template
+                Topic Approvals
               </CDBSidebarMenuItem>
             </NavLink>
 
