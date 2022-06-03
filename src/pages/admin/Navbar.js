@@ -9,7 +9,7 @@ const Navbar = () => {
     <div>
       <nav
         class="navbar navbar-expand-md navbar-dark bg-dark "
-        style={{ position: "static" }}
+        style={{ position: "static", marginTop: "-20px" }}
       >
         <h4
           class="navbar-brand text-decoration-none text-white text-center"

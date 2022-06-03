@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import Button from "react-bootstrap/Button";
 import Swal from "sweetalert2";
+import moment from "moment";
 export default class SubTypeTableRow extends Component {
   constructor(props) {
     super(props);
@@ -32,7 +33,7 @@ export default class SubTypeTableRow extends Component {
     return (
       <tr>
         <td>{this.props.obj.Submission_Topic}</td>
-        <td>{this.props.obj.Deadline}</td>
+        <td>{moment.utc(this.props.obj.Deadline).format("DD/MM/YYYY")}</td>
         <td>{this.props.obj.Description}</td>
         <td>
           <a
