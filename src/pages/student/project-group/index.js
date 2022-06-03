@@ -12,6 +12,47 @@ const App = () => {
     const [student2, setStudent2] = useState([]);
     const [student3, setStudent3] = useState([]);
     const [student4, setStudent4] = useState([]);
+    const [dataAvailable, setDataAvailability] = useState(false);
+
+    const deleteGroupFinal = () => {
+        console.log(currentGroup._id);
+        const id = currentGroup._id;
+        axios.delete(`${process.env.BACKEND_API_LOCAL}/group/${id}`)
+            .then(response => {
+                Swal.fire(
+                    'Deleted!',
+                    'Your group has been deleted.',
+                    'success'
+                )
+                setDataAvailability(false);
+                fetchCurrentStudent();
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }
+
+    const verifyUser = (password) => {
+        console.log(password);
+        axios.get(`${process.env.BACKEND_API_LOCAL}/student/6297ec609099ee02c30e6805`)
+            .then(response => {
+                console.log(response.data)
+                if (response.data.password == password) {
+                    deleteGroupFinal();
+
+                } else {
+                    Swal.fire(
+                        'Your password is incorrect!',
+                        'Please enter the correct password!',
+                        'error'
+                    )
+                }
+            })
+            .catch(error => {
+                console.log(error);
+            });
+
+    }
 
     const fetchCurrentStudent = () => {
         console.log("WORKING");
@@ -20,6 +61,7 @@ const App = () => {
                 console.log(response.data);
                 setCurrentGroup(response.data);
                 console.log(currentGroup);
+                setDataAvailability(true);
 
 
                 //fetch Student 1
@@ -63,29 +105,51 @@ const App = () => {
                     });
             })
             .catch(error => {
+                setDataAvailability(true);
                 console.log(error);
-                alert("Error Fetching Current Group Details")
+                // alert("Error Fetching Current Group Details")
             });
     }
 
     const deleteGroup = () => {
-        cnonsole.log("Called Delete");
-        alert("CALLED DELETE");
-        swal({
-            title: "An input!",
-            text: "Write something interesting:",
-            type: "input",
+        console.log("Called Delete");
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "Do you want to delete your group?",
+            icon: 'warning',
             showCancelButton: true,
-            closeOnConfirm: false,
-            inputPlaceholder: "Write something"
-        }, function (inputValue) {
-            if (inputValue === false) return false;
-            if (inputValue === "") {
-                swal.showInputError("You need to write something!");
-                return false
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: 'Please Enter your Password!',
+                    html: `<input type="password" id="password" class="swal2-input" placeholder="Password">`,
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Confirm!',
+                    focusConfirm: false,
+                    preConfirm: () => {
+                        const password = Swal.getPopup().querySelector('#password').value
+                        if (!password) {
+                            Swal.showValidationMessage(`Please enter password`)
+                        }
+                        return { password: password }
+                    }
+                }).then((result) => {
+                    //                     Swal.fire(`
+                    // Password: ${result.value.password}
+                    //   `.trim())
+                    verifyUser(result.value.password);
+
+                })
+
             }
-            swal("Nice!", "You wrote: " + inputValue, "success");
-        });
+        })
+
     }
 
     useEffect(() => {
@@ -107,8 +171,8 @@ const App = () => {
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" onclick={console.log("CLED")}>
-                                <button className="btn btn-info" style={{ color: "white" }} >Delete Project Group</button>
+                            <a class="nav-link">
+                                <button onClick={deleteGroup} className="btn btn-info" style={{ color: "white" }} >Delete Project Group</button>
                             </a>
                         </li>
                         <li class="nav-item dropdown">
@@ -121,101 +185,112 @@ const App = () => {
             </div>
             <div>
                 <br />
-                <center>
-                    <h4>Group Name: {currentGroup.groupName}</h4>
-                    <h4>Group Id: {currentGroup._id}</h4>
-                    <h4>Group Id: {currentGroup.groupTopic}</h4>
-                </center>
-                <br />
-                <center>
-                    <div class="container profile-page">
-                        <div class="row">
-                            <div class="col-xl-6 col-lg-7 col-md-12">
-                                <div class="card profile-header">
-                                    <div class="body">
-                                        <div class="row">
-                                            <div class="col">
-                                                <h3 class="m-t-0 m-b-0"><strong>{student1.fullName}</strong></h3>
-                                                <h4 class="job_post">{student1.sliitId}</h4>
-                                                <p>SLIIT Email Address: {student1.sliitEmail}</p>
-                                                <p>Personal Email Address: {student1.personalEmail}</p>
-                                                <p>Contact Number: {student1.contactNo}</p>
-                                                <div>
-                                                    <button class="btn btn-primary btn-round">Follow</button> &nbsp;
-                                                    <button class="btn btn-primary btn-round btn-simple">Message</button>
+                {currentGroup != null ? (
+                    <div>
+                        <center>
+                            <h4>Group Name: {currentGroup.groupName}</h4>
+                            <h4>Group Id: {currentGroup._id}</h4>
+                            <h4>Group Id: {currentGroup.groupTopic}</h4>
+                        </center>
+                        <br />
+                        <center>
+                            <div class="container profile-page">
+                                <div class="row">
+                                    <div class="col-xl-6 col-lg-7 col-md-12">
+                                        <div class="card profile-header">
+                                            <div class="body">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <h3 class="m-t-0 m-b-0"><strong>{student1.fullName}</strong></h3>
+                                                        <h4 class="job_post">{student1.sliitId}</h4>
+                                                        <p>SLIIT Email Address: {student1.sliitEmail}</p>
+                                                        <p>Personal Email Address: {student1.personalEmail}</p>
+                                                        <p>Contact Number: {student1.contactNo}</p>
+                                                        <div>
+                                                            <button class="btn btn-primary btn-round">Follow</button> &nbsp;
+                                                            <button class="btn btn-primary btn-round btn-simple">Message</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-xl-6 col-lg-7 col-md-12">
+                                        <div class="card profile-header">
+                                            <div class="body">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <h3 class="m-t-0 m-b-0"><strong>{student2.fullName}</strong></h3>
+                                                        <h4 class="job_post">{student2.sliitId}</h4>
+                                                        <p>SLIIT Email Address: {student2.sliitEmail}</p>
+                                                        <p>Personal Email Address: {student2.personalEmail}</p>
+                                                        <p>Contact Number: {student2.contactNo}</p>
+                                                        <div>
+                                                            <button class="btn btn-primary btn-round">Follow</button> &nbsp;
+                                                            <button class="btn btn-primary btn-round btn-simple">Message</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-xl-6 col-lg-7 col-md-12">
+                                        <div class="card profile-header">
+                                            <div class="body">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <h3 class="m-t-0 m-b-0"><strong>{student3.fullName}</strong></h3>
+                                                        <h4 class="job_post">{student3.sliitId}</h4>
+                                                        <p>SLIIT Email Address: {student3.sliitEmail}</p>
+                                                        <p>Personal Email Address: {student3.personalEmail}</p>
+                                                        <p>Contact Number: {student3.contactNo}</p>
+                                                        <div>
+                                                            <button class="btn btn-primary btn-round">Follow</button> &nbsp;
+                                                            <button class="btn btn-primary btn-round btn-simple">Message</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-xl-6 col-lg-7 col-md-12">
+                                        <div class="card profile-header">
+                                            <div class="body">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <h3 class="m-t-0 m-b-0"><strong>{student4.fullName}</strong></h3>
+                                                        <h4 class="job_post">{student4.sliitId}</h4>
+                                                        <p>SLIIT Email Address: {student4.sliitEmail}</p>
+                                                        <p>Personal Email Address: {student4.personalEmail}</p>
+                                                        <p>Contact Number: {student4.contactNo}</p>
+                                                        <div>
+                                                            <button class="btn btn-primary btn-round">Follow</button> &nbsp;
+                                                            <button class="btn btn-primary btn-round btn-simple">Message</button>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
-
-                            <div class="col-xl-6 col-lg-7 col-md-12">
-                                <div class="card profile-header">
-                                    <div class="body">
-                                        <div class="row">
-                                            <div class="col">
-                                                <h3 class="m-t-0 m-b-0"><strong>{student2.fullName}</strong></h3>
-                                                <h4 class="job_post">{student2.sliitId}</h4>
-                                                <p>SLIIT Email Address: {student2.sliitEmail}</p>
-                                                <p>Personal Email Address: {student2.personalEmail}</p>
-                                                <p>Contact Number: {student2.contactNo}</p>
-                                                <div>
-                                                    <button class="btn btn-primary btn-round">Follow</button> &nbsp;
-                                                    <button class="btn btn-primary btn-round btn-simple">Message</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-xl-6 col-lg-7 col-md-12">
-                                <div class="card profile-header">
-                                    <div class="body">
-                                        <div class="row">
-                                            <div class="col">
-                                                <h3 class="m-t-0 m-b-0"><strong>{student3.fullName}</strong></h3>
-                                                <h4 class="job_post">{student3.sliitId}</h4>
-                                                <p>SLIIT Email Address: {student3.sliitEmail}</p>
-                                                <p>Personal Email Address: {student3.personalEmail}</p>
-                                                <p>Contact Number: {student3.contactNo}</p>
-                                                <div>
-                                                    <button class="btn btn-primary btn-round">Follow</button> &nbsp;
-                                                    <button class="btn btn-primary btn-round btn-simple">Message</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="col-xl-6 col-lg-7 col-md-12">
-                                <div class="card profile-header">
-                                    <div class="body">
-                                        <div class="row">
-                                            <div class="col">
-                                                <h3 class="m-t-0 m-b-0"><strong>{student4.fullName}</strong></h3>
-                                                <h4 class="job_post">{student4.sliitId}</h4>
-                                                <p>SLIIT Email Address: {student4.sliitEmail}</p>
-                                                <p>Personal Email Address: {student4.personalEmail}</p>
-                                                <p>Contact Number: {student4.contactNo}</p>
-                                                <div>
-                                                    <button class="btn btn-primary btn-round">Follow</button> &nbsp;
-                                                    <button class="btn btn-primary btn-round btn-simple">Message</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        </center>
                     </div>
-                </center>
+                ) : (
+                    <center>
+                        <h3>You don't have a group</h3>
+                    </center>
+                )}
+
+                <br />
+
             </div>
 
 

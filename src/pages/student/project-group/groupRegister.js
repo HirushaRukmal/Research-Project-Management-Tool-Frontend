@@ -19,6 +19,7 @@ const App = () => {
         secondMember: "",
         thirdMember: "",
         groupTopic: "",
+        groupEmail: "",
     });
 
     //destructure values from state
@@ -29,6 +30,7 @@ const App = () => {
         secondMember,
         thirdMember,
         groupTopic,
+        groupEmail,
     } = state;
 
     function handleChange(name) {
@@ -60,10 +62,11 @@ const App = () => {
             const personalEmail = updateStudent.personalEmail;
             const contactNo = updateStudent.contactNo;
             const studentType = updateStudent.studentType;
+            const groupEmail = updateStudent.groupEmail;
             const groupStatus = true;
 
             axios
-                .patch(`${process.env.BACKEND_API_LOCAL}/student/${array[x]}`, { fullName, sliitId, sliitEmail, personalEmail, contactNo, studentType, groupStatus })
+                .patch(`${process.env.BACKEND_API_LOCAL}/student/${array[x]}`, { fullName, sliitId, sliitEmail, personalEmail, contactNo, studentType, groupStatus, groupEmail })
                 .then(response => {
                     console.log(response)
                 })
@@ -83,7 +86,7 @@ const App = () => {
             secondMember,
             thirdMember,
             groupTopic,
-            groupLeaderEmail,
+            groupEmail,
         });
 
         axios
@@ -94,6 +97,7 @@ const App = () => {
                 secondMember,
                 thirdMember,
                 groupTopic,
+                groupEmail,
             })
             .then((response) => {
                 console.log(response);
@@ -114,6 +118,7 @@ const App = () => {
                     secondMember: "",
                     thirdMember: "",
                     groupTopic: "",
+                    groupEmail: "",
                 });
             })
             .catch((error) => {
@@ -187,14 +192,21 @@ const App = () => {
                             <div>
                                 <div className="form-group">
                                     <label className="text-muted">Group Name</label>
-                                    <input onChange={handleChange('groupName')} value={groupName} type="text" className="form-control" placeholder="Enter Group Name" pattern="[A-Za-z]+" title="Characters can only be A-Z and a-z" required />
+                                    <input onChange={handleChange('groupName')} value={groupName} type="text" className="form-control" placeholder="Enter Group Name" required />
                                 </div>
 
                                 <br />
 
                                 <div className="form-group">
                                     <label className="text-muted">Group Topic</label>
-                                    <input onChange={handleChange('groupTopic')} value={groupTopic} type="text" className="form-control" placeholder="Enter Group Topic" pattern="[A-Za-z]+" title="Characters can only be A-Z and a-z" required />
+                                    <input onChange={handleChange('groupTopic')} value={groupTopic} type="text" className="form-control" placeholder="Enter Group Topic" required />
+                                </div>
+
+                                <br />
+
+                                <div className="form-group">
+                                    <label className="text-muted">Group Email Address</label>
+                                    <input onChange={handleChange('groupEmail')} value={groupEmail} type="email" className="form-control" placeholder="Enter Group Email Address" required />
                                 </div>
 
                                 <br />
