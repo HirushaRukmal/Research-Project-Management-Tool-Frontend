@@ -104,7 +104,7 @@ const Sidebar = () => {
             <NavLink
               className="text-decoration-none text-white"
               exact
-              to="/student/dashboard"
+              to="/all-students"
               activeClassName="activeClicked"
             >
               <CDBSidebarMenuItem icon="user">Student</CDBSidebarMenuItem>
@@ -129,6 +129,17 @@ const Sidebar = () => {
             >
               <CDBSidebarMenuItem icon="envelope">
                 Marking Scheme
+              </CDBSidebarMenuItem>
+            </NavLink>
+
+            <NavLink
+              className="text-decoration-none text-white"
+              exact
+              to="/studentGroup"
+              activeClassName="activeClicked"
+            >
+              <CDBSidebarMenuItem icon="users">
+                Student Group
               </CDBSidebarMenuItem>
             </NavLink>
 

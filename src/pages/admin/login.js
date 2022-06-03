@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { authenticateCustomer, getCustomerUser } from '../../SessionManager';
-import '../../assets/admin/Login.css';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { authenticateCustomer, getCustomerUser } from "../../SessionManager";
+import "../../assets/admin/Login.css";
 
 function Login(props) {
-  const [email, setEmail] = useState('');
-  const [token, setToken] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [token, setToken] = useState("");
+  const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [manager, setManager] = useState([]);
   const delay = (ms) => new Promise((res) => setTimeout(res, ms));
-  const Swal = require('sweetalert2');
+  const Swal = require("sweetalert2");
 
   useEffect(() => {
     const id = getCustomerUser();
@@ -27,30 +27,36 @@ function Login(props) {
     // const user = { email, password }
     console.log(email, password);
     axios
-      .post('http://localhost:8000/admin/login', { email, password })
+      .post("http://localhost:8000/admin/login", { email, password })
       .then((mresponse) => {
         console.log(mresponse);
         if (mresponse.data == null) {
           Swal.fire({
-            title: 'Login Failed!',
-            text: 'Email or Password incorrect',
-            icon: 'error',
-            confirmButtonText: 'Try again',
+            title: "Login Failed!",
+            text: "Email or Password incorrect",
+            icon: "error",
+            confirmButtonText: "Try again",
           });
         } else {
           authenticateCustomer(
             mresponse,
             () => (window.location.href = `/admin/dashboard`),
-            500
+            3000,
+            Swal.fire({
+              title: "Success!",
+              text: "Profile Updated Successfully",
+              icon: "success",
+              confirmButtonText: "Cool",
+            })
           );
         }
       })
       .catch((error) => {
         Swal.fire({
-          title: 'Error!',
-          text: 'Login Failed',
-          icon: 'error',
-          confirmButtonText: 'Try again',
+          title: "Error!",
+          text: "Login Failed",
+          icon: "error",
+          confirmButtonText: "Try again",
         });
       });
   }

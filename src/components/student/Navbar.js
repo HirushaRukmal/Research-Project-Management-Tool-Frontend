@@ -30,25 +30,25 @@ const Navbar = () => {
                 <ul class="navbar-nav" style={{ marginLeft: "10%" }}>
                     <li class="nav-item active">
                         <a class="nav-link" href="/student">
-                            <i class="fa fa-home"></i>
+                            <i class="fa fa-home"></i>&nbsp;&nbsp;
                             Home
                         </a>
-                    </li>
+                    </li>&nbsp;&nbsp;
                     <li class="nav-item">
                         <a class="nav-link" href="/group">
-                            <i class="fas fa-project"></i>
+                            <i class="fa fa-users"></i>&nbsp;&nbsp;
                             Project Group
                         </a>
-                    </li>
+                    </li>&nbsp;&nbsp;
                     <li class="nav-item dropdown">
-                        <a class="nav-link" href="/dashboard">
-                            <i class="fa fa-dollar"></i>
+                        <a class="nav-link" href="/supervisor">
+                            <i class="fa fa-book"></i>&nbsp;&nbsp;
                             Supervisor/Co-Supervior
                         </a>
-                    </li>
+                    </li>&nbsp;&nbsp;
                     <li class="nav-item">
                         <a class="nav-link" href="/student">
-                            <i class="fa fa-cogs">&nbsp;</i>&nbsp;
+                            <i class="fa fa-cogs"></i>&nbsp;&nbsp;
                             My Profile
                         </a>
                     </li>
