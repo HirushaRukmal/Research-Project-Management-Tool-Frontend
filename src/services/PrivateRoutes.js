@@ -6,13 +6,13 @@
 import React from 'react';
 
 import { Navigate, Outlet } from 'react-router-dom'
-import { getUser } from './SessionManager';
+import { getStudentId } from './SessionManager';
 
 const ProtectedRoutes = () => {
 
     //CHeck the user is logged in and redirect automatically
-    const auth = getUser()
-    return auth ? <Outlet /> : <Navigate to="/" />
+    const auth = getStudentId()
+    return auth ? <Outlet /> : <Navigate to="/register" />
 }
 
 export default ProtectedRoutes;

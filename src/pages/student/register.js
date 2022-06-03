@@ -61,6 +61,8 @@ class App extends React.Component {
         axios.post(`${process.env.BACKEND_API_AZURE}/student/login`, {
             sliitEmail,
             password
+        }, {
+            headers: { "Access-Control-Allow-Origin": "*" }
         })
             .then(response => {
                 console.log(response);
@@ -88,7 +90,7 @@ class App extends React.Component {
                 console.log(error);
                 Swal.fire({
                     icon: 'error',
-                    title: 'Internal Server Error!',
+                    title: 'Authentication Failed!',
                     text: 'Please Check your Credentials and Try Again!',
                 })
             });

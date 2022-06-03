@@ -104,46 +104,52 @@ const App = () => {
                             </nav>
                         </div>
                         <br />
-                        <center>
-                            <div class="container profile-page">
-                                <div class="row">
-                                    <div class="col-xl-6 col-lg-7 col-md-12">
-                                        <div class="card profile-header">
-                                            <div class="body">
-                                                <div class="row">
-                                                    <div class="col">
-                                                        <h2 class="m-t-0 m-b-0"><strong>Supervisor</strong></h2>
-                                                        <hr />
-                                                        <h3 class="m-t-0 m-b-0"><strong>{getSupervisor().profile.fName + " " + getSupervisor().profile.lName}</strong></h3>
-                                                        {/* <h3 class="m-t-0 m-b-0">Status: {currentGroup.status}</h3> */}
-                                                        <p>{getSupervisor().profile.email}</p>
-                                                        <p>{getSupervisor().profile.tel}</p>
+                        {getSupervisor() != null ? (
+                            <center>
+                                <div class="container profile-page">
+                                    <div class="row">
+                                        <div class="col-xl-6 col-lg-7 col-md-12">
+                                            <div class="card profile-header">
+                                                <div class="body">
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <h2 class="m-t-0 m-b-0"><strong>Supervisor</strong></h2>
+                                                            <hr />
+                                                            <h3 class="m-t-0 m-b-0"><strong>{getSupervisor().profile.fName + " " + getSupervisor().profile.lName}</strong></h3>
+                                                            {/* <h3 class="m-t-0 m-b-0">Status: {currentGroup.status}</h3> */}
+                                                            <p>{getSupervisor().profile.email}</p>
+                                                            <p>{getSupervisor().profile.tel}</p>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
 
 
-                                    <div class="col-xl-6 col-lg-7 col-md-12">
-                                        <div class="card profile-header">
-                                            <div class="body">
-                                                <div class="row">
-                                                    <div class="col">
-                                                        <h2 class="m-t-0 m-b-0"><strong>Co-Supervisor</strong></h2>
-                                                        <hr />
-                                                        <h3 class="m-t-0 m-b-0"><strong>{getCoSupervisor().profile.fName + " " + getCoSupervisor().profile.lName}</strong></h3>
-                                                        {/* <h3 class="m-t-0 m-b-0">Status: {currentGroup.status}</h3> */}
-                                                        <p>{getCoSupervisor().profile.email}</p>
-                                                        <p>{getCoSupervisor().profile.tel}</p>
+                                        <div class="col-xl-6 col-lg-7 col-md-12">
+                                            <div class="card profile-header">
+                                                <div class="body">
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <h2 class="m-t-0 m-b-0"><strong>Co-Supervisor</strong></h2>
+                                                            <hr />
+                                                            <h3 class="m-t-0 m-b-0"><strong>{getCoSupervisor().profile.fName + " " + getCoSupervisor().profile.lName}</strong></h3>
+                                                            {/* <h3 class="m-t-0 m-b-0">Status: {currentGroup.status}</h3> */}
+                                                            <p>{getCoSupervisor().profile.email}</p>
+                                                            <p>{getCoSupervisor().profile.tel}</p>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </center>
+                            </center>
+                        ) : (
+                            <center>
+                                <h3>You don't have request supervisor and co-supervisor!</h3>
+                            </center>
+                        )}
                     </div>
                 ) : (
                     <center>

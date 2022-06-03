@@ -37,9 +37,9 @@ function App() {
       <Router>
         <Routes>
 
-          {/* Private Routes */}
           <Route path="/" element={<PrivateRoute />}>
             <Route path="/student" element={<StudentDashboard />} />
+            <Route path="/header" element={<Header />} />
             <Route path="/request-supervisor" element={<RequestSupervisor />} />
             <Route path="/group" element={<Group />} />
             <Route path="/group-register" element={<GroupRegister />} />
@@ -52,7 +52,6 @@ function App() {
 
           {/* Public Route */}
           <Route path="/register" element={<Register />} />
-          <Route path="/header" element={<Header />} />
           <Route path="/admin/register" element={<AdminRegister />} />
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
           <Route path="/admin/login" element={<AdminLogin />} />
