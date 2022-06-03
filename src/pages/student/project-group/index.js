@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../../assets/student/group-details.css';
 import Header from '../../../components/student/Navbar';
 import Swal from 'sweetalert2';
+import { getStudentId } from '../../../services/SessionManager';
 
 const App = () => {
 
@@ -34,7 +35,7 @@ const App = () => {
 
     const verifyUser = (password) => {
         console.log(password);
-        axios.get(`${process.env.BACKEND_API_LOCAL}/student/6297ec609099ee02c30e6805`)
+        axios.get(`${process.env.BACKEND_API_LOCAL}/student/${getStudentId()}`)
             .then(response => {
                 console.log(response.data)
                 if (response.data.password == password) {
@@ -56,7 +57,7 @@ const App = () => {
 
     const fetchCurrentStudent = () => {
         console.log("WORKING");
-        axios.get(`${process.env.BACKEND_API_LOCAL}/group/groupData/6297ec609099ee02c30e6805`)
+        axios.get(`${process.env.BACKEND_API_LOCAL}/group/groupData/${getStudentId()}`)
             .then(response => {
                 console.log(response.data);
                 setCurrentGroup(response.data);

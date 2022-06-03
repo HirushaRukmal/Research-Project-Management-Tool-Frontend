@@ -4,6 +4,7 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import Header from '../../../components/student/Navbar';
 require('dotenv').config();
+import { getStudentId } from '../../../services/SessionManager';
 
 const App = () => {
 
