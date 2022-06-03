@@ -7,6 +7,40 @@ export const authenticate = (response, next) => {
     next();
 };
 
+export const setSupervisor = (response) => {
+    if (window !== 'undefined') {
+        // sessionStorage.setItem('token', JSON.stringify(accessToken));
+        sessionStorage.setItem('supervisor', JSON.stringify(response.data));
+    }
+};
+
+export const setCoSupervisor = (response) => {
+    if (window !== 'undefined') {
+        // sessionStorage.setItem('token', JSON.stringify(accessToken));
+        sessionStorage.setItem('cosupervisor', JSON.stringify(response.data));
+    }
+};
+
+export const getSupervisor = () => {
+    if (window !== 'undefined') {
+        if (sessionStorage.getItem('supervisor')) {
+            return JSON.parse(sessionStorage.getItem('supervisor'));
+        } else {
+            return false;
+        }
+    }
+};
+
+export const getCoSupervisor = () => {
+    if (window !== 'undefined') {
+        if (sessionStorage.getItem('cosupervisor')) {
+            return JSON.parse(sessionStorage.getItem('cosupervisor'));
+        } else {
+            return false;
+        }
+    }
+};
+
 //access access name from session storage
 // export const getToken = () => {
 //     if (window !== 'undefined') {
