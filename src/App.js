@@ -26,6 +26,8 @@ import GroupRegister from './pages/student/project-group/groupRegister';
 import RequestSupervisor from './pages/student/supervisor/requestSupervisor';
 import Supervisor from './pages/student/supervisor/index';
 import AllStudents from './pages/student/admin/AllStudents';
+import UpdateGroup from './pages/student/admin/UpdateGroup';
+import UpdateStudent from './pages/student/admin/UpdateStudent';
 
 function App() {
   return (
@@ -41,6 +43,8 @@ function App() {
           <Route path="/group-register" element={<GroupRegister />} />
           <Route path="/supervisor" element={<Supervisor />} />
           <Route path="/register" element={<Home />} />
+          <Route path="/update-student/:id" element={<UpdateStudent />} />
+          <Route path="/update-group/:id" element={<UpdateGroup />} />
           <Route path="/all-students" element={<AllStudents />} />
           <Route path="/admin/register" element={<AdminRegister />} />
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
