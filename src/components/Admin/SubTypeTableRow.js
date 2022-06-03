@@ -3,17 +3,14 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import Button from "react-bootstrap/Button";
 import Swal from "sweetalert2";
+import moment from "moment";
 export default class SubTypeTableRow extends Component {
   constructor(props) {
     super(props);
     this.deleteSubType = this.deleteSubType.bind(this);
   }
   deleteSubType() {
-    axios
-      .delete(
-        "http://localhost:8000/admin/delete-submission/${id}" +
-          this.props.obj._id
-      )
+    axios .delete( "http://localhost:8000/admin/delete-submission/" +  this.props.obj._id )
       .then((res) => {
         const Swal = require("sweetalert2");
         Swal.fire({
@@ -28,11 +25,14 @@ export default class SubTypeTableRow extends Component {
       });
     this.props.history.push("/list_subTypes");
   }
+  eventClick = () =>{
+    this.props.history.push("/edit-submission/" + this.props.obj._id)
+  }
   render() {
     return (
       <tr>
         <td>{this.props.obj.Submission_Topic}</td>
-        <td>{this.props.obj.Deadline}</td>
+        <td>{moment.utc(this.props.obj.Deadline).format("DD/MM/YYYY")}</td>
         <td>{this.props.obj.Description}</td>
         <td>
           <a
