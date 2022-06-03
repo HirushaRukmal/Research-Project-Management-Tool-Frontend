@@ -171,6 +171,8 @@ const App = () => {
 
     }
 
+    
+
     useEffect(() => {
         fetchStudents();
         console.log(typeof options);

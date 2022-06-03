@@ -170,7 +170,7 @@ const App = () => {
                                             <td>{student.studentType}</td>
                                             <td>{student.groupStatus.toString()}</td>
                                             <td>
-                                                <a className="" href={`/updateStaffMember/${student.employeeId}`}>
+                                                <a className="" href={`/update-student/${student._id}`}>
                                                     <i className="fas fa-edit"></i>&nbsp;
                                                 </a>
                                                 &nbsp;&nbsp;&nbsp;
