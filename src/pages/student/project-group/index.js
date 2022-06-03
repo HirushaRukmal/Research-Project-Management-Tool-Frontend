@@ -177,7 +177,7 @@ const App = () => {
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link" href="/dashboard">
-                                <button className="btn btn-info" type="submit" style={{ color: "white" }}>Update Project Group</button>
+                                <button onClick={deleteGroup} className="btn btn-info" style={{ color: "white" }} >Update Project Group</button>
                             </a>
                         </li>
                     </ul>
@@ -190,7 +190,7 @@ const App = () => {
                         <center>
                             <h4>Group Name: {currentGroup.groupName}</h4>
                             <h4>Group Id: {currentGroup._id}</h4>
-                            <h4>Group Id: {currentGroup.groupTopic}</h4>
+                            <h4>Group Topic: {currentGroup.groupTopic}</h4>
                         </center>
                         <br />
                         <center>
