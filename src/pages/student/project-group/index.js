@@ -200,7 +200,11 @@ const App = () => {
                             <h4>Group Name: {currentGroup.groupName}</h4>
                             <h4>Group Id: {currentGroup._id}</h4>
                             <h4>Group Topic: {currentGroup.groupTopic}</h4>
-                            <h4>Approved: {currentGroup.groupStatus}</h4>
+                            {currentGroup.groupStatus == true ? (
+                                <h4>Approved: YES</h4>
+                            ) : (
+                                <h4>Approved: NO</h4>
+                            )}
                         </center>
                         <br />
                         <center>
