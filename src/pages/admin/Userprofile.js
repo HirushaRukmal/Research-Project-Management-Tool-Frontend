@@ -135,7 +135,9 @@ const Userprofile = (props) => {
                 </div>
               </div>
               <div className="d-grid gap-2 ">
-                <button className="btn btn-primary">Update</button>
+                <a className="d-grid gap-2 " href="/admin-update">
+                  <button className="btn btn-primary">Update</button>
+                </a>
               </div>
             </div>
           </div>
