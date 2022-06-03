@@ -30,7 +30,7 @@ const App = () => {
     }
 
     const fetchGruopId = () => {
-        axios.get(`${process.env.BACKEND_API_LOCAL}/group/groupData/${getStudentId()}`)
+        axios.get(`${process.env.BACKEND_API_AZURE}/group/groupData/${getStudentId()}`)
             .then(response => {
                 console.log(response.data)
                 setGroupId(response.data._id)
@@ -42,7 +42,7 @@ const App = () => {
 
     const fetchSupervisor = () => {
         console.log("WORKING");
-        axios.get(`${process.env.BACKEND_API_LOCAL}/staff/profiles/supervisor`)
+        axios.get(`${process.env.BACKEND_API_AZURE}/staff/profiles/supervisor`)
             .then(response => {
                 console.log(response)
                 setSupervisorList(response.data.profile);
@@ -52,7 +52,7 @@ const App = () => {
                 console.log(error);
             });
 
-        axios.get(`${process.env.BACKEND_API_LOCAL}/staff/profiles/co-supervisor`)
+        axios.get(`${process.env.BACKEND_API_AZURE}/staff/profiles/co-supervisor`)
             .then(response => {
                 console.log(response)
                 setCoSupervisorList(response.data.profile);
@@ -78,7 +78,7 @@ const App = () => {
         });
 
         axios
-            .post(`${process.env.BACKEND_API_LOCAL}/supervisor-group/`, {
+            .post(`${process.env.BACKEND_API_AZURE}/supervisor-group/`, {
                 groupId,
                 supervisorId,
                 coSupervisorId,

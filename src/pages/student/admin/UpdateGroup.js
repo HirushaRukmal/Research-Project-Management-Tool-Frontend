@@ -70,7 +70,7 @@ const App = (props) => {
 
 
     const fetchStudent = () => {
-        axios.get(`${process.env.BACKEND_API_LOCAL}/student/${id}`)
+        axios.get(`${process.env.BACKEND_API_AZURE}/student/${id}`)
             .then(response => {
                 console.log(response)
                 setStudent(response.data);

@@ -10,19 +10,20 @@ const App = () => {
 
     const [currentGroup, setCurrentGroup] = useState([]);
     const [supervisorGroup, setSupervisorGroup] = useState([]);
+    const { supervisor } = getSupervisor();
 
     const fetchCurrentGroup = () => {
-        axios.get(`${process.env.BACKEND_API_LOCAL}/group/groupData/${getStudentId()}`)
+        axios.get(`${process.env.BACKEND_API_AZURE}/group/groupData/${getStudentId()}`)
             .then(response => {
                 console.log(response.data);
                 setCurrentGroup(response.data);
-                axios.get(`${process.env.BACKEND_API_LOCAL}/supervisor-group/getByGroupId/${response.data._id}`)
+                axios.get(`${process.env.BACKEND_API_AZURE}/supervisor-group/getByGroupId/${response.data._id}`)
                     .then(response => {
                         console.log(response.data);
                         setSupervisorGroup(response.data);
 
                         // Fetch Supervisor Detila
-                        axios.get(`${process.env.BACKEND_API_LOCAL}/staff/profile/${response.data.supervisorId}`)
+                        axios.get(`${process.env.BACKEND_API_AZURE}/staff/profile/${response.data.supervisorId}`)
                             .then(response => {
                                 console.log(response);
                                 setSupervisor(response);
@@ -33,7 +34,7 @@ const App = () => {
                             });
 
                         //Fetch Co-Supervisor Details
-                        axios.get(`${process.env.BACKEND_API_LOCAL}/staff/profile/${response.data.coSupervisorId}`)
+                        axios.get(`${process.env.BACKEND_API_AZURE}/staff/profile/${response.data.coSupervisorId}`)
                             .then(response => {
                                 console.log(response.data);
                                 setCoSupervisor(response);
@@ -104,46 +105,56 @@ const App = () => {
                             </nav>
                         </div>
                         <br />
-                        <center>
-                            <div class="container profile-page">
-                                <div class="row">
-                                    <div class="col-xl-6 col-lg-7 col-md-12">
-                                        <div class="card profile-header">
-                                            <div class="body">
-                                                <div class="row">
-                                                    <div class="col">
-                                                        <h2 class="m-t-0 m-b-0"><strong>Supervisor</strong></h2>
-                                                        <hr />
-                                                        <h3 class="m-t-0 m-b-0"><strong>{getSupervisor().profile.fName + " " + getSupervisor().profile.lName}</strong></h3>
-                                                        {/* <h3 class="m-t-0 m-b-0">Status: {currentGroup.status}</h3> */}
-                                                        <p>{getSupervisor().profile.email}</p>
-                                                        <p>{getSupervisor().profile.tel}</p>
+                        {supervisor != null ? (
+                            <div>
+                                <center>
+                                    <div class="container profile-page">
+                                        <div class="row">
+                                            <div class="col-xl-6 col-lg-7 col-md-12">
+                                                <div class="card profile-header">
+                                                    <div class="body">
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <h2 class="m-t-0 m-b-0"><strong>Supervisor</strong></h2>
+                                                                <hr />
+                                                                <h3 class="m-t-0 m-b-0"><strong>{getSupervisor().profile.fName + " " + getSupervisor().profile.lName}</strong></h3>
+                                                                {/* <h3 class="m-t-0 m-b-0">Status: {currentGroup.status}</h3> */}
+                                                                <p>{getSupervisor().profile.email}</p>
+                                                                <p>{getSupervisor().profile.tel}</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-xl-6 col-lg-7 col-md-12">
+                                                <div class="card profile-header">
+                                                    <div class="body">
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <h2 class="m-t-0 m-b-0"><strong>Co-Supervisor</strong></h2>
+                                                                <hr />
+                                                                <h3 class="m-t-0 m-b-0"><strong>{getCoSupervisor().profile.fName + " " + getCoSupervisor().profile.lName}</strong></h3>
+                                                                {/* <h3 class="m-t-0 m-b-0">Status: {currentGroup.status}</h3> */}
+                                                                <p>{getCoSupervisor().profile.email}</p>
+                                                                <p>{getCoSupervisor().profile.tel}</p>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-
-
-                                    <div class="col-xl-6 col-lg-7 col-md-12">
-                                        <div class="card profile-header">
-                                            <div class="body">
-                                                <div class="row">
-                                                    <div class="col">
-                                                        <h2 class="m-t-0 m-b-0"><strong>Co-Supervisor</strong></h2>
-                                                        <hr />
-                                                        <h3 class="m-t-0 m-b-0"><strong>{getCoSupervisor().profile.fName + " " + getCoSupervisor().profile.lName}</strong></h3>
-                                                        {/* <h3 class="m-t-0 m-b-0">Status: {currentGroup.status}</h3> */}
-                                                        <p>{getCoSupervisor().profile.email}</p>
-                                                        <p>{getCoSupervisor().profile.tel}</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                </center>
                             </div>
-                        </center>
+                        ) : (
+                            <div>
+                                <center>
+                                    <h3>You don't have request supervisor and co-supervisor!</h3>
+                                </center>
+                            </div>
+                        )}
                     </div>
                 ) : (
                     <center>

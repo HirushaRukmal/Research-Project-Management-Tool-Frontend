@@ -9,14 +9,12 @@ export const authenticate = (response, next) => {
 
 export const setSupervisor = (response) => {
     if (window !== 'undefined') {
-        // sessionStorage.setItem('token', JSON.stringify(accessToken));
         sessionStorage.setItem('supervisor', JSON.stringify(response.data));
     }
 };
 
 export const setCoSupervisor = (response) => {
     if (window !== 'undefined') {
-        // sessionStorage.setItem('token', JSON.stringify(accessToken));
         sessionStorage.setItem('cosupervisor', JSON.stringify(response.data));
     }
 };
