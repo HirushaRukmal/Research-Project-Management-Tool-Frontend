@@ -19,6 +19,7 @@ import AddSubTypes from "./components/Admin/add-subTypes";
 import FileUpload from "./components/Admin/fileUpload";
 import SubTypeList from "./components/Admin/list_subTypes";
 import EditSubType from "./components/Admin/update_subtype";
+import TopicApproval from "./pages/Supervisor/topicApproval";
 
 // Import Routes
 import Home from "./Home";
@@ -50,6 +51,7 @@ function App() {
           <Route path="/subTypes" element={<AddSubTypes />} />
           <Route path="/admin/subtypelist" element={<SubTypeList />} />
           <Route path="/edit-submission/" element={<EditSubType />} />
+          <Route path="/supervisor/topicApproval" element={<TopicApproval />} />
         </Routes>
       </Router>
     </>
