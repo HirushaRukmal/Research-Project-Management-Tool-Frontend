@@ -29,24 +29,30 @@ import Supervisor from './pages/student/supervisor/index';
 import AllStudents from './pages/student/admin/AllStudents';
 import UpdateGroup from './pages/student/admin/UpdateGroup';
 import UpdateStudent from './pages/student/admin/UpdateStudent';
+import AllGroups from './pages/student/admin/AllGroups';
+import PrivateRoute from './services/PrivateRoutes';
 
 function App() {
   return (
     <>
       <Router>
         <Routes>
+
+          <Route path="/" element={<PrivateRoute />}>
+            <Route path="/student" element={<StudentDashboard />} />
+            <Route path="/header" element={<Header />} />
+            <Route path="/request-supervisor" element={<RequestSupervisor />} />
+            <Route path="/group" element={<Group />} />
+            <Route path="/group-register" element={<GroupRegister />} />
+            <Route path="/supervisor" element={<Supervisor />} />
+            <Route path="/update-student/:id" element={<UpdateStudent />} />
+            <Route path="/update-group/:id" element={<UpdateGroup />} />
+            <Route path="/all-students" element={<AllStudents />} />
+            <Route path="/all-groups" element={<AllGroups />} />
+          </Route>
+
           {/* Public Route */}
-          <Route path="/" element={<Register />} />
-          <Route path="/student" element={<StudentDashboard />} />
-          <Route path="/header" element={<Header />} />
-          <Route path="/request-supervisor" element={<RequestSupervisor />} />
-          <Route path="/group" element={<Group />} />
-          <Route path="/group-register" element={<GroupRegister />} />
-          <Route path="/supervisor" element={<Supervisor />} />
-          <Route path="/register" element={<Home />} />
-          <Route path="/update-student/:id" element={<UpdateStudent />} />
-          <Route path="/update-group/:id" element={<UpdateGroup />} />
-          <Route path="/all-students" element={<AllStudents />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/admin/register" element={<AdminRegister />} />
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
           <Route path="/admin/login" element={<AdminLogin />} />

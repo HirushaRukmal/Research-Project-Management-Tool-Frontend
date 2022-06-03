@@ -14,7 +14,7 @@ const App = () => {
     const [count, setCount] = useState([]);
 
     const fetchStudent = () => {
-        axios.get(`${process.env.BACKEND_API_LOCAL}/student/`)
+        axios.get(`${process.env.BACKEND_API_AZURE}/student/`)
             .then(response => {
                 console.log(response)
                 setStudent(response.data);
@@ -37,7 +37,7 @@ const App = () => {
             if (result.isConfirmed) {
                 console.log("CONFIRMED");
                 axios
-                    .delete(`${process.env.BACKEND_API_LOCAL}/student/${studentId}`)
+                    .delete(`${process.env.BACKEND_API_AZURE}/student/${studentId}`)
                     .then(response => {
                         // alert(response.data.message);
                         Swal.fire(
@@ -60,7 +60,7 @@ const App = () => {
         const searchWord = event.target.value;
         console.log(searchWord);
         setWordEntered(searchWord);
-        axios.get(`${process.env.BACKEND_API_LOCAL}/student/`)
+        axios.get(`${process.env.BACKEND_API_AZURE}/student/`)
             .then(response => {
                 console.log(response)
                 const newFilter = student.filter((response) => {

@@ -48,7 +48,7 @@ const App = () => {
         array.push(thirdMember);
         for (let x = 0; x < array.length; x++) {
 
-            axios.get(`${process.env.BACKEND_API_LOCAL}/student/${array[x]}`)
+            axios.get(`${process.env.BACKEND_API_AZURE}/student/${array[x]}`)
                 .then(response => {
                     console.log(response)
                     setUpdateStuednt(response.data)
@@ -67,7 +67,7 @@ const App = () => {
             const groupStatus = true;
 
             axios
-                .patch(`${process.env.BACKEND_API_LOCAL}/student/${array[x]}`, { fullName, sliitId, sliitEmail, personalEmail, contactNo, studentType, groupStatus, groupEmail })
+                .patch(`${process.env.BACKEND_API_AZURE}/student/${array[x]}`, { fullName, sliitId, sliitEmail, personalEmail, contactNo, studentType, groupStatus, groupEmail })
                 .then(response => {
                     console.log(response)
                 })
@@ -91,7 +91,7 @@ const App = () => {
         });
 
         axios
-            .post(`${process.env.BACKEND_API_LOCAL}/group/`, {
+            .post(`${process.env.BACKEND_API_AZURE}/group/`, {
                 groupName,
                 groupLeader,
                 firstMember,
@@ -136,7 +136,7 @@ const App = () => {
 
     const fetchStudents = () => {
         console.log("WORKING");
-        axios.get(`${process.env.BACKEND_API_LOCAL}/student/`)
+        axios.get(`${process.env.BACKEND_API_AZURE}/student/`)
             .then(response => {
                 console.log(response)
                 setStudent(response.data)
