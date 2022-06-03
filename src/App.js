@@ -14,7 +14,6 @@ import StaffRegister from "./pages/Staff/register";
 import StudentDashboard from "./pages/student/dashboard";
 import Register from "./pages/student/register";
 // import ProfileDetails from './pages/admin/Userprofile';
-import SideMenu from "./components/Admin/sideMenu";
 import AddSubTypes from "./components/Admin/add-subTypes";
 import FileUpload from "./components/Admin/fileUpload";
 import SubTypeList from "./components/Admin/list_subTypes";
@@ -33,6 +32,7 @@ import StudentDashboard from './pages/student/dashboard';
 import Header from './components/student/Navbar';
 import Group from './pages/student/project-group/index';
 import GroupRegister from './pages/student/project-group/groupRegister';
+import RequestSupervisor from './pages/student/supervisor/requestSupervisor';
 
 function App() {
   return (
@@ -43,6 +43,7 @@ function App() {
           <Route path="/" element={<Register />} />
           <Route path="/student" element={<StudentDashboard />} />
           <Route path="/header" element={<Header />} />
+          <Route path="/request-supervisor" element={<RequestSupervisor />} />
           <Route path="/group" element={<Group />} />
           <Route path="/group-register" element={<GroupRegister />} />
           <Route path="/register" element={<Home />} />

@@ -156,8 +156,6 @@ const App = () => {
                 console.log(error);
                 // alert("Error Fetching Student Details")
             });
-
-
     }
 
     const studentMap = (response) => {
@@ -315,7 +313,7 @@ const App = () => {
                     </div>
                     <div className="col">
                         <div>
-                            <center><h1 className="mb-4">Guideline & Rules<br className="d-none d-lg-inline" /></h1></center>
+                            <center><h3 className="mb-4">Guideline & Rules<br className="d-none d-lg-inline" /></h3></center>
                             <p className="lead text-muted">Make your project Team easily with get the pre-approval from your Lecture in Charge on few clicks!</p>
                         </div>
                     </div>

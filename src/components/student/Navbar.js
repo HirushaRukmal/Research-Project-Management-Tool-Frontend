@@ -41,7 +41,7 @@ const Navbar = () => {
                         </a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link" href="/dashboard">
+                        <a class="nav-link" href="/request-supervisor">
                             <i class="fa fa-dollar"></i>
                             Supervisor/Co-Supervior
                         </a>
