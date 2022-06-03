@@ -42,6 +42,7 @@ const Userprofile = (props) => {
               <div className="card">
                 <div className="card-body">
                   <div className="d-flex flex-column align-items-center text-center">
+                    <br />
                     <img
                       src={logo}
                       alt="Admin"
@@ -50,13 +51,15 @@ const Userprofile = (props) => {
                     />
                     <div className="mt-3">
                       <h4>{profile.fName + " " + profile.lName}</h4>
-                      <p className="text-muted font-size-sm">{profile.type}</p>
+                      <p className="font-size-sm text-success">
+                        {profile.type}
+                      </p>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div className="card mt-4">
+              <div className="card">
                 <ul className="list-group list-group-flush">
                   <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                     <h6 className="mb-0">Account Status</h6>
@@ -130,6 +133,9 @@ const Userprofile = (props) => {
                     </div>
                   </div>
                 </div>
+              </div>
+              <div className="d-grid gap-2 ">
+                <button className="btn btn-primary">Update</button>
               </div>
             </div>
           </div>
