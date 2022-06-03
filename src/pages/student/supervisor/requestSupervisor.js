@@ -6,6 +6,7 @@ import Header from '../../../components/student/Navbar';
 const App = () => {
 
     const [supervisorList, setSupervisorList] = useState([]);
+    const [coSupervisorList, setCoSupervisorList] = useState([]);
 
     const [state, setState] = useState({
         supervisor: "",
@@ -25,15 +26,24 @@ const App = () => {
 
     const fetchSupervisor = () => {
         console.log("WORKING");
-        axios.get(`${process.env.BACKEND_API_LOCAL}/staff/profiles`)
+        axios.get(`${process.env.BACKEND_API_LOCAL}/staff/profiles/supervisor`)
             .then(response => {
                 console.log(response)
-                setSupervisorList(response.data.existingProfile);
+                setSupervisorList(response.data.profile);
                 console.log(supervisorList);
             })
             .catch(error => {
                 console.log(error);
-                // alert("Error Fetching Student Details")
+            });
+
+        axios.get(`${process.env.BACKEND_API_LOCAL}/staff/profiles/co-supervisor`)
+            .then(response => {
+                console.log(response)
+                setCoSupervisorList(response.data.profile);
+                console.log(coSupervisorList);
+            })
+            .catch(error => {
+                console.log(error);
             });
     }
 
@@ -91,12 +101,12 @@ const App = () => {
                                         border: "1px solid transparent"
                                     }}
                                     required>
-                                    {/* <option value="" disabled selected>Select a co-supervisor</option>
-                                    {supervisorList.map((supervisorList, i) => (
-                                        <option key={i} value={supervisorList._id} >
-                                            {supervisorList.fName + " " + lName}
+                                    <option value="" disabled selected>Select a co-supervisor</option>
+                                    {coSupervisorList.map((coSupervisorList, i) => (
+                                        <option key={i} value={coSupervisorList._id} >
+                                            {coSupervisorList.fName + " " + coSupervisorList.lName}
                                         </option>
-                                    ))} */}
+                                    ))}
                                 </select>
                             </div>
                         </div>
