@@ -81,7 +81,7 @@ class App extends React.Component {
                         sliitEmail: "",
                         password: "",
                     });
-                    authenticate(response, () => (window.location.href = `/student`), 2000);
+                    authenticate(response, () => (window.location.href = `/group`), 2000);
                 }
             })
             .catch(error => {

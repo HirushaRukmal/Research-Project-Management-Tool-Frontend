@@ -23,7 +23,7 @@ const App = () => {
             .catch(error => console.log(error));
     }
 
-    const deleteStudent = (groupId) => {
+    const deleteGroup = (groupId) => {
         Swal.fire({
             title: 'Are you sure?',
             text: "Do you want to delete this Student?",
@@ -48,6 +48,97 @@ const App = () => {
                         fetchGroup();
                     })
                     .catch(error => console.log(error));
+            }
+        })
+    }
+
+    const approveTopicAndGroup = (group) => {
+
+        const groupName = group.groupName;
+        const groupLeader = group.groupLeader;
+        const firstMember = group.firstMember;
+        const secondMember = group.secondMember;
+        const thirdMember = group.thirdMember;
+        const groupTopic = group.groupTopic;
+        const groupEmail = group.groupEmail;
+        var groupStatus = true;
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You want to Approve this Topic!?",
+            icon: 'warning',
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, Approve it!',
+            showDenyButton: true,
+            showCancelButton: true,
+            denyButtonText: `No, Reject it!`,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axios
+                    .put(`${process.env.BACKEND_API_LOCAL}/group/${group._id}`, {
+                        groupName,
+                        groupLeader,
+                        firstMember,
+                        secondMember,
+                        thirdMember,
+                        groupTopic,
+                        groupEmail,
+                        groupStatus,
+                    })
+                    .then(response => {
+                        console.log(response)
+                        Swal.fire(
+                            'Approved!',
+                            'Topic is approved!.',
+                            'success'
+                        )
+                        fetchGroup();
+                    })
+                    .catch(error => {
+                        console.log(error.Response)
+                        // alert(error.response.data.error)
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: `${error.response.data.error}`,
+                            footer: 'Please try again'
+                        })
+                    })
+
+            } else if (result.isDenied) {
+                groupStatus = false;
+                axios
+                    .put(`${process.env.BACKEND_API_LOCAL}/group/${group._id}`, {
+                        groupName,
+                        groupLeader,
+                        firstMember,
+                        secondMember,
+                        thirdMember,
+                        groupTopic,
+                        groupEmail,
+                        groupStatus,
+                    })
+                    .then(response => {
+                        console.log(response)
+                        Swal.fire(
+                            'Rejected!',
+                            'Topic is Rejected!.',
+                            'success'
+                        )
+                        fetchGroup();
+                    })
+                    .catch(error => {
+                        console.log(error.Response)
+                        // alert(error.response.data.error)
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: `${error.response.data.error}`,
+                            footer: 'Please try again'
+                        })
+                    })
+
             }
         })
     }
@@ -143,6 +234,7 @@ const App = () => {
                                         <th>#</th>
                                         <th>Group ID</th>
                                         <th>Gorup Name</th>
+                                        <th>Topic Approved</th>
                                         <th>Group Leader</th>
                                         <th>First Member</th>
                                         <th>Second Member</th>
@@ -156,11 +248,12 @@ const App = () => {
                                         <tr key={i}>
                                             <th scope="row">{i + 1}</th>
 
-                                            <a href={`#`} style={{ textDecoration: 'none' }}>
+                                            <a onClick={() => approveTopicAndGroup(group)} style={{ textDecoration: 'none' }}>
                                                 <td>{group._id}</td>
                                             </a>
 
                                             <td>{group.groupName}</td>
+                                            <td>{group.groupStatus.toString()}</td>
                                             <td>{group.groupLeader}</td>
                                             <td>{group.firstMember}</td>
                                             <td>{group.secondMember}</td>
@@ -172,7 +265,7 @@ const App = () => {
                                                     <i className="fas fa-edit"></i>&nbsp;
                                                 </a>
                                                 &nbsp;&nbsp;&nbsp;
-                                                <a className="" href="#" onClick={() => deleteStudent(group._id)}>
+                                                <a className="" href="#" onClick={() => deleteGroup(group._id)}>
                                                     <i className="far fa-trash-alt"></i>&nbsp;
                                                 </a>
 
