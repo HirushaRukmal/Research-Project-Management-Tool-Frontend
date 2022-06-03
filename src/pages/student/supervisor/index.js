@@ -4,14 +4,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../../assets/student/group-details.css';
 import Header from '../../../components/student/Navbar';
 import Swal from 'sweetalert2';
-import { getStudentId } from '../../../services/SessionManager';
+import { getStudentId, setSupervisor, setCoSupervisor, getSupervisor, getCoSupervisor } from '../../../services/SessionManager';
 
 const App = () => {
 
     const [currentGroup, setCurrentGroup] = useState([]);
-    const [dataAvailable, setDataAvailability] = useState(false);
     const [supervisorGroup, setSupervisorGroup] = useState([]);
-
 
     const fetchCurrentGroup = () => {
         axios.get(`${process.env.BACKEND_API_LOCAL}/group/groupData/${getStudentId()}`)
@@ -22,7 +20,28 @@ const App = () => {
                     .then(response => {
                         console.log(response.data);
                         setSupervisorGroup(response.data);
-                        console.log(supervisorGroup);
+
+                        // Fetch Supervisor Detila
+                        axios.get(`${process.env.BACKEND_API_LOCAL}/staff/profile/${response.data.supervisorId}`)
+                            .then(response => {
+                                console.log(response);
+                                setSupervisor(response);
+                                console.log(getSupervisor());
+                            })
+                            .catch(error => {
+                                console.log(error);
+                            });
+
+                        //Fetch Co-Supervisor Details
+                        axios.get(`${process.env.BACKEND_API_LOCAL}/staff/profile/${response.data.coSupervisorId}`)
+                            .then(response => {
+                                console.log(response.data);
+                                setCoSupervisor(response);
+                                console.log(getCoSupervisor());
+                            })
+                            .catch(error => {
+                                console.log(error);
+                            });
                     })
                     .catch(error => {
                         console.log(error);
@@ -32,13 +51,6 @@ const App = () => {
             .catch(error => {
                 console.log(error);
             });
-        fetchSupervisorGroup();
-
-    }
-
-    const fetchSupervisorGroup = () => {
-        console.log(currentGroup._id);
-
     }
 
     const updateGroup = () => {
@@ -100,15 +112,12 @@ const App = () => {
                                             <div class="body">
                                                 <div class="row">
                                                     <div class="col">
-                                                        <h3 class="m-t-0 m-b-0"><strong>{supervisorGroup.supervisorId}</strong></h3>
-                                                        {/* <h4 class="job_post">{supervisorGroup.sliitId}</h4>
-                                                        <p>SLIIT Email Address: {student1.sliitEmail}</p>
-                                                        <p>Personal Email Address: {student1.personalEmail}</p>
-                                                        <p>Contact Number: {student1.contactNo}</p> */}
-                                                        <div>
-                                                            <button class="btn btn-primary btn-round">Follow</button> &nbsp;
-                                                            <button class="btn btn-primary btn-round btn-simple">Message</button>
-                                                        </div>
+                                                        <h2 class="m-t-0 m-b-0"><strong>Supervisor</strong></h2>
+                                                        <hr />
+                                                        <h3 class="m-t-0 m-b-0"><strong>{getSupervisor().profile.fName + " " + getSupervisor().profile.lName}</strong></h3>
+                                                        {/* <h3 class="m-t-0 m-b-0">Status: {currentGroup.status}</h3> */}
+                                                        <p>{getSupervisor().profile.email}</p>
+                                                        <p>{getSupervisor().profile.tel}</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -121,15 +130,12 @@ const App = () => {
                                             <div class="body">
                                                 <div class="row">
                                                     <div class="col">
-                                                        <h3 class="m-t-0 m-b-0"><strong>{supervisorGroup.coSupervisorId}</strong></h3>
-                                                        {/* <h4 class="job_post">{student2.sliitId}</h4>
-                                                        <p>SLIIT Email Address: {student2.sliitEmail}</p>
-                                                        <p>Personal Email Address: {student2.personalEmail}</p>
-                                                        <p>Contact Number: {student2.contactNo}</p> */}
-                                                        <div>
-                                                            <button class="btn btn-primary btn-round">Follow</button> &nbsp;
-                                                            <button class="btn btn-primary btn-round btn-simple">Message</button>
-                                                        </div>
+                                                        <h2 class="m-t-0 m-b-0"><strong>Co-Supervisor</strong></h2>
+                                                        <hr />
+                                                        <h3 class="m-t-0 m-b-0"><strong>{getCoSupervisor().profile.fName + " " + getCoSupervisor().profile.lName}</strong></h3>
+                                                        {/* <h3 class="m-t-0 m-b-0">Status: {currentGroup.status}</h3> */}
+                                                        <p>{getCoSupervisor().profile.email}</p>
+                                                        <p>{getCoSupervisor().profile.tel}</p>
                                                     </div>
                                                 </div>
                                             </div>

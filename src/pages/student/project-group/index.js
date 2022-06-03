@@ -216,7 +216,6 @@ const App = () => {
                                                         <p>Personal Email Address: {student1.personalEmail}</p>
                                                         <p>Contact Number: {student1.contactNo}</p>
                                                         <div>
-                                                            <button class="btn btn-primary btn-round">Follow</button> &nbsp;
                                                             <button class="btn btn-primary btn-round btn-simple">Message</button>
                                                         </div>
                                                     </div>
@@ -237,7 +236,6 @@ const App = () => {
                                                         <p>Personal Email Address: {student2.personalEmail}</p>
                                                         <p>Contact Number: {student2.contactNo}</p>
                                                         <div>
-                                                            <button class="btn btn-primary btn-round">Follow</button> &nbsp;
                                                             <button class="btn btn-primary btn-round btn-simple">Message</button>
                                                         </div>
                                                     </div>
@@ -259,7 +257,6 @@ const App = () => {
                                                         <p>Personal Email Address: {student3.personalEmail}</p>
                                                         <p>Contact Number: {student3.contactNo}</p>
                                                         <div>
-                                                            <button class="btn btn-primary btn-round">Follow</button> &nbsp;
                                                             <button class="btn btn-primary btn-round btn-simple">Message</button>
                                                         </div>
                                                     </div>
@@ -280,7 +277,6 @@ const App = () => {
                                                         <p>Personal Email Address: {student4.personalEmail}</p>
                                                         <p>Contact Number: {student4.contactNo}</p>
                                                         <div>
-                                                            <button class="btn btn-primary btn-round">Follow</button> &nbsp;
                                                             <button class="btn btn-primary btn-round btn-simple">Message</button>
                                                         </div>
                                                     </div>
