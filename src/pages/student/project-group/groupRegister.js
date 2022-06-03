@@ -10,6 +10,7 @@ const App = () => {
     const [student, setStudent] = useState([]);
     const [groupLeaderEmail, setGroupLeaderEmail] = useState("");
     var stdList = new Map([]);
+    const [updateStudent, setUpdateStuednt] = useState([]);
 
     const [state, setState] = useState({
         groupName: "",
@@ -36,6 +37,43 @@ const App = () => {
         };
     }
 
+    const updateGroupStatus = () => {
+        var array = [];
+        array.push(groupLeader);
+        array.push(firstMember);
+        array.push(secondMember);
+        array.push(thirdMember);
+        for (let x = 0; x < array.length; x++) {
+
+            axios.get(`${process.env.BACKEND_API_LOCAL}/student/${array[x]}`)
+                .then(response => {
+                    console.log(response)
+                    setUpdateStuednt(response.data)
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+
+            const fullName = updateStudent.fullName;
+            const sliitId = updateStudent.sliitId;
+            const sliitEmail = updateStudent.sliitEmail;
+            const personalEmail = updateStudent.personalEmail;
+            const contactNo = updateStudent.contactNo;
+            const studentType = updateStudent.studentType;
+            const groupStatus = true;
+
+            axios
+                .patch(`${process.env.BACKEND_API_LOCAL}/student/${array[x]}`, { fullName, sliitId, sliitEmail, personalEmail, contactNo, studentType, groupStatus })
+                .then(response => {
+                    console.log(response)
+                })
+                .catch(error => {
+                    console.log(error.Response)
+                })
+        }
+
+    }
+
     const handleSubmit = (event) => {
         event.preventDefault();
         console.table({
@@ -49,7 +87,7 @@ const App = () => {
         });
 
         axios
-            .post(`${process.env.BACKEND_API_AZURE}/group/`, {
+            .post(`${process.env.BACKEND_API_LOCAL}/group/`, {
                 groupName,
                 groupLeader,
                 firstMember,
@@ -59,6 +97,7 @@ const App = () => {
             })
             .then((response) => {
                 console.log(response);
+                updateGroupStatus();
                 //show success alert
                 // alert(`Employee ${response.data.firstName} is Created`);
                 Swal.fire(
@@ -91,11 +130,10 @@ const App = () => {
 
     const fetchStudents = () => {
         console.log("WORKING");
-        axios.get(`${process.env.BACKEND_API_AZURE}/student/`)
+        axios.get(`${process.env.BACKEND_API_LOCAL}/student/`)
             .then(response => {
                 console.log(response)
                 setStudent(response.data)
-                setCount(response.data.length);
                 if (response.data != null) {
                     studentMap(response.data);
                 }
