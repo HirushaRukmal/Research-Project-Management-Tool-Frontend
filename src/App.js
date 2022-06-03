@@ -50,7 +50,7 @@ function App() {
           <Route path="/staff/register" element={<StaffRegister />} />
           <Route path="/subTypes" element={<AddSubTypes />} />
           <Route path="/admin/subtypelist" element={<SubTypeList />} />
-          <Route path="/edit-submission/" element={<EditSubType />} />
+          <Route path="/edit-submission/:id" element={<EditSubType />} />
         </Routes>
       </Router>
     </>
