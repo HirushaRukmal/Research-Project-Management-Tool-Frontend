@@ -111,6 +111,14 @@ const App = () => {
             });
     }
 
+    const updateGroup = () => {
+        Swal.fire(
+            'Do you want to update your group Members, group Name or group Topic?',
+            'You must contact your supervisor!',
+            'info'
+        )
+    }
+
     const deleteGroup = () => {
         console.log("Called Delete");
 
@@ -176,8 +184,8 @@ const App = () => {
                             </a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link" href="/dashboard">
-                                <button onClick={deleteGroup} className="btn btn-info" style={{ color: "white" }} >Update Project Group</button>
+                            <a class="nav-link">
+                                <button onClick={updateGroup} className="btn btn-info" style={{ color: "white" }} >Update Project Group</button>
                             </a>
                         </li>
                     </ul>
