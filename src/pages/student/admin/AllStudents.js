@@ -24,18 +24,32 @@ const App = () => {
     }
 
     const deleteStudent = (studentId) => {
-        axios
-            .delete(`${process.env.BACKEND_API_LOCAL}/student/${studentId}`)
-            .then(response => {
-                // alert(response.data.message);
-                Swal.fire(
-                    `Studnet under Register ID ${studentId} is Deleted`,
-                    `${response.data.message}`,
-                    'success'
-                )
-                fetchStaffMembers();
-            })
-            .catch(error => console.log(error));
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "Do you want to delete this Student?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            console.log("FIRED");
+            if (result.isConfirmed) {
+                console.log("CONFIRMED");
+                axios
+                    .delete(`${process.env.BACKEND_API_LOCAL}/student/${studentId}`)
+                    .then(response => {
+                        // alert(response.data.message);
+                        Swal.fire(
+                            `Studnet under Register ID ${studentId} is Deleted`,
+                            `${response.data.message}`,
+                            'success'
+                        )
+                        fetchStuednt();
+                    })
+                    .catch(error => console.log(error));
+            }
+        })
     }
 
     useEffect(() => {
