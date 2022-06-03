@@ -4,8 +4,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useNavigate } from "react-router-dom";
 import { Calendar } from "@natscale/react-calendar";
 import Swal from "sweetalert2";
-import Sidebar from "./Sidebar";
-import Navbar from "./Navbar";
+import Sidebar from "../admin/Sidebar";
+import Navbar from "../admin/Navbar";
 
 function Register() {
   const [fName, setFirstName] = useState("");
@@ -17,11 +17,12 @@ function Register() {
   const [tel, setTel] = useState("");
   const [address, setAddress] = useState("");
   const [password, setPassword] = useState("");
+  const [type, setType] = useState("");
 
   async function handleSubmit(event) {
     event.preventDefault();
     try {
-      await axios.post("http://localhost:8000/admin/profile/create", {
+      await axios.post("http://localhost:8000/staff/profile/create", {
         fName: fName,
         mName: mName,
         lName: lName,
@@ -31,6 +32,7 @@ function Register() {
         tel: tel,
         address: address,
         password: password,
+        type: type,
       });
       setFirstName("");
       setMiddleName("");
@@ -41,8 +43,9 @@ function Register() {
       setTel("");
       setAddress("");
       setPassword("");
+      setType("");
       setTimeout(() => {
-        window.location.href = "/admin/dashboard";
+        window.location.href = "/staff/dashboard";
       }, 2000);
       const Swal = require("sweetalert2");
       Swal.fire({
@@ -60,17 +63,19 @@ function Register() {
       });
     }
   }
-
+  async function handleChange(event) {
+    this.setState({ value: event.target.value });
+  }
   return (
     <div className="App">
       <Navbar />
       <Sidebar />
       <div>
         <div className="card" style={{ marginLeft: "80px" }}>
-          <div className="card-body p-lg-5">
-            <h3 className="mb-4">Admin Registeration</h3>
+          <div className="card-header px-lg-5">
+            <h3 className="mb-4">Staff Registeration</h3>
             <p className="text-muted text-sm mb-5">
-              Please fill your personal detail to create an admin account.
+              Please fill your personal detail to create a staff account.
             </p>
             <form action="#">
               <div className="row">
@@ -94,8 +99,6 @@ function Register() {
                       id="mName"
                       type="text"
                       placeholder="name@example.com"
-                      pattern="[A-Za-z]{1,250}"
-                      title="Characters can only be A-Z and a-z and must be less than 250 characters."
                       onChange={(event) => {
                         setMiddleName(event.target.value);
                       }}
@@ -116,13 +119,27 @@ function Register() {
                     <label for="lastname"> Last Name</label>
                   </div>
                   <div className="form-floating mb-3">
+                    Type{" "}
+                    <select
+                      onChange={(event) => {
+                        setType(event.target.value);
+                      }}
+                      required
+                      style={{ width: "200px", paddingLeft: "10px" }}
+                    >
+                      <option value="Supervisor">Supervisor</option>
+                      <option value="Co Supervisor">Co Supervisor</option>
+                      <option value="Panel Member">Panel Member</option>
+                    </select>
+                  </div>
+
+                  <div className="form-floating mb-3">
                     <input
                       className="form-control"
                       id="email"
                       type="email"
                       placeholder="email"
                       required
-                      pattern=""
                       onChange={(event) => {
                         setEmail(event.target.value);
                       }}
@@ -228,8 +245,8 @@ function Register() {
                     </button>
                   </div>
                 </div>
+                <div className="card-header px-lg-5"></div>
               </div>
-              <div className="card-header px-lg-5"></div>
             </form>
           </div>
         </div>

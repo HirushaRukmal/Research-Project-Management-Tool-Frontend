@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import '../../components/Admin/add-subTypes';
 import '../../assets/admin/sideMenu.css';
+import { Button } from 'bootstrap';
 export default function SideMenu() {
   const [isSideMenu, setSideMenu] = useState(false)
   const open = (isSideMenu) => {
@@ -23,9 +24,12 @@ export default function SideMenu() {
   return (
     <>
       <header className="topBar">
+        
+        
           
         <div className="menuBar">
-            <div className="title">Project Management Tool SLIIT-Admin</div>        
+            <div className="title">Project Management Tool SLIIT-Admin</div>  
+                 
           <span
             ref={domeNode}
             className="navIcon"
@@ -48,17 +52,20 @@ export default function SideMenu() {
           </span>
         </div>s
         <div className="sideMenu" style={{ left: isSideMenu ? '0' : '-265px' }}>
-          <Link to={"/subTypes"}>Create Submission</Link>
+          <Link to={"/admin/subTypes"}>Create Submission</Link>
           <a href="">Create Template</a>
           <a href="#">Marking Scheme</a>
           <a href="#">Panel Members</a>
-          <a href="#">Submission List</a>
+          <a href="/admin/subtypelist">Submission List</a>
           <a href="#">Menu 06</a>
           <a href="#">Menu 07</a>
           <a href="#">Menu 08</a>
           <a href="#">Menu 09</a>
         </div>
+        
       </header>
+      
     </>
+    
   )
 }
