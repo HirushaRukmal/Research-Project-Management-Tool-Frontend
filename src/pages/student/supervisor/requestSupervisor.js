@@ -1,27 +1,43 @@
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 import Header from '../../../components/student/Navbar';
+import { getStudentId } from '../../../services/SessionManager';
 
 const App = () => {
 
     const [supervisorList, setSupervisorList] = useState([]);
     const [coSupervisorList, setCoSupervisorList] = useState([]);
+    const [groupId, setGroupId] = useState("");
 
     const [state, setState] = useState({
-        supervisor: "",
-        co_supervisor: "",
+        supervisorId: "",
+        coSupervisorId: "",
+        status: false,
     });
 
     const {
-        supervisor,
-        co_supervisor,
+        supervisorId,
+        coSupervisorId,
+        status,
     } = state;
 
     function handleChange(name) {
         return function (event) {
             setState({ ...state, [name]: event.target.value });
         };
+    }
+
+    const fetchGruopId = () => {
+        axios.get(`${process.env.BACKEND_API_LOCAL}/group/groupData/${getStudentId()}`)
+            .then(response => {
+                console.log(response.data)
+                setGroupId(response.data._id)
+            })
+            .catch(error => {
+                console.log(error);
+            });
     }
 
     const fetchSupervisor = () => {
@@ -49,7 +65,53 @@ const App = () => {
 
     useEffect(() => {
         fetchSupervisor();
+        fetchGruopId();
     }, [])
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        console.table({
+            groupId,
+            supervisorId,
+            coSupervisorId,
+            status,
+        });
+
+        axios
+            .post(`${process.env.BACKEND_API_LOCAL}/supervisor-group/`, {
+                groupId,
+                supervisorId,
+                coSupervisorId,
+                status,
+            })
+            .then((response) => {
+                console.log(response);
+                Swal.fire(
+                    `Supervisor/Co-Supervisor Request Sent!`,
+                    'Click Ok to continue',
+                    'success'
+                )
+                //empty state
+                setState({
+                    ...state,
+                    supervisorId: "",
+                    coSupervisorId: "",
+                    status: "",
+                });
+
+                setGroupId("");
+            })
+            .catch((error) => {
+                console.log(error.Response);
+                Swal.fire({
+                    icon: 'error',
+                    title: `${error.response.data.error}`,
+                    // text: `${error.response.data.error}`,
+                    footer: 'Please try again'
+                })
+                // alert(error.response.data.error);
+            });
+    };
 
     return (
         <div>
@@ -59,7 +121,7 @@ const App = () => {
                 <center><h1>Supervisor & Co-Supervisor</h1><br /></center>
                 <br />
 
-                <form>
+                <form onSubmit={handleSubmit}>
                     <div className="row">
                         <div class="col">
                             <center>
@@ -69,9 +131,9 @@ const App = () => {
                                 <label className="text-muted"> Supervisor</label>
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <select
-                                    onChange={handleChange("supervisor")}
-                                    name="supervisor"
-                                    id="supervisor"
+                                    onChange={handleChange("supervisorId")}
+                                    name="supervisorId"
+                                    id="supervisorId"
                                     style={{
                                         width: "400px",
                                         color: "blue",
@@ -91,9 +153,9 @@ const App = () => {
                                 <label className="text-muted">Co-Supervisor</label>
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <select
-                                    onChange={handleChange("co_supervisor")}
-                                    name="co_supervisor"
-                                    id="co_supervisor"
+                                    onChange={handleChange("coSupervisorId")}
+                                    name="coSupervisorId"
+                                    id="coSupervisorId"
                                     style={{
                                         width: "400px",
                                         color: "blue",

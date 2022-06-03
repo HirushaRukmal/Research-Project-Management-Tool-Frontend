@@ -23,6 +23,7 @@ import Header from './components/student/Navbar';
 import Group from './pages/student/project-group/index';
 import GroupRegister from './pages/student/project-group/groupRegister';
 import RequestSupervisor from './pages/student/supervisor/requestSupervisor';
+import Supervisor from './pages/student/supervisor/index';
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
           <Route path="/request-supervisor" element={<RequestSupervisor />} />
           <Route path="/group" element={<Group />} />
           <Route path="/group-register" element={<GroupRegister />} />
+          <Route path="/supervisor" element={<Supervisor />} />
           <Route path="/register" element={<Home />} />
           <Route path="/admin/register" element={<AdminRegister />} />
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
