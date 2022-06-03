@@ -60,23 +60,21 @@ const App = () => {
         const searchWord = event.target.value;
         console.log(searchWord);
         setWordEntered(searchWord);
-        axios.get(`${process.env.BACKEND_API_LOCAL}/student/`)
+        axios.get(`${process.env.BACKEND_API_LOCAL}`)
             .then(response => {
                 console.log(response)
-                const newFilter = student.filter((response) => {
-                    return response.fullName.toLowerCase().includes(searchWord.toLowerCase()) ||
-                        response.sliitId.toLowerCase().includes(searchWord.toLowerCase()) ||
-                        response.sliitEmail.toLowerCase().includes(searchWord.toLowerCase()) ||
-                        response.personalEmail.toLowerCase().includes(searchWord.toLowerCase()) ||
-                        response.contactNo.toLowerCase().includes(searchWord.toLowerCase()) ||
-                        response.studentType.toLowerCase().includes(searchWord.toLowerCase());
+                const newFilter = group.filter((response) => {
+                    return response.groupName.toLowerCase().includes(searchWord.toLowerCase()) ||
+                        response.groupLeader.toLowerCase().includes(searchWord.toLowerCase()) ||
+                        response.groupEmail.toLowerCase().includes(searchWord.toLowerCase()) ||
+                        response.groupTopic.toLowerCase().includes(searchWord.toLowerCase());
                 });
 
                 if (searchWord === "") {
                     console.log("EMPLTY");
-                    fetchStudent();
+                    fetchGroup();
                 } else {
-                    setStudent(newFilter);
+                    setGroup(newFilter);
                 }
             })
             .catch(error => console.log(error));
@@ -86,8 +84,8 @@ const App = () => {
         <div>
             <Navbar />
             <Sidebar />
-            <div style={{ position: "absolute" }}>
-                <div className="card scrollable-div" style={{ width: "100%", height: "590px" }}>
+            <div>
+                <div className="card" style={{ marginLeft: "90px", width: "95%", height: "590px" }}>
                     <div className="card-body">
                         <h1 align="center">Registred Stundets</h1>
                         <br />
@@ -108,7 +106,7 @@ const App = () => {
                                     <div className="row">
                                         <div className="col">
                                             <span style={{ color: "blue" }}><h3>{count}</h3></span>
-                                            <span><h3>Number of Students</h3></span>
+                                            <span><h3>Number of Groups</h3></span>
                                         </div>
                                     </div>
                                 </div>
@@ -138,43 +136,43 @@ const App = () => {
                             </center>
                         </div>
 
-                        <div className=" scrollable-div">
-                            <table id="table" class="table" responsive className="table table-hover" style={{ marginTop: '40px', marginLeft: '20px', width: '95%' }}>
+                        <div className="scrollable-div" style={{ marginLeft: "10px", width: "95%" }}>
+                            <table id="table" class="table" responsive className="table table-hover" style={{ marginTop: '40px', marginLeft: '20px' }}>
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Registered ID</th>
-                                        <th>Student Name</th>
-                                        <th>SLIIT ID</th>
-                                        <th>SLIIT Email</th>
-                                        <th>Personal Email</th>
-                                        <th>Contact Number</th>
-                                        <th>Stuednt Type</th>
-                                        <th>Group Status</th>
+                                        <th>Group ID</th>
+                                        <th>Gorup Name</th>
+                                        <th>Group Leader</th>
+                                        <th>First Member</th>
+                                        <th>Second Member</th>
+                                        <th>Third Member</th>
+                                        <th>Group Topic</th>
+                                        <th>Group Email</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {student.map((student, i) => (
+                                    {group.map((group, i) => (
                                         <tr key={i}>
                                             <th scope="row">{i + 1}</th>
 
                                             <a href={`#`} style={{ textDecoration: 'none' }}>
-                                                <td>{student._id}</td>
+                                                <td>{group._id}</td>
                                             </a>
 
-                                            <td>{student.fullName}</td>
-                                            <td>{student.sliitId}</td>
-                                            <td>{student.sliitEmail}</td>
-                                            <td>{student.personalEmail}</td>
-                                            <td>{student.contactNo}</td>
-                                            <td>{student.studentType}</td>
-                                            <td>{student.groupStatus.toString()}</td>
+                                            <td>{group.groupName}</td>
+                                            <td>{group.groupLeader}</td>
+                                            <td>{group.firstMember}</td>
+                                            <td>{group.secondMember}</td>
+                                            <td>{group.thirdMember}</td>
+                                            <td>{group.groupTopic}</td>
+                                            <td>{group.groupEmail}</td>
                                             <td>
-                                                <a className="" href={`/update-student/${student._id}`}>
+                                                <a className="" href={`/update-student/${group._id}`}>
                                                     <i className="fas fa-edit"></i>&nbsp;
                                                 </a>
                                                 &nbsp;&nbsp;&nbsp;
-                                                <a className="" href="#" onClick={() => deleteStudent(student._id)}>
+                                                <a className="" href="#" onClick={() => deleteStudent(group._id)}>
                                                     <i className="far fa-trash-alt"></i>&nbsp;
                                                 </a>
 
