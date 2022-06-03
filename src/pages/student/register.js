@@ -61,8 +61,6 @@ class App extends React.Component {
         axios.post(`${process.env.BACKEND_API_AZURE}/student/login`, {
             sliitEmail,
             password
-        }, {
-            headers: { "Access-Control-Allow-Origin": "*" }
         })
             .then(response => {
                 console.log(response);

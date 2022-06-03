@@ -18,7 +18,7 @@ const App = () => {
     const deleteGroupFinal = () => {
         console.log(currentGroup._id);
         const id = currentGroup._id;
-        axios.delete(`${process.env.BACKEND_API_LOCAL}/group/${id}`)
+        axios.delete(`${process.env.BACKEND_API_AZURE}/group/${id}`)
             .then(response => {
                 Swal.fire(
                     'Deleted!',
@@ -35,7 +35,7 @@ const App = () => {
 
     const verifyUser = (password) => {
         console.log(password);
-        axios.get(`${process.env.BACKEND_API_LOCAL}/student/${getStudentId()}`)
+        axios.get(`${process.env.BACKEND_API_AZURE}/student/${getStudentId()}`)
             .then(response => {
                 console.log(response.data)
                 if (response.data.password == password) {
@@ -57,7 +57,7 @@ const App = () => {
 
     const fetchCurrentStudent = () => {
         console.log("WORKING");
-        axios.get(`${process.env.BACKEND_API_LOCAL}/group/groupData/${getStudentId()}`)
+        axios.get(`${process.env.BACKEND_API_AZURE}/group/groupData/${getStudentId()}`)
             .then(response => {
                 console.log(response.data);
                 setCurrentGroup(response.data);
@@ -66,7 +66,7 @@ const App = () => {
 
 
                 //fetch Student 1
-                axios.get(`${process.env.BACKEND_API_LOCAL}/student/${response.data.groupLeader}`)
+                axios.get(`${process.env.BACKEND_API_AZURE}/student/${response.data.groupLeader}`)
                     .then(response => {
                         console.log(response.data)
                         setStudent1(response.data)
@@ -76,7 +76,7 @@ const App = () => {
                     });
 
                 //fetch Student 2
-                axios.get(`${process.env.BACKEND_API_LOCAL}/student/${response.data.firstMember}`)
+                axios.get(`${process.env.BACKEND_API_AZURE}/student/${response.data.firstMember}`)
                     .then(response => {
                         console.log(response)
                         setStudent2(response.data)
@@ -86,7 +86,7 @@ const App = () => {
                     });
 
                 //fetch Student 3
-                axios.get(`${process.env.BACKEND_API_LOCAL}/student/${response.data.secondMember}`)
+                axios.get(`${process.env.BACKEND_API_AZURE}/student/${response.data.secondMember}`)
                     .then(response => {
                         console.log(response)
                         setStudent3(response.data)
@@ -96,7 +96,7 @@ const App = () => {
                     });
 
                 //fetch Student 4
-                axios.get(`${process.env.BACKEND_API_LOCAL}/student/${response.data.thirdMember}`)
+                axios.get(`${process.env.BACKEND_API_AZURE}/student/${response.data.thirdMember}`)
                     .then(response => {
                         console.log(response)
                         setStudent4(response.data)

@@ -14,7 +14,7 @@ const App = () => {
     const [count, setCount] = useState([]);
 
     const fetchGroup = () => {
-        axios.get(`${process.env.BACKEND_API_LOCAL}/group/`)
+        axios.get(`${process.env.BACKEND_API_AZURE}/group/`)
             .then(response => {
                 console.log(response)
                 setGroup(response.data);
@@ -37,7 +37,7 @@ const App = () => {
             if (result.isConfirmed) {
                 console.log("CONFIRMED");
                 axios
-                    .delete(`${process.env.BACKEND_API_LOCAL}/group/${groupId}`)
+                    .delete(`${process.env.BACKEND_API_AZURE}/group/${groupId}`)
                     .then(response => {
                         // alert(response.data.message);
                         Swal.fire(
@@ -76,7 +76,7 @@ const App = () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 axios
-                    .put(`${process.env.BACKEND_API_LOCAL}/group/${group._id}`, {
+                    .put(`${process.env.BACKEND_API_AZURE}/group/${group._id}`, {
                         groupName,
                         groupLeader,
                         firstMember,
@@ -109,7 +109,7 @@ const App = () => {
             } else if (result.isDenied) {
                 groupStatus = false;
                 axios
-                    .put(`${process.env.BACKEND_API_LOCAL}/group/${group._id}`, {
+                    .put(`${process.env.BACKEND_API_AZURE}/group/${group._id}`, {
                         groupName,
                         groupLeader,
                         firstMember,
@@ -151,7 +151,7 @@ const App = () => {
         const searchWord = event.target.value;
         console.log(searchWord);
         setWordEntered(searchWord);
-        axios.get(`${process.env.BACKEND_API_LOCAL}`)
+        axios.get(`${process.env.BACKEND_API_AZURE}`)
             .then(response => {
                 console.log(response)
                 const newFilter = group.filter((response) => {

@@ -45,7 +45,7 @@ const App = props => {
 
     const fetchStudents = () => {
         console.log("WORKING");
-        axios.get(`${process.env.BACKEND_API_LOCAL}/student/`)
+        axios.get(`${process.env.BACKEND_API_AZURE}/student/`)
             .then(response => {
                 console.log(response);
                 setStudent(response.data);
@@ -58,7 +58,7 @@ const App = props => {
     useEffect(() => {
         fetchStudents();
         axios
-            .get(`${process.env.BACKEND_API_LOCAL}/student/${id}`)
+            .get(`${process.env.BACKEND_API_AZURE}/student/${id}`)
             .then(response => {
                 console.log(response)
                 const { groupName,
@@ -171,7 +171,7 @@ const App = props => {
             password,
         })
         axios
-            .put(`${process.env.BACKEND_API_LOCAL}/student/${id}`, {
+            .put(`${process.env.BACKEND_API_AZURE}/student/${id}`, {
                 fullName,
                 sliitId,
                 sliitEmail,

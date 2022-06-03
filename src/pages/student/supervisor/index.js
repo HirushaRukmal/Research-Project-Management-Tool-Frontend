@@ -13,17 +13,17 @@ const App = () => {
     const { supervisor } = getSupervisor();
 
     const fetchCurrentGroup = () => {
-        axios.get(`${process.env.BACKEND_API_LOCAL}/group/groupData/${getStudentId()}`)
+        axios.get(`${process.env.BACKEND_API_AZURE}/group/groupData/${getStudentId()}`)
             .then(response => {
                 console.log(response.data);
                 setCurrentGroup(response.data);
-                axios.get(`${process.env.BACKEND_API_LOCAL}/supervisor-group/getByGroupId/${response.data._id}`)
+                axios.get(`${process.env.BACKEND_API_AZURE}/supervisor-group/getByGroupId/${response.data._id}`)
                     .then(response => {
                         console.log(response.data);
                         setSupervisorGroup(response.data);
 
                         // Fetch Supervisor Detila
-                        axios.get(`${process.env.BACKEND_API_LOCAL}/staff/profile/${response.data.supervisorId}`)
+                        axios.get(`${process.env.BACKEND_API_AZURE}/staff/profile/${response.data.supervisorId}`)
                             .then(response => {
                                 console.log(response);
                                 setSupervisor(response);
@@ -34,7 +34,7 @@ const App = () => {
                             });
 
                         //Fetch Co-Supervisor Details
-                        axios.get(`${process.env.BACKEND_API_LOCAL}/staff/profile/${response.data.coSupervisorId}`)
+                        axios.get(`${process.env.BACKEND_API_AZURE}/staff/profile/${response.data.coSupervisorId}`)
                             .then(response => {
                                 console.log(response.data);
                                 setCoSupervisor(response);
