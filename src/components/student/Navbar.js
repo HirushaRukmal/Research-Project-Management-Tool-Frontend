@@ -4,7 +4,7 @@
  */
 
 import React, { useState } from 'react';
-import { logout } from '../../services/SessionManager';
+import { logout, setSupervisor } from '../../services/SessionManager';
 
 const logoutFromSession = () => {
     swal({
@@ -64,7 +64,7 @@ const Navbar = () => {
                         </a>
                     </li>&nbsp;&nbsp;
                     <li class="nav-item dropdown">
-                        <a class="nav-link" href="/supervisor">
+                        <a class="nav-link" onClick={() => setSupervisor(null)} href="/supervisor">
                             <i class="fa fa-book"></i>&nbsp;&nbsp;
                             Supervisor/Co-Supervior
                         </a>
