@@ -81,7 +81,7 @@ class Dashboard extends Component {
         <Navbar />
         <Sidebar />
         <div className="container">
-          <h2>Exisiting Admin Users</h2>
+          <h2>Registered Admin Users</h2>
           <br />
           <p>
             <button className="btn btn-primary">
