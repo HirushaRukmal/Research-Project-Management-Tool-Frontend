@@ -292,9 +292,7 @@ const App = () => {
                             </p>
                             <p>Contact Number: {student4.contactNo}</p>
                             <div>
-                              {/* <button class="btn btn-primary btn-round btn-simple">
-                                Message
-                              </button> */}
+                              
                             </div>
                           </div>
                         </div>
