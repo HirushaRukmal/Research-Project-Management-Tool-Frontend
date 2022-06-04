@@ -48,11 +48,11 @@ function App() {
             <Route path="/supervisor" element={<Supervisor />} />
             <Route path="/update-student/:id" element={<UpdateStudent />} />
             <Route path="/update-group/:id" element={<UpdateGroup />} />
-            <Route path="/all-students" element={<AllStudents />} />
-            <Route path="/all-groups" element={<AllGroups />} />
           </Route>
 
           {/* Public Route */}
+          <Route path="/all-students" element={<AllStudents />} />
+          <Route path="/all-groups" element={<AllGroups />} />
           <Route path="/register" element={<Register />} />
           <Route path="/admin/register" element={<AdminRegister />} />
           <Route path="/admin/dashboard" element={<AdminDashboard />} />

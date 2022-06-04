@@ -105,7 +105,7 @@ const App = () => {
                             </nav>
                         </div>
                         <br />
-                        {supervisor != null ? (
+                        {supervisor == null ? (
                             <div>
                                 <center>
                                     <div class="container profile-page">
