@@ -146,12 +146,12 @@ class Dashboard extends Component {
                   <td>{profiles.email}</td>
                   <td>{profiles.type}</td>
                   <td>
-                    <a
+                    {/* <a
                       className="btn btn-warning text-decoration-none text-white"
                       href={`/admin/profile/update/${profiles._id}`}
                     >
                       <i className="fas fa-edit"></i>&nbsp;Edit
-                    </a>
+                    </a> */}
                     &nbsp;
                     <a
                       className="btn btn-danger text-decoration-none text-white"
