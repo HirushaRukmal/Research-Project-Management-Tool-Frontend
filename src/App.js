@@ -39,6 +39,8 @@ function App() {
     <>
       <Router>
         <Routes>
+
+          {/* Priavate Route Student Route */}
           <Route path="/" element={<PrivateRoute />}>
             <Route path="/student" element={<StudentDashboard />} />
             <Route path="/header" element={<Header />} />
@@ -50,6 +52,7 @@ function App() {
             <Route path="/update-group/:id" element={<UpdateGroup />} />
           </Route>
 
+          {/* Private Route Admin Route */}
           <Route path="/" element={<PrivateRouteAdmin />}>
             <Route path="/admin/dashboard" element={<AdminDashboard />} />
             <Route path="/staff/dashboard" element={<StaffDashboard />} />
@@ -70,8 +73,6 @@ function App() {
             <Route path="/admin-update" element={<UpdateAdmin />} />
             <Route path="/staff/profile/update/:id" element={<UpdateStaff />} />
           </Route>
-
-
 
           {/* Public Route */}
           <Route path="/register" element={<Register />} />
