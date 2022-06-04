@@ -9,7 +9,10 @@ export const authenticate = (response, next) => {
 
 export const setSupervisor = (response) => {
     if (window !== 'undefined') {
-        sessionStorage.setItem('supervisor', JSON.stringify(response.data));
+        if (response != null)
+            sessionStorage.setItem('supervisor', JSON.stringify(response.data));
+        else
+            sessionStorage.setItem('supervisor', JSON.stringify(null));
     }
 };
 
