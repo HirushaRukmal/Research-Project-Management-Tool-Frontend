@@ -175,8 +175,8 @@ export default class CreateSubmission extends Component {
                 <div className="row"></div>
               </div>
             </div>
-            <div className="card-header px-lg-5"></div>
-            <div className="card-header px-lg-5"></div>
+            <div className="card-header px-lg-9"></div>
+            <div className="card-header px-lg-9"></div>
           </div>
         </div>
       </div>
