@@ -32,12 +32,15 @@ import UpdateStudent from "./pages/student/admin/UpdateStudent";
 import AllGroups from "./pages/student/admin/AllGroups";
 import PrivateRoute from "./services/PrivateRoutes";
 import UpdateStaff from "./pages/Staff/updateStaff";
+import PrivateRouteAdmin from "./services/PrivateRouteAdmin";
 
 function App() {
   return (
     <>
       <Router>
         <Routes>
+
+          {/* Priavate Route Student Route */}
           <Route path="/" element={<PrivateRoute />}>
             <Route path="/student" element={<StudentDashboard />} />
             <Route path="/header" element={<Header />} />
@@ -49,27 +52,31 @@ function App() {
             <Route path="/update-group/:id" element={<UpdateGroup />} />
           </Route>
 
+          {/* Private Route Admin Route */}
+          <Route path="/" element={<PrivateRouteAdmin />}>
+            <Route path="/admin/dashboard" element={<AdminDashboard />} />
+            <Route path="/staff/dashboard" element={<StaffDashboard />} />
+            <Route path="/all-students" element={<AllStudents />} />
+            <Route path="/all-groups" element={<AllGroups />} />
+            <Route path="/admin/register" element={<AdminRegister />} />
+            <Route path="/admin/subTypes" element={<AddSubTypes />} />
+            <Route path="/fileUpload" element={<FileUpload />} />
+            <Route path="/admin/subtypelist" element={<SubTypeList />} />
+            <Route path="/edit-submission/:id" element={<EditSubType />} />
+            <Route path="/admin/profile" element={<ProfileDetails />} />
+            <Route path="/staff/register" element={<StaffRegister />} />
+            <Route path="/subTypes" element={<AddSubTypes />} />
+            <Route path="/admin/subtypelist" element={<SubTypeList />} />
+            <Route path="/edit-submission/:id" element={<EditSubType />} />
+            <Route path="/admin/allocate-pm" element={<PanelMember />} />
+            <Route path="/admin/pmlist" element={<Pmlist />} />
+            <Route path="/admin-update" element={<UpdateAdmin />} />
+            <Route path="/staff/profile/update/:id" element={<UpdateStaff />} />
+          </Route>
+
           {/* Public Route */}
-          <Route path="/all-students" element={<AllStudents />} />
-          <Route path="/all-groups" element={<AllGroups />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/admin/register" element={<AdminRegister />} />
-          <Route path="/admin/dashboard" element={<AdminDashboard />} />
           <Route path="/admin/login" element={<AdminLogin />} />
-          <Route path="/admin/subTypes" element={<AddSubTypes />} />
-          <Route path="/fileUpload" element={<FileUpload />} />
-          <Route path="/admin/subtypelist" element={<SubTypeList />} />
-          <Route path="/edit-submission/:id" element={<EditSubType />} />
-          <Route path="/admin/profile" element={<ProfileDetails />} />
-          <Route path="/staff/dashboard" element={<StaffDashboard />} />
-          <Route path="/staff/register" element={<StaffRegister />} />
-          <Route path="/subTypes" element={<AddSubTypes />} />
-          <Route path="/admin/subtypelist" element={<SubTypeList />} />
-          <Route path="/edit-submission/:id" element={<EditSubType />} />
-          <Route path="/admin/allocate-pm" element={<PanelMember />} />
-          <Route path="/admin/pmlist" element={<Pmlist />} />
-          <Route path="/admin-update" element={<UpdateAdmin />} />
-          <Route path="/staff/profile/update/:id" element={<UpdateStaff />} />
         </Routes>
       </Router>
     </>

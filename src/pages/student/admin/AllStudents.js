@@ -89,7 +89,7 @@ const App = () => {
             <div style={{ position: "absolute" }}>
                 <div className="card scrollable-div" style={{ width: "100%", height: "590px" }}>
                     <div className="card-body">
-                        <h1 align="center">Registred Stundets</h1>
+                        <h1 align="center">Registered Students</h1>
                         <br />
                         <div>
                             <center>
