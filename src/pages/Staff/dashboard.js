@@ -58,7 +58,7 @@ class Dashboard extends Component {
 
   filterData(profiles, searchKey) {
     const result = profiles.filter((profiles) =>
-      profiles.uName.includes(searchKey)
+      profiles.fName.includes(searchKey)
     );
 
     this.setState({ profiles: result });
@@ -80,7 +80,7 @@ class Dashboard extends Component {
         <Navbar />
         <Sidebar />
         <div className="container ">
-          <h2>Exisiting Staff Users</h2>
+          <h2>Registered Staff Users</h2>
           <br />
           <p>
             <button className="btn btn-primary">
