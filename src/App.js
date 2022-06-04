@@ -20,6 +20,7 @@ import FileUpload from "./components/Admin/fileUpload";
 import SubTypeList from "./components/Admin/list_subTypes";
 import EditSubType from "./components/Admin/update_subtype";
 import PanelMember from "./components/Admin/allocate_pm";
+import Pmlist from "./components/Admin/list_panelmem";
 
 // Import Routes
 import Home from "./Home";
@@ -53,6 +54,7 @@ function App() {
           <Route path="/admin/subtypelist" element={<SubTypeList />} />
           <Route path="/edit-submission/:id" element={<EditSubType />} />
           <Route path="/admin/allocate-pm" element={<PanelMember />} />
+          <Route path="/admin/pmlist" element={<Pmlist />} />
         </Routes>
       </Router>
     </>
