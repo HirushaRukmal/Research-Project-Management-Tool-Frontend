@@ -75,7 +75,7 @@ const App = () => {
 
             <div>
                 <br />
-                
+
                 {currentGroup != null ? (
                     <div>
                         <div>
@@ -106,7 +106,7 @@ const App = () => {
                         </center>
                         <br />
                         <br />
-                        {supervisor == null ? (
+                        {getSupervisor() != null ? (
                             <div>
                                 <center>
                                     <div class="container profile-page">

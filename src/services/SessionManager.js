@@ -54,7 +54,7 @@ export const getCoSupervisor = () => {
 export const getStudentId = () => {
     if (window !== 'undefined') {
         if (sessionStorage.getItem('student_id')) {
-            return JSON.parse(sessionStorage.getItem('cosupervisor'));
+            return JSON.parse(sessionStorage.getItem('student_id'));
         } else {
             return false;
         }
@@ -65,8 +65,6 @@ export const getStudentId = () => {
 export const logout = () => {
     if (window !== 'undefined') {
         // sessionStorage.removeItem('token');
-        sessionStorage.removeItem('student_id');
-        sessionStorage.removeItem('supervisor');
         sessionStorage.removeItem('student_id');
     }
 };
