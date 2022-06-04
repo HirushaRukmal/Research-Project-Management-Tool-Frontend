@@ -10,7 +10,7 @@ const App = () => {
 
     const [currentGroup, setCurrentGroup] = useState([]);
     const [supervisorGroup, setSupervisorGroup] = useState([]);
-    const { supervisor } = getSupervisor();
+    var { supervisor } = false;
 
     const fetchCurrentGroup = () => {
         axios.get(`${process.env.BACKEND_API_AZURE}/group/groupData/${getStudentId()}`)
@@ -21,11 +21,12 @@ const App = () => {
                     .then(response => {
                         console.log(response.data);
                         setSupervisorGroup(response.data);
-
+                        setSupervisor(null);
                         // Fetch Supervisor Detila
                         axios.get(`${process.env.BACKEND_API_AZURE}/staff/profile/${response.data.supervisorId}`)
                             .then(response => {
-                                console.log(response);
+                                supervisor = true;
+                                console.log(supervisor);
                                 setSupervisor(response);
                                 console.log(getSupervisor());
                             })
@@ -78,6 +79,12 @@ const App = () => {
 
                 {currentGroup != null ? (
                     <div>
+                        <center>
+                            <h4>Group Name: {currentGroup.groupName}</h4>
+                            <h4>Group Id: {currentGroup._id}</h4>
+                            <h4>Group Topic: {currentGroup.groupTopic}</h4>
+                        </center>
+                        <br />
                         <div>
                             <nav class="navbar navbar-expand-md navbar-dark " style={{ position: 'static', marginLeft: "32%" }}>
                                 <ul class="navbar-nav">
@@ -99,14 +106,8 @@ const App = () => {
                                 </ul>
                             </nav>
                         </div>
-                        <center>
-                            <h4>Group Name: {currentGroup.groupName}</h4>
-                            <h4>Group Id: {currentGroup._id}</h4>
-                            <h4>Group Topic: {currentGroup.groupTopic}</h4>
-                        </center>
                         <br />
-                        <br />
-                        {supervisor != null ? (
+                        {getSupervisor() != null ? (
                             <div>
                                 <center>
                                     <div class="container profile-page">
