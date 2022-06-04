@@ -146,14 +146,29 @@ const Sidebar = () => {
             <NavLink
               className="text-decoration-none text-white"
               exact
-              to="#"
+              to="/supervisor/topicApproval"
+              activeClassName="activeClicked"
+            >
+              
+            <CDBSidebarMenuItem icon="th-large">
+                Topic Approvals
+                </CDBSidebarMenuItem>
+            </NavLink>
+
+            <NavLink
+              className="text-decoration-none text-white"
+              exact
+              to="/supervisor/topicApproval"
               activeClassName="activeClicked"
             >
               <CDBSidebarMenuItem icon="envelope">
                 Marking Scheme
               </CDBSidebarMenuItem>
             </NavLink>
+            
 
+
+                
             <NavLink
               onClick={() => logoutFromSession()}
               className="text-decoration-none text-white"
