@@ -2,58 +2,65 @@ import React, { Component } from "react";
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
-export default class EditSubType extends Component {
+export default class EditPm extends Component {
   constructor(props) {
     super(props)
-    this.onChangeSubmissionTopic = this.onChangeSubmissionTopic.bind(this);
-    this.onChangeDeadline = this.onChangeDeadline.bind(this);
-    this.onChangeDescription = this.onChangeDescription.bind(this);
+    this.onChangePmName = this.onChangePmName.bind(this);
+    this.onChangePmEmail = this.onChangePmEmail.bind(this);
+    this.onChangeGroupName = this.onChangeGroupName.bind(this);
+    this.onChangeGroupEmail = this.onChangeGroupEmail.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     // State
     this.state = {
-      Submission_Topic: '',
-      Deadline: '',
-      Description: ''
+        Panel_Member_Name: '',
+        Panel_Member_Email: '',
+        Group_Name: '',
+        Group_email: ''
     }
   }
   componentDidMount() {
-    axios.get('http://localhost:8000/admin/update-submission/' + this.props.match.params._id)
+    axios.get('http://localhost:8000/admin/update-pm/' + this.props.match.params.id)
       .then(res => {
         this.setState({
-          Submission_Topic: res.data.Submission_Topic,
-          Deadline: res.data.Deadline,
-          Description: res.data.Description
+            Panel_Member_Name: res.data.Panel_Member_Name,
+            Panel_Member_Email: res.data.Panel_Member_Email,
+            Group_Name: res.data.Group_Name,
+            Group_email: res.data.Group_email
         });
       })
       .catch((error) => {
         console.log(error);
       })
   }
-  onChangeSubmissionTopic(e) {
-    this.setState({ Submission_Topic: e.target.value })
+  onChangePmName(e) {
+    this.setState({Panel_Member_Name: e.target.value })
   }
-  onChangeDeadline(e) {
-    this.setState({ Deadline: e.target.value })
+  onChangePmEmail(e) {
+    this.setState({ Panel_Member_Email: e.target.value })
   }
-  onChangeDescription(e) {
-    this.setState({ Description: e.target.value })
+  onChangeGroupName(e) {
+    this.setState({ Group_Name: e.target.value })
+  }
+  onChangeGroupEmail(e) {
+    this.setState({ Group_email: e.target.value })
   }
   onSubmit(e) {
     e.preventDefault()
     const submissionObject = {
-      Submission_Topic: this.state.Submission_Topic,
-      Deadline: this.state.Deadline,
-      Description: this.state.Description
+        Panel_Member_Name: this.state.Panel_Member_Name,
+        Panel_Member_Email: this.state.Panel_Member_Email,
+        Group_Name: this.state.Group_Name,
+        Group_email: this.state.Group_email
     };
-    axios.put('http://localhost:8000/admin/edit-submission/' + this.props.match.params.id, submissionObject)
+    axios.put('http://localhost:8000/admin/edit-pm/' + this.props.match.params.id, submissionObject)
       .then((res) => {
         console.log(res.data)
-        console.log('Submission Type successfully updated')
+        console.log(' successfully updated')
       }).catch((error) => {
         console.log(error)
       })
     // Redirect to Student List 
-    this.props.history.push('/list_subTypes')
+    this.props.history.push('/admin/pmlist')
   }
 
   render() {

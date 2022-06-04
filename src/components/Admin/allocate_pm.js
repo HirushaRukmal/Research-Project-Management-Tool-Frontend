@@ -46,8 +46,10 @@ export default class allocate_pm extends Component {
       Panel_Member_Name: this.state.Panel_Member_Name,
       Panel_Member_Email: this.state.Panel_Member_Email,
       Group_Name: this.state.Group_Name,
-      Group_email: this.state.Group_email
-    };
+      
+    }
+      
+  
     axios
       .post("http://localhost:8000/admin/allocate-panel", panelObject)
       .then((res) => console.log(res.data));
@@ -97,12 +99,13 @@ export default class allocate_pm extends Component {
                       <input
                         className="form-control"
                         id="email"
-                        type="text"
+                        type="email"
                         placeholder="text"
                         required
                         value={this.state.Panel_Member_Email}
                         onChange={this.onChangePanel_Member_Email}
                       />
+                      <span className="text-danger">{this.state.error}</span>
                       <label for="email"> Panel Member Email</label>
                     </div>
                     <div className="form-floating mb-3">
