@@ -9,7 +9,10 @@ export const authenticate = (response, next) => {
 
 export const setSupervisor = (response) => {
     if (window !== 'undefined') {
-        sessionStorage.setItem('supervisor', JSON.stringify(response.data));
+        if (response != null)
+            sessionStorage.setItem('supervisor', JSON.stringify(response.data));
+        else
+            sessionStorage.setItem('supervisor', JSON.stringify(null));
     }
 };
 
@@ -39,16 +42,6 @@ export const getCoSupervisor = () => {
     }
 };
 
-//access access name from session storage
-// export const getToken = () => {
-//     if (window !== 'undefined') {
-//         if (sessionStorage.getItem('token')) {
-//             return JSON.parse(sessionStorage.getItem('token'));
-//         } else {
-//             return false;
-//         }
-//     }
-// };
 
 //access student id from session storage
 export const getStudentId = () => {
@@ -62,10 +55,9 @@ export const getStudentId = () => {
 };
 
 //remove token from session storage
-export const logout = (next) => {
+export const logout = () => {
     if (window !== 'undefined') {
         // sessionStorage.removeItem('token');
         sessionStorage.removeItem('student_id');
     }
-    next();
 };

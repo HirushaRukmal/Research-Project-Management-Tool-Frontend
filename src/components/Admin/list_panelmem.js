@@ -1,25 +1,26 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Table from "react-bootstrap/Table";
-import SubTypeTableRow from "./SubTypeTableRow";
+import PmTableRow from "./pmTableRow";
 import Navbar from "../../pages/admin/Navbar";
 import Sidebar from "../../pages/admin/Sidebar";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 import ReactHTMLTableToExcel from "react-html-table-to-excel";
 
-export default class subTypeList extends Component {
+export default class panelMemberlist extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      admin_sts: [],
+        allocatepanelmembers: [],
     };
   }
   componentDidMount() {
-    axios.get("http://localhost:8000/admin/")
+    axios
+      .get("http://localhost:8000/admin/show")
       .then((res) => {
         this.setState({
-          admin_sts: res.data,
+            allocatepanelmembers: res.data,
         });
       })
       .catch((error) => {
@@ -27,8 +28,8 @@ export default class subTypeList extends Component {
       });
   }
   DataTable() {
-    return this.state.admin_sts.map((res, i) => {
-      return <SubTypeTableRow obj={res} key={i} />;
+    return this.state.allocatepanelmembers.map((res, i) => {
+      return <PmTableRow obj={res} key={i} />;
     });
   }
 
@@ -38,12 +39,12 @@ export default class subTypeList extends Component {
         <Navbar />
         <Sidebar />
         <div className="container">
-          <h2>Submission Types</h2>
+          <h2>Student Group's Panel Members</h2>
           <br />
           <p>
             <button className="btn btn-primary">
-              <a href="/subTypes" className="text-decoration-none text-white">
-                Create Submission Type
+              <a href="/admin/allocate-pm" className="text-decoration-none text-white">
+                Add Panel Member
               </a>
             </button>
 
@@ -51,7 +52,7 @@ export default class subTypeList extends Component {
               <ReactHTMLTableToExcel
                 className="btn btn-outline-success"
                 table="table"
-                filename="Submission Type Details"
+                filename="Panel Member Details"
                 sheet="Sheet"
                 buttonText="Generate Sheet"
               />
@@ -72,16 +73,17 @@ export default class subTypeList extends Component {
           <Table id="table" class="table">
             <thead>
               <tr>
-                <th scope="col">Topic</th>
-                <th scope="col">Deadline</th>
-                <th scope="col">Description</th>
+                <th scope="col">Panel Member</th>
+                <th scope="col">Panel Member Email</th>
+                <th scope="col">Group</th>
+                <th scope="col">Group Leader Email</th>
                 <th scope="col">Action</th>
               </tr>
             </thead>
             <tbody>{this.DataTable()}</tbody>
           </Table>
           <p>
-            <b>Total Submission Types: {this.state.admin_sts.length}</b>
+            <b>Panel members allocated groups total: {this.state.allocatepanelmembers.length}</b>
           </p>
         </div>
       </div>

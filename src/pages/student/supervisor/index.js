@@ -10,9 +10,10 @@ const App = () => {
 
     const [currentGroup, setCurrentGroup] = useState([]);
     const [supervisorGroup, setSupervisorGroup] = useState([]);
-    const { supervisor } = getSupervisor();
+    var { supervisor } = false;
 
     const fetchCurrentGroup = () => {
+
         axios.get(`${process.env.BACKEND_API_AZURE}/group/groupData/${getStudentId()}`)
             .then(response => {
                 console.log(response.data);
@@ -21,11 +22,11 @@ const App = () => {
                     .then(response => {
                         console.log(response.data);
                         setSupervisorGroup(response.data);
-
                         // Fetch Supervisor Detila
                         axios.get(`${process.env.BACKEND_API_AZURE}/staff/profile/${response.data.supervisorId}`)
                             .then(response => {
-                                console.log(response);
+                                supervisor = true;
+                                console.log(supervisor);
                                 setSupervisor(response);
                                 console.log(getSupervisor());
                             })
@@ -75,6 +76,7 @@ const App = () => {
 
             <div>
                 <br />
+
                 {currentGroup != null ? (
                     <div>
                         <center>
@@ -105,7 +107,7 @@ const App = () => {
                             </nav>
                         </div>
                         <br />
-                        {supervisor == null ? (
+                        {getSupervisor() != null ? (
                             <div>
                                 <center>
                                     <div class="container profile-page">
