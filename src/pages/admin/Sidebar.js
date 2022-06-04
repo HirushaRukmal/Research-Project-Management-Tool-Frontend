@@ -124,7 +124,7 @@ const Sidebar = () => {
             <NavLink
               className="text-decoration-none text-white"
               exact
-              to="/admin/allocate-pm"
+              to="/admin/pmlist"
               activeClassName="activeClicked"
             >
               <CDBSidebarMenuItem icon="th-large">
