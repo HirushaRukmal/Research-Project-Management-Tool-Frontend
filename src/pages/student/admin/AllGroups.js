@@ -178,7 +178,7 @@ const App = () => {
             <div>
                 <div className="card" style={{ marginLeft: "90px", width: "95%", height: "590px" }}>
                     <div className="card-body">
-                        <h1 align="center">Registred Stundets</h1>
+                        <h1 align="center">Registered Groups</h1>
                         <br />
                         <div>
                             <center>
