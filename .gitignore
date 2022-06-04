@@ -2,6 +2,7 @@ node_modules/
 .parcel-cache/
 build
 dist
+.cache
 
 # This .env file is apppear only for now
 .env
