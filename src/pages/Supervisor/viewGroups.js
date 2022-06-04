@@ -15,10 +15,10 @@ class ViewGroups extends Component {
     };
   }
 
+
   componentDidMount() {
     // this.retrieveGroup();
-    // console.log("this is called");
-
+    
     const id = this.props.match.params.id;
     console.log("ID: " + id);
 

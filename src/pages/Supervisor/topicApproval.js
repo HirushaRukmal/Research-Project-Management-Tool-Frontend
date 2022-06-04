@@ -6,6 +6,7 @@ import ReactHTMLTableToExcel from "react-html-table-to-excel";
 import Sidebar from "../admin/Sidebar";
 import Navbar from "../admin/Navbar";
 
+
 class TopicApproval extends Component {
   constructor(props) {
     super(props);
@@ -49,6 +50,8 @@ class TopicApproval extends Component {
   //       });
   //   };
 
+
+
   filterData(group, searchKey) {
     const result = group.filter((group) => group.uName.includes(searchKey));
 
@@ -65,26 +68,70 @@ class TopicApproval extends Component {
     });
   };
 
+
+// handleFilter = (event) => {
+//     const searchWord = event.target.value;
+//     console.log(searchWord);
+//     setWordEntered(searchWord);
+//     axios
+//       .get(`${process.env.BACKEND_API_LOCAL}/group/`)
+//       .then((response) => {
+//         console.log(response);
+//         const newFilter = student.filter((response) => {
+//           return (
+//             response.groupName
+//               .toLowerCase()
+//               .includes(searchWord.toLowerCase()) ||
+//             response.sliitId.toLowerCase().includes(searchWord.toLowerCase()) ||
+//             response.groupLeader
+//               .toLowerCase()
+//               .includes(searchWord.toLowerCase()) ||
+//             response.groupTopic
+//               .toLowerCase()
+//               .includes(searchWord.toLowerCase())
+//           );
+//         });
+
+//         if (searchWord === "") {
+//           console.log("EMPLTY");
+//           fetchStudent();
+//         } else {
+//           setStudent(newFilter);
+//         }
+//       })
+//       .catch((error) => console.log(error));
+//   };
+
   render() {
     return (
       <div>
         <Navbar />
         <Sidebar />
+        <div style={{ position: "absolute" }}>
+                <div className="card scrollable-div" style={{ width: "200%", height: "590px" }}>
+                    <div className="card-body"></div>
         <div className="container ">
-          <h2>Registered Groups</h2>
+          <h2 align="center">Registered Groups</h2>
           <br />
           <p>
-            {/* <button className="btn btn-primary">
-                  <a
-                    href="/staff/register"
-                    className="text-decoration-none text-white"
-                    style={{ textDecoration: "none" }}
-                  >
-                    Create New Profile
-                  </a>
-                </button> */}
-
-            <div style={{ marginTop: "-38px", marginLeft: "190px" }}>
+<div>
+  <center>
+  <div
+                                    className="border border-info"
+                                    style={{
+                                        width: "80%",
+                                        backgroundColor: "white",
+                                        borderRadius: "10px",
+                                        borderColor: "#00408C",
+                                        padding: "20px 20px 20px 20px",
+                                        margin: "10px 0px 0px 0px",
+                                        align: "center"
+                                    }}
+                                >
+                                  <h3>
+            <b>Total Registered Groups: {this.state.group.length}</b>
+          </h3>
+            <div style={{ marginTop: "18px", marginLeft: "20px" }}>
               <ReactHTMLTableToExcel
                 className="btn btn-outline-success"
                 table="table"
@@ -93,10 +140,13 @@ class TopicApproval extends Component {
                 buttonText="Generate Sheet"
               />
             </div>
+            </div>
+            </center>
+            </div>
 
             <div
               className="float-end"
-              style={{ marginTop: "-30px", marginLeft: "190px" }}
+              style={{ marginTop: "30px", marginLeft: "190px" }}
             >
               <input
                 className="form-control"
@@ -124,7 +174,7 @@ class TopicApproval extends Component {
                   <td>
                     <a
                       className="text-decoration-none"
-                        href={`/supervisorTopics/${group._id}`}
+                        href={`/viewGroup/${group._id}`}
                       style={{ textDecoration: "none" }}
                     >
                       {group.groupName}
@@ -151,9 +201,9 @@ class TopicApproval extends Component {
               ))}
             </tbody>
           </table>
-          <p>
-            <b>Total Registered Groups: {this.state.group.length}</b>
-          </p>
+          
+        </div>
+        </div>
         </div>
       </div>
     );

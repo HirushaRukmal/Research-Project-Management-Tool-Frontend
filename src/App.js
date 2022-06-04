@@ -18,6 +18,8 @@ import EditSubType from "./components/Admin/update_subtype";
 import UpdateAdmin from "./pages/admin/updateAdmin";
 import TopicApproval from "./pages/Supervisor/topicApproval";
 import ViewGroups from "./pages/Supervisor/viewGroups";
+import ViewDetails from './pages/Supervisor/viewDetails';
+// import Group from './pages/Supervisor/viewDetails';
 
 // Stuednt Route
 import Register from './pages/student/register';
@@ -48,6 +50,7 @@ function App() {
             <Route path="/supervisor" element={<Supervisor />} />
             <Route path="/update-student/:id" element={<UpdateStudent />} />
             <Route path="/update-group/:id" element={<UpdateGroup />} />
+            {/* <Route path="/group" element={<Group />} /> */}
           </Route>
 
           {/* Public Route */}
@@ -70,7 +73,9 @@ function App() {
           <Route path="/edit-submission/:id" element={<EditSubType />} />
           <Route path="/admin-update" element={<UpdateAdmin />} />
           <Route path="/supervisor/topicApproval" element={<TopicApproval />} />
-          <Route path="/supervisorTopics/:id" element={<ViewGroups />} />
+          {/* <Route path="/supervisorTopics/:id" element={<ViewGroups />} /> */}
+          <Route path="/viewGroup/:id" element={<ViewDetails />} />
+          
         </Routes>
       </Router>
     </>
