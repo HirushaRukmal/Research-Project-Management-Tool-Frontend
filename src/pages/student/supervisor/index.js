@@ -106,7 +106,7 @@ const App = () => {
                         </center>
                         <br />
                         <br />
-                        {getSupervisor() != null ? (
+                        {supervisor != null ? (
                             <div>
                                 <center>
                                     <div class="container profile-page">
