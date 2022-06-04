@@ -62,10 +62,9 @@ export const getStudentId = () => {
 };
 
 //remove token from session storage
-export const logout = (next) => {
+export const logout = () => {
     if (window !== 'undefined') {
         // sessionStorage.removeItem('token');
         sessionStorage.removeItem('student_id');
     }
-    next();
 };
