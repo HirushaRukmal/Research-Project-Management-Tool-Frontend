@@ -75,29 +75,30 @@ const App = () => {
 
             <div>
                 <br />
-                <div>
-                    <nav class="navbar navbar-expand-md navbar-dark " style={{ position: 'static', marginLeft: "32%" }}>
-                        <ul class="navbar-nav">
-                            <li class="nav-item active">
-                                <a class="nav-link" href="/request-supervisor">
-                                    <button className="btn btn-info" type="submit" style={{ color: "white" }}>Request Supervisor/Co-Supervisor</button>
-                                </a>
-                            </li>
-                            {/* <li class="nav-item">
+                
+                {currentGroup != null ? (
+                    <div>
+                        <div>
+                            <nav class="navbar navbar-expand-md navbar-dark " style={{ position: 'static', marginLeft: "32%" }}>
+                                <ul class="navbar-nav">
+                                    <li class="nav-item active">
+                                        <a class="nav-link" href="/request-supervisor">
+                                            <button className="btn btn-info" type="submit" style={{ color: "white" }}>Request Supervisor/Co-Supervisor</button>
+                                        </a>
+                                    </li>
+                                    {/* <li class="nav-item">
                             <a class="nav-link">
                                 <button onClick={deleteGroup} className="btn btn-info" style={{ color: "white" }} >Delete Project Group</button>
                             </a>
                         </li> */}
-                            <li class="nav-item dropdown">
-                                <a class="nav-link">
-                                    <button onClick={updateGroup} className="btn btn-info" style={{ color: "white" }} >Re-request Supervisor/Co-Supervisor</button>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-                {currentGroup != null ? (
-                    <div>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link">
+                                            <button onClick={updateGroup} className="btn btn-info" style={{ color: "white" }} >Re-request Supervisor/Co-Supervisor</button>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
                         <center>
                             <h4>Group Name: {currentGroup.groupName}</h4>
                             <h4>Group Id: {currentGroup._id}</h4>
