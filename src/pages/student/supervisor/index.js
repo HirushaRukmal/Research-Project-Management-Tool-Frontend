@@ -75,14 +75,9 @@ const App = () => {
 
             <div>
                 <br />
+
                 {currentGroup != null ? (
                     <div>
-                        <center>
-                            <h4>Group Name: {currentGroup.groupName}</h4>
-                            <h4>Group Id: {currentGroup._id}</h4>
-                            <h4>Group Topic: {currentGroup.groupTopic}</h4>
-                        </center>
-                        <br />
                         <div>
                             <nav class="navbar navbar-expand-md navbar-dark " style={{ position: 'static', marginLeft: "32%" }}>
                                 <ul class="navbar-nav">
@@ -104,8 +99,14 @@ const App = () => {
                                 </ul>
                             </nav>
                         </div>
+                        <center>
+                            <h4>Group Name: {currentGroup.groupName}</h4>
+                            <h4>Group Id: {currentGroup._id}</h4>
+                            <h4>Group Topic: {currentGroup.groupTopic}</h4>
+                        </center>
                         <br />
-                        {supervisor == null ? (
+                        <br />
+                        {getSupervisor() != null ? (
                             <div>
                                 <center>
                                     <div class="container profile-page">
