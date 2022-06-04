@@ -39,7 +39,6 @@ function App() {
     <>
       <Router>
         <Routes>
-
           {/* Priavate Route Student Route */}
           <Route path="/" element={<PrivateRoute />}>
             <Route path="/student" element={<StudentDashboard />} />
@@ -62,7 +61,7 @@ function App() {
             <Route path="/admin/subTypes" element={<AddSubTypes />} />
             <Route path="/fileUpload" element={<FileUpload />} />
             <Route path="/admin/subtypelist" element={<SubTypeList />} />
-            <Route path="/edit-submission/:id" element={<EditSubType />} />
+            <Route path="/update-submission/:id" element={<EditSubType />} />
             <Route path="/admin/profile" element={<ProfileDetails />} />
             <Route path="/staff/register" element={<StaffRegister />} />
             <Route path="/subTypes" element={<AddSubTypes />} />
