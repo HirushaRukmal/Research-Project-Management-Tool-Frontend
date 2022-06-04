@@ -17,6 +17,7 @@ import SubTypeList from "./components/Admin/list_subTypes";
 import EditSubType from "./components/Admin/update_subtype";
 import UpdateAdmin from "./pages/admin/updateAdmin";
 import TopicApproval from "./pages/Supervisor/topicApproval";
+import ViewGroups from "./pages/Supervisor/viewGroups";
 
 // Stuednt Route
 import Register from './pages/student/register';
@@ -69,6 +70,7 @@ function App() {
           <Route path="/edit-submission/:id" element={<EditSubType />} />
           <Route path="/admin-update" element={<UpdateAdmin />} />
           <Route path="/supervisor/topicApproval" element={<TopicApproval />} />
+          <Route path="/supervisorTopics/:id" element={<ViewGroups />} />
         </Routes>
       </Router>
     </>

@@ -124,7 +124,7 @@ class TopicApproval extends Component {
                   <td>
                     <a
                       className="text-decoration-none"
-                      //   href={`/staff/profile/view/${profiles._id}`}
+                        href={`/supervisorTopics/${group._id}`}
                       style={{ textDecoration: "none" }}
                     >
                       {group.groupName}
