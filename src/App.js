@@ -19,6 +19,7 @@ import PanelMember from "./components/Admin/allocate_pm";
 import Pmlist from "./components/Admin/list_panelmem";
 import UpdateAdmin from "./pages/admin/updateAdmin";
 
+
 // Stuednt Route
 import Register from './pages/student/register';
 import StudentDashboard from './pages/student/dashboard';
@@ -32,6 +33,7 @@ import UpdateGroup from './pages/student/admin/UpdateGroup';
 import UpdateStudent from './pages/student/admin/UpdateStudent';
 import AllGroups from './pages/student/admin/AllGroups';
 import PrivateRoute from './services/PrivateRoutes';
+
 
 function App() {
   return (
@@ -71,6 +73,7 @@ function App() {
           <Route path="/admin/allocate-pm" element={<PanelMember />} />
           <Route path="/admin/pmlist" element={<Pmlist />} />
           <Route path="/admin-update" element={<UpdateAdmin />} />
+      
         </Routes>
       </Router>
     </>
