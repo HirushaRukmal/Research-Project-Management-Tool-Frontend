@@ -42,16 +42,6 @@ export const getCoSupervisor = () => {
     }
 };
 
-//access access name from session storage
-// export const getToken = () => {
-//     if (window !== 'undefined') {
-//         if (sessionStorage.getItem('token')) {
-//             return JSON.parse(sessionStorage.getItem('token'));
-//         } else {
-//             return false;
-//         }
-//     }
-// };
 
 //access student id from session storage
 export const getStudentId = () => {

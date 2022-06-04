@@ -169,7 +169,7 @@ class App extends React.Component {
             <div className="App ">
 
                 {/*} login {*/}
-                <div className="page-holder align-items-center py-4 bg-gray-100 vh-100">
+                <div className="page-holder align-items-center py-4 bg-gray-100 vh-100" style={{ margineTop: "50px" }}>
                     <div className="container">
                         <div className="row align-items-center">
                             <div className={this.state.login}>
@@ -177,7 +177,7 @@ class App extends React.Component {
                                     <div className="card-header px-lg-5">
                                         <div className="card-heading text-primary">Student Login</div>
                                     </div>
-                                    <div className="card-body p-lg-5">
+                                    <div className="card-body p-lg-5" >
                                         <h3 className="mb-4">Research Management Tool - SLIIT</h3>
                                         <p className="text-muted text-sm mb-5">Please enter your email address and password to login.</p>
                                         <form onSubmit={this.onSubmitLogin}>
@@ -196,8 +196,9 @@ class App extends React.Component {
                                             <button className="btn btn-primary" type="submit">Submit</button>
                                         </form>
                                     </div>
-                                    <div className="card-footer px-lg-5 py-lg-4">
-                                        <div className="text-sm text-muted">Don't have an account? <a onClick={this.showregister}>Register</a>.</div>
+                                    <div className="card-footer row" style={{ marginLeft: "20px", width: "90%", backgroundColor: "white" }}>
+                                        <div className="col">Don't have an account? <a onClick={this.showregister}>Register</a>.</div>
+                                        <div className="col">Are you an Admin? <a href="/admin/login">Admin Login</a>.</div>
                                     </div>
                                 </div>
                             </div>

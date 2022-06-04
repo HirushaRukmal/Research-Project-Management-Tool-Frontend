@@ -10,7 +10,10 @@ export default class SubTypeTableRow extends Component {
     this.deleteSubType = this.deleteSubType.bind(this);
   }
   deleteSubType() {
-    axios.delete( "http://localhost:8000/admin/delete-submission/" + this.props.obj._id )
+    axios
+      .delete(
+        "http://localhost:8000/admin/delete-submission/" + this.props.obj._id
+      )
       .then((res) => {
         const Swal = require("sweetalert2");
         Swal.fire({
@@ -25,9 +28,9 @@ export default class SubTypeTableRow extends Component {
       });
     this.props.history.push("/list_subTypes");
   }
-  eventClick = () =>{
-    this.props.history.push("/update-submission/" + this.props.obj._id)
-  }
+  eventClick = () => {
+    this.props.history.push("/update-submission/" + this.props.obj._id);
+  };
   render() {
     return (
       <tr>
@@ -37,7 +40,7 @@ export default class SubTypeTableRow extends Component {
         <td>
           <a
             className="btn btn-warning text-decoration-none text-white"
-            href={'/edit-subtype/' + this.props.obj.id}
+            href={"/update-submission/" + this.props.obj._id}
           >
             <i className="fas fa-edit"></i>&nbsp;Edit
           </a>

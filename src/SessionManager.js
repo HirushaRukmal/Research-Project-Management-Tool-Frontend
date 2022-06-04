@@ -30,8 +30,8 @@ export const getToken = () => {
 //access user's name from session storage
 export const getUser = () => {
   if (window !== 'undefined') {
-    if (sessionStorage.getItem('id')) {
-      return JSON.parse(sessionStorage.getItem('id'));
+    if (sessionStorage.getItem('User ID')) {
+      return JSON.parse(sessionStorage.getItem('User ID'));
     } else {
       return false;
     }
