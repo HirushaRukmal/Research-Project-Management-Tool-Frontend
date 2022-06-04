@@ -4,6 +4,29 @@
  */
 
 import React, { useState } from 'react';
+import { logout } from '../../services/SessionManager';
+
+const logoutFromSession = () => {
+    swal({
+        title: "Are you sure?",
+        text: "Do you want to logout!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+    })
+        .then((willDelete) => {
+            if (willDelete) {
+                swal("Loging out", {
+                    icon: "success",
+                });
+                logout();
+                window.location.reload(false);
+                window.location.href = `/register`;
+            } else {
+                swal("Stay in Session!");
+            }
+        });
+}
 
 const Navbar = () => {
     const [collapse2, setCollapse2] = useState(false);
@@ -55,7 +78,7 @@ const Navbar = () => {
                 </ul>
 
                 <ul class="navbar-nav" style={{ marginLeft: "25%", marginRight: "2%" }}>
-                    <li class="nav-item active">
+                    <li class="nav-item active" onClick={() => logoutFromSession()}>
                         <button className="btn btn-danger" type="submit">Logout</button>
                     </li>
 
