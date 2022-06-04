@@ -13,6 +13,7 @@ const App = () => {
     var { supervisor } = false;
 
     const fetchCurrentGroup = () => {
+
         axios.get(`${process.env.BACKEND_API_AZURE}/group/groupData/${getStudentId()}`)
             .then(response => {
                 console.log(response.data);
@@ -21,7 +22,6 @@ const App = () => {
                     .then(response => {
                         console.log(response.data);
                         setSupervisorGroup(response.data);
-                        setSupervisor(null);
                         // Fetch Supervisor Detila
                         axios.get(`${process.env.BACKEND_API_AZURE}/staff/profile/${response.data.supervisorId}`)
                             .then(response => {
