@@ -30,6 +30,7 @@ import UpdateGroup from "./pages/student/admin/UpdateGroup";
 import UpdateStudent from "./pages/student/admin/UpdateStudent";
 import AllGroups from "./pages/student/admin/AllGroups";
 import PrivateRoute from "./services/PrivateRoutes";
+import UpdateStaff from "./pages/Staff/updateStaff";
 
 function App() {
   return (
@@ -66,6 +67,7 @@ function App() {
           <Route path="/edit-submission/:id" element={<EditSubType />} />
           <Route path="/admin/allocate-pm" element={<PanelMember />} />
           <Route path="/admin-update" element={<UpdateAdmin />} />
+          <Route path="/staff/profile/update/:id" element={<UpdateStaff />} />
         </Routes>
       </Router>
     </>

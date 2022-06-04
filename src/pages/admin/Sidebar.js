@@ -113,6 +113,28 @@ const Sidebar = () => {
             <NavLink
               className="text-decoration-none text-white"
               exact
+              to="/all-groups"
+              activeClassName="activeClicked"
+            >
+              <CDBSidebarMenuItem icon="users">
+                Student Group
+              </CDBSidebarMenuItem>
+            </NavLink>
+
+            <NavLink
+              className="text-decoration-none text-white"
+              exact
+              to="#"
+              activeClassName="activeClicked"
+            >
+              <CDBSidebarMenuItem icon="th-large">
+                Panel Members
+              </CDBSidebarMenuItem>
+            </NavLink>
+
+            <NavLink
+              className="text-decoration-none text-white"
+              exact
               to="/admin/subtypelist"
               activeClassName="activeClicked"
             >
@@ -129,28 +151,6 @@ const Sidebar = () => {
             >
               <CDBSidebarMenuItem icon="envelope">
                 Marking Scheme
-              </CDBSidebarMenuItem>
-            </NavLink>
-
-            <NavLink
-              className="text-decoration-none text-white"
-              exact
-              to="/all-groups"
-              activeClassName="activeClicked"
-            >
-              <CDBSidebarMenuItem icon="users">
-                Student Group
-              </CDBSidebarMenuItem>
-            </NavLink>
-
-            <NavLink
-              className="text-decoration-none text-white"
-              exact
-              to="#"
-              activeClassName="activeClicked"
-            >
-              <CDBSidebarMenuItem icon="th-large">
-                Create Template
               </CDBSidebarMenuItem>
             </NavLink>
 
