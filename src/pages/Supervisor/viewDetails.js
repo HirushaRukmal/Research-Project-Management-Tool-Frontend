@@ -173,7 +173,7 @@ const App = () => {
       <Navbar />
       <Sidebar />
       <center>
-        <h1 >Research Project Group </h1>
+        <h1>Research Project Group </h1>
       </center>
       <div>
         <nav
@@ -194,7 +194,10 @@ const App = () => {
               ) : (
                 <h4>Approved: NO</h4>
               )}
-              <button onClick={() => approveTopicAndGroup(currentGroup)} class="btn btn-success">
+              <button
+                onClick={() => approveTopicAndGroup(currentGroup)}
+                class="btn btn-success"
+              >
                 Approve
               </button>
             </center>
@@ -268,9 +271,7 @@ const App = () => {
                               Personal Email Address: {student3.personalEmail}
                             </p>
                             <p>Contact Number: {student3.contactNo}</p>
-                            <div>
-                              
-                            </div>
+                            <div></div>
                           </div>
                         </div>
                       </div>
@@ -291,9 +292,7 @@ const App = () => {
                               Personal Email Address: {student4.personalEmail}
                             </p>
                             <p>Contact Number: {student4.contactNo}</p>
-                            <div>
-                              
-                            </div>
+                            <div></div>
                           </div>
                         </div>
                       </div>
