@@ -6,7 +6,6 @@ import Home from "./Home";
 import AdminRegister from "./pages/admin/register";
 import AdminDashboard from "./pages/admin/dashboard";
 import AdminLogin from "./pages/admin/login";
-import EditProfile from "./pages/admin/editProfile";
 import ProfileDetails from "./pages/admin/Userprofile";
 import StaffDashboard from "./pages/Staff/dashboard";
 import StaffRegister from "./pages/Staff/register";
@@ -14,25 +13,25 @@ import StaffRegister from "./pages/Staff/register";
 import AddSubTypes from "./components/Admin/add-subTypes";
 import FileUpload from "./components/Admin/fileUpload";
 import SubTypeList from "./components/Admin/list_subTypes";
-import EditSubType from "./components/Admin/update_subtype";
 import PanelMember from "./components/Admin/allocate_pm";
 import Pmlist from "./components/Admin/list_panelmem";
 import UpdateAdmin from "./pages/admin/updateAdmin";
 
 
 // Stuednt Route
-import Register from './pages/student/register';
-import StudentDashboard from './pages/student/dashboard';
-import Header from './components/student/Navbar';
-import Group from './pages/student/project-group/index';
-import GroupRegister from './pages/student/project-group/groupRegister';
-import RequestSupervisor from './pages/student/supervisor/requestSupervisor';
-import Supervisor from './pages/student/supervisor/index';
-import AllStudents from './pages/student/admin/AllStudents';
-import UpdateGroup from './pages/student/admin/UpdateGroup';
-import UpdateStudent from './pages/student/admin/UpdateStudent';
-import AllGroups from './pages/student/admin/AllGroups';
-import PrivateRoute from './services/PrivateRoutes';
+import Register from "./pages/student/register";
+import StudentDashboard from "./pages/student/dashboard";
+import Header from "./components/student/Navbar";
+import Group from "./pages/student/project-group/index";
+import GroupRegister from "./pages/student/project-group/groupRegister";
+import RequestSupervisor from "./pages/student/supervisor/requestSupervisor";
+import Supervisor from "./pages/student/supervisor/index";
+import AllStudents from "./pages/student/admin/AllStudents";
+import UpdateGroup from "./pages/student/admin/UpdateGroup";
+import UpdateStudent from "./pages/student/admin/UpdateStudent";
+import AllGroups from "./pages/student/admin/AllGroups";
+import PrivateRoute from "./services/PrivateRoutes";
+import UpdateStaff from "./pages/Staff/updateStaff";
 
 
 function App() {
@@ -40,7 +39,6 @@ function App() {
     <>
       <Router>
         <Routes>
-
           <Route path="/" element={<PrivateRoute />}>
             <Route path="/student" element={<StudentDashboard />} />
             <Route path="/header" element={<Header />} />
@@ -62,18 +60,17 @@ function App() {
           <Route path="/admin/subTypes" element={<AddSubTypes />} />
           <Route path="/fileUpload" element={<FileUpload />} />
           <Route path="/admin/subtypelist" element={<SubTypeList />} />
-          <Route path="/edit-submission/:id" element={<EditSubType />} />
-          <Route path="/admin/profile/update/:id" element={<EditProfile />} />
           <Route path="/admin/profile" element={<ProfileDetails />} />
           <Route path="/staff/dashboard" element={<StaffDashboard />} />
           <Route path="/staff/register" element={<StaffRegister />} />
           <Route path="/subTypes" element={<AddSubTypes />} />
           <Route path="/admin/subtypelist" element={<SubTypeList />} />
-          <Route path="/edit-submission/:id" element={<EditSubType />} />
+          <Route path="/edit-subtype/:id" element={<EditSubType />} />
           <Route path="/admin/allocate-pm" element={<PanelMember />} />
           <Route path="/admin/pmlist" element={<Pmlist />} />
           <Route path="/admin-update" element={<UpdateAdmin />} />
       
+          <Route path="/staff/profile/update/:id" element={<UpdateStaff />} />
         </Routes>
       </Router>
     </>

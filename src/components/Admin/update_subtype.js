@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
+import { useParams } from "react-router-dom";
 export default class EditSubType extends Component {
   constructor(props) {
     super(props)
@@ -17,7 +18,7 @@ export default class EditSubType extends Component {
     }
   }
   componentDidMount() {
-    axios.get('http://localhost:8000/admin/update-submission/' + this.props.match.params._id)
+    axios.get('http://localhost:8000/admin/edit-submission/' + this.props.match.params._id)
       .then(res => {
         this.setState({
           Submission_Topic: res.data.Submission_Topic,
@@ -45,7 +46,7 @@ export default class EditSubType extends Component {
       Deadline: this.state.Deadline,
       Description: this.state.Description
     };
-    axios.put('http://localhost:8000/admin/edit-submission/' + this.props.match.params.id, submissionObject)
+    axios.put('http://localhost:8000/admin/update-submission/' + this.props.match.params._id, submissionObject)
       .then((res) => {
         console.log(res.data)
         console.log('Submission Type successfully updated')

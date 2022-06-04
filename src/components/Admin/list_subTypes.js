@@ -16,8 +16,7 @@ export default class subTypeList extends Component {
     };
   }
   componentDidMount() {
-    axios
-      .get("http://localhost:8000/admin/")
+    axios.get("http://localhost:8000/admin/")
       .then((res) => {
         this.setState({
           admin_sts: res.data,
